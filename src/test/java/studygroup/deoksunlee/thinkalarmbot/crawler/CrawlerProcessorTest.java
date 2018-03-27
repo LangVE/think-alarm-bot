@@ -18,14 +18,7 @@ public class CrawlerProcessorTest {
         String actual = CrawlerProcessor.get(URL);
 
         // then
-        String expected = "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\"><head>\n" +
-                "    <meta charset=\"UTF-8\" />\n" +
-                "    <title>Title</title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "hello!!!!!!!!!!!!!!!\n" +
-                "\n" +
-                "</body></html>";
+        String expected = "3826";
         Assert.assertEquals(expected, actual);
     }
 }
