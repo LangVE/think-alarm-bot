@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body style="overflow: hidden; width: auto; height: auto; margin: 0px; position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; display: block;" class="ui-body ui-layout-container ui-body-img" onload="setMultiLanWord();disLanguage($('#sp_renewal'));portal.chkOTP();">
+<!-- portal에서 우선 로드 대상이 아닌 js -->
+<script type="text/javascript" src="/gwlib/core/fullcalendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/fullcalendar/gcal.js"></script>
+<!--
+<script type="text/javascript" src="/gwlib/core/fullcalendar/lang-all.js"></script>
+<script type="text/javascript" src="/gwlib/core/fullcalendar/lib/moment.min.js"></script>
+-->
+<script type="text/javascript" src="/gwlib/app/namecard/js/FNnavaigation.js"></script>
+<script type="text/javascript" src="/gwlib/comm/js/multiattach.js"></script>
+<script type="text/javascript" src="/gwlib/comm/js/xbutton.js"></script>
+<link type="text/css" href="/gwlib/comm/css/attach_styles.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/comm/css/button.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/core/fullcalendar/fullcalendar.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/app/approve/css/aprvform.css" rel="stylesheet">
+<!-- IMK 계열 기능 개선  추가  -->
+<script type="text/javascript" src="/gwlib/core/moment/moment.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/moment/moment-timezone-with-data.min.js"></script>
+<!-- 첨부, 에디터 object, js 선언-->
+<script type="text/javascript" src="/gwlib/core/multifile/jquery.MultiFile.pack.js"></script>
+<script type="text/javascript" src="/gwlib/core/editor/js/namo_scripteditor.js"></script>
+<link rel="stylesheet" type="text/css" href="/gwlib/core/attm/css/attm.css">
+<script type="text/javascript" src="/gwlib/core/attm/js/FileSaver.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/attm/js/attm.js?ver=201706271448"></script>
+<script type="text/javascript" src="/gwlib/core/attm/js/attm_init.js"></script>
+<div id="divLang" style="position:absolute;left:20px; top: 2px;z-index:9999;display:block">
+	<!--<span role="button" class="btn20 btnFont" data-font="dotum">돋움 폰트</span>
+	<span role="button" class="btn20 btnFont" data-font="gulim">굴림 폰트</span>
+	<span role="button" class="btn20 btnFont" data-font="'Malgun Gothic', '맑은 고딕'">맑은고딕 폰트</span>
+	<span role="button" class="btn20 btnFont" data-font="'nbg'">나눔바른고딕 폰트</span>-->
+</div>
+<!--div class="addtion" style="position:absolute;left:400px;top:10px;z-index:999;">
+	<span class="btn20">기본</span>
+	<span class="btn20 btnSearch">검색</span>
+	<span class="btn20 btnUpdate">편집(*x20)</span>
+	<span class="btn20 btnDel">삭제</span>
+	<span class="btn36 btnInputCmt">덧글입력(*x36)</span>
+</div-->
+<!-- Header -->
+<div id="header" class="ui-layout-north ui-layout-pane ui-layout-pane-north" style="position: absolute; margin: 0px; top: 0px; bottom: auto; left: 0px; right: 0px; width: auto; z-index: 3; height: 100px; display: block; visibility: visible; overflow: visible;">
+	<img class="logo" src="/gwlib/app/portal/images/gwlogo/logo.png" onclick="mframe.showPortal(&quot;portal_content_G&quot;);">
+	<!-- Util Menu -->
+	<div class="utilMenu">
+		<ul>
+		<!--li><span class="btn" role="button" onclick="portal.themeMenu(this, event);">테마선택</span></li-->
+		<li><span class="btn" role="button" onclick="portal.SendMailForHelpDesk(&quot;TO^관리자^win_admin^관리자/win_admin/interpark^담당^Z9999^기타사용자^310^담당&quot;);"><b><font color="blue">그룹웨어문의</font></b></span></li>
+		<li><span class="btn" role="button" onclick="portal.doFindClick();">임직원 찾기</span></li>
+		<li><span class="btn" role="button" onclick="portal.goEnv();">환경설정</span></li>
+		<li><span class="btn" role="button" onclick="portal.goNameCard();">명함관리</span></li>
+		<li><span class="btn" role="button" onclick="portal.doHelpClick();">도움말</span></li>
+		<li><span class="btn" role="button" onclick="portal.goSiteMap();">사이트맵</span></li>
+		<li><span class="btn" role="button" onclick="portal.logOut();">로그아웃</span></li>
+		</ul>
+	</div>
+	<!-- //Util Menu -->
+	<!-- 삭제요함
+	<table cellpadding="0" id="tbl_top" cellspacing="0" border="0" style="width:100%;margin:0;table-layout:fixed;">
+	<tr height="42px">
+		<td valign="middle" align="left" width="309px" >
+			<img src="/gwlib/app/portal/images/gwlogo/logo_01.gif" border="0" onclick='mframe.showPortal("portal_content_G");' align="absmiddle" style="cursor:pointer">
+		</td>
+		<td valign="middle" width="*">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;table-layout:fixed;">
+			<tr>
+				<td width="100px;"></td>
+				<td align="right">
+					<img src="/gwlib/app/portal/images/menu/s_menu1.png" border="0" onclick='portal.doFindClick();' align="absmiddle" style="cursor:pointer">
+					<img src="/gwlib/app/portal/images/menu/s_menu3.png" border="0" onclick='portal.goEnv()' align="absmiddle" style="cursor:pointer">
+					<img src="/gwlib/app/portal/images/menu/s_menu4.png" border="0" onclick='portal.doHelpClick();' align="absmiddle" style="cursor:pointer">
+					<img src="/gwlib/app/portal/images/menu/s_menu5.png" border="0" onclick='portal.goSiteMap();' align="absmiddle" style="cursor:pointer">
+					&nbsp;
+					<img id="pimg_G" src="/gwlib/app/portal/images/menu/p.png" border="0" onclick='mframe.showPortal("portal_content_G");' align="absmiddle" style="cursor:pointer">
+					<img id="pimg_P" src="/gwlib/app/portal/images/menu/my.png" border="0" onclick='mframe.showPortal("portal_content_P");' align="absmiddle" style="cursor:pointer">
+					
+					<img src="/gwlib/app/portal/images/menu/quick_btu.png" border="0" onclick='portal.quickMenu(this, event);' align="absmiddle" style="cursor:pointer">
+					<img src="/gwlib/app/portal/images/menu/thema.png" border="0" onclick='portal.themeMenu(this, event);' align="absmiddle" style="cursor:pointer">
+					<img src="/gwlib/app/portal/images/menu/logout.png" border="0" onclick='portal.logOut()' align="absmiddle" style="cursor:pointer">
+				</td>
+				<td width="34px"></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	-->
+	<!-- Navigation Bar -->
+	<div class="navBar">
+		<div id="_topmenu" class="topmenu"><ul id="multi-ddm"><li class="ui-top-bar"><a id="link_MENU0067" pid="MENU0067" style="cursor:pointer;" xtitle="전자메일" class="menu"><span>전자메일</span></a><ul id="MENU0067" class="submenu"><li><a id="link_MENU0069" style="cursor:pointer;" xtitle="메일작성">메일작성</a></li><li><a id="link_MENU0068" style="cursor:pointer;" xtitle="받은편지함">받은편지함</a></li><li><a id="link_MENU0091" style="cursor:pointer;" xtitle="읽지않은편지함">읽지않은편지함</a></li><li><a id="link_MENU0093" style="cursor:pointer;" xtitle="보낸편지함">보낸편지함</a></li><li><a id="link_MENU0097" style="cursor:pointer;" xtitle="아카이브">아카이브</a></li><li><a id="link_MENU0072" style="cursor:pointer;" xtitle="WIN메일">WIN메일</a></li></ul></li><li class="ui-top-bar"><a id="link_MENU0001" pid="MENU0001" style="cursor:pointer;" xtitle="전자결재" class="menu"><span>전자결재</span></a><ul id="MENU0001" class="submenu"><li><a id="link_MENU0077" style="cursor:pointer;" xtitle="작성함">작성함</a></li><li><a id="link_MENU0080" style="cursor:pointer;" xtitle="진행함">진행함</a></li><li><a id="link_MENU0082" style="cursor:pointer;" xtitle="완료함">완료함</a></li><li><a id="link_MENU0090" style="cursor:pointer;" xtitle="문서수발대장">문서수발대장</a></li></ul></li><li class="ui-top-bar"><a id="link_MENU0076" pid="MENU0076" style="cursor:pointer;" xtitle="업무" class="menu"><span>업무</span></a><ul id="MENU0076" class="submenu"><li><a id="link_MENU0018" style="cursor:pointer;" xtitle="일정관리">일정관리</a></li><li><a id="link_MENU0079" style="cursor:pointer;" xtitle="업무일지">업무일지</a></li><li><a id="link_MENU0085" style="cursor:pointer;" xtitle="업무서식">업무서식</a></li><li><a id="link_MENU0017" style="cursor:pointer;" xtitle="자원관리">자원관리</a></li><li><a id="link_MENU0092" style="cursor:pointer;" xtitle="공연일정관리">공연일정관리</a></li><li><a id="link_MENU0111" style="cursor:pointer;" xtitle="자원관리">자원관리</a></li><li><a id="link_MENU0110" style="cursor:pointer;" xtitle="IMK 클라우드">IMK 클라우드</a></li></ul></li><li class="ui-top-bar"><a id="link_MENU0002" pid="MENU0002" style="cursor:pointer;" xtitle="커뮤니티" class="menu"><span>커뮤니티</span></a><ul id="MENU0002" class="submenu"><li><a id="link_MENU0081" style="cursor:pointer;" xtitle="게시판">게시판</a></li><li><a id="link_MENU0030" style="cursor:pointer;" xtitle="동호회">동호회</a></li><li><a id="link_MENU0032" style="cursor:pointer;" xtitle="설문조사">설문조사</a></li><li><a id="link_MENU0101" style="cursor:pointer;" xtitle="셔틀버스">셔틀버스</a></li><li><a id="link_MENU0102" style="cursor:pointer;" xtitle="식단관리">식단관리</a></li></ul></li><li class="ui-top-bar"><a id="link_MENU0103" pid="MENU0103" style="cursor:pointer;" xtitle="문서관리함" class="menu"><span>문서관리함</span></a><ul id="MENU0103" class="submenu"><li><a id="link_MENU0105" style="cursor:pointer;" xtitle="문서작성">문서작성</a></li><li><a id="link_MENU0104" style="cursor:pointer;" xtitle="내문서함">내문서함</a></li><li><a id="link_MENU0106" style="cursor:pointer;" xtitle="열람문서함">열람문서함</a></li><li><a id="link_MENU0107" style="cursor:pointer;" xtitle="폐기함">폐기함</a></li><li><a id="link_MENU0109" style="cursor:pointer;" xtitle="환경설정">환경설정</a></li></ul></li><li class="ui-top-bar"><a id="link_MENU0007" pid="MENU0007" style="cursor:pointer;" xtitle="시스템관리" class="menu"><span>시스템관리</span></a><ul id="MENU0007" class="submenu"><li><a id="link_MENU0047" style="cursor:pointer;" xtitle="메뉴관리">메뉴관리</a></li><li><a id="link_MENU0048" style="cursor:pointer;" xtitle="조직관리">조직관리</a></li><li><a id="link_MENU0049" style="cursor:pointer;" xtitle="포탈관리">포탈관리</a></li><li><a id="link_MENU0050" style="cursor:pointer;" xtitle="게시관리">게시관리</a></li><li><a id="link_MENU0051" style="cursor:pointer;" xtitle="권한관리">권한관리</a></li><li><a id="link_MENU0098" style="cursor:pointer;" xtitle="메일관리">메일관리</a></li></ul></li></ul></div>
+		<div id="_submenu" class="submenu"></div>
+	</div>
+	<!-- Navigation Bar -->
+	<!-- Employee Search -->
+	<div class="empSearch" style="display:inline">
+		<div class="input"><input type="text" id="pSearch" name="pSearch" value="직원검색" placeholder="직원검색" onkeydown="portal.doFindKeyDown(event);" onfocus="this.value=''"><label for="pSearch">직원검색</label></div>
+		<button type="button" class="btnSrch" onclick="portal.doFindClick();">검색하기</button>
+	</div>
+	<!-- //Employee Search -->
+	<!-- 삭제요함
+	<table cellpadding="0" cellspacing="0" border=0 style="width:100%;margin:0px;padding:0px;">
+	<tr>
+		<td rowspan=2 width="14px" class="ui-top-left"></td>
+		<td  class="ui-top-bg" valign="top">
+			<table width=100% cellpadding="0" cellspacing="0" border=0 style="margin:0;">
+				<tr>
+					<td style="width:736px;">
+						<div id="_topmenu" class="topmenu"><ul id='multi-ddm'></ul></div>
+						<div id="_submenu" class="submenu"></div>
+					</td>
+					<td align="right">
+						<table cellpadding="0" cellspacing="0" border=0 style="margin:0;padding-bottom:18px;">
+						<tr>
+							<td class="ui-top-search-middlen">
+							<input name="pSearch" type="text" value="직원검색" placeholder="직원검색" onKeyDown="portal.doFindKeyDown(event);" onfocus="this.value=''">
+							</td>
+							<td class="ui-top-search-rightn" onclick="portal.doFindClick();"></td>
+							<td width="5px"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+-->
+</div>
+<!-- //Header -->
+<!-- Container -->
+<div class="ui-layout-center ui-layout-pane ui-layout-pane-center" style="position: absolute; margin: 0px; left: 0px; right: 0px; top: 100px; bottom: 6px; height: 97px; width: 1280px; z-index: 0; display: block; visibility: visible;">
+	<div id="portal_content" class="ui-portal-content" style="display: none;"></div>
+	<div id="sportal_content" class="ui-portal-content" style="display: none;"></div>
+	<div id="main_content" style="height: 100%; display: block; overflow: hidden; position: relative;" class="ui-layout-container">
+		<div id="nav" class="ui-layout-west ui-layout-pane ui-layout-pane-west" style="position: absolute; margin: 0px; left: 7px; right: auto; top: 0px; bottom: 0px; height: 97px; z-index: 0; width: 239px; display: block; visibility: visible;"><div id="left-portlet" class="column"><div id="PORTLET_MEMU" shref="/gw/portal/portal.nsf/wFrmLeftMenuN?ReadForm&amp;top_menuid=WORK0472" class="portlet ui-widget ui-helper-clearfix"><div class="portlet-header portlet-header-w0-rbg"><div class="portlet-header-lbg portlet-header-w0-lbg"><span id="head_title" class="portlet-header-title portlet-header-w0-cbg"><span id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img src="/gwlib/app/portal/images/icon/title_icon1.png" '="" border="0" style="vertical-align:middle;"><font id="head_title_txt" style="line-height:22px;">&nbsp;업무메뉴</font></span></div></div><div class="portlet-content portlet-content-w0-bg">
+
+<div style="position:relative;top:-8px;float:right;text-decoration:none;padding-right:5px;margin:0px;z-index:1000;">
+	<!--a href="#" id="btnExpandAll">-</a> - <a href="#" id="btnCollapseAll">+</a-->
+	<img id="btnExpandAll" src="/gwlib/comm/images/collapse.png" style="cursor:pointer">
+	<img id="btnCollapseAll" src="/gwlib/comm/images/expand.png" style="cursor:pointer">
+</div>
+<div id="WORK0472_leftmenu" onselectstart="return false" style="position:relative;top:-26px;width:100%;overflow-y:hidden;overflow-x:auto;padding-bottom:15px;margin:0px"><ul class="dynatree-container"><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="root">게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0473">그룹사게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0499">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0761">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0762">아이누리</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e dynatree-active"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0517">EVENT4U</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0600">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0772">인터파크Holdings</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0773">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0774">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0775">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0776">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0763">인터파크</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0764">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0765">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0766">자유게시판</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0767">Neo iPPle</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0862">시스템지킴이</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0878">투어시스템지킴이</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0865">식품팀게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="00053_01">직매입</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="00053_02">인증</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="00053_03">직매입-건강</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="00053_04">대량구매</span></span></li></ul></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0768">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0856">아이마켓코리아</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0857">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0858">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0859">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0860">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0787">인터파크씨어터</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0788">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0789">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0790">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0791">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0782">인터파크씨엔이</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0783">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0784">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0785">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0786">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0777">인터파크로지스틱스</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0778">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0779">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0780">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0781">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0879">인터파크창동씨어터</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0880">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0881">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0882">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0883">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0802">인터파크비즈마켓</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0803">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0804">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0805">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0806">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0884">헬스케어사업총괄</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0885">공지사항</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0886">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0887">안연케어</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0888">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0889">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0890">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0891">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0892">가디언</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0893">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0894">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0895">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0896">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0897">큐브릿지</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0898">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0899">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0900">업무서식</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0917">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0914">인터파크아이마켓</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0915">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0916">기타</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0918">승인대기</span></span></li></ul></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0863">그룹웨어지킴이</span></span></li></ul></li></ul></div>
+</div><div class="portlet-bottom portlet-bottom-w0-rbg"><div class="portlet-bottom-lbg portlet-bottom-w0-lbg"><span></span></div></div></div></div></div>
+		<div id="content" class="ui-layout-center ui-layout-pane ui-layout-pane-center" style="position: absolute; margin: 0px; left: 253px; right: 7px; top: 0px; bottom: 0px; height: 97px; width: 1020px; z-index: 0; overflow: hidden; display: block; visibility: visible;"><div></div><div id="tabs" class="ui-layout-content ui-tabs ui-widget ui-widget-content ui-corner-all" style="position: relative; height: 77px; visibility: visible;"><span class="ui-tabs-env"><img id="tabs_popup" title="새창으로 열기" onclick="mframe.OpenPop()" src="/gwlib/comm/images/tab/window_icon.png" border="0" height="16px" width="22px" style="display: none;"><img id="tabs_context" title="환경설정" src="/gwlib/comm/images/tab/setting_icon.png" border="0" height="18px" width="22px" style=""></span><ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><li title="전자메일-받은편지함 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-2" rhref="/mail/1/win_admin.nsf/wFrmView?readform&amp;view=($Inbox)&amp;xsl=Inbox" class="ui-tabs-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="" wlink="/mail/mleft.nsf/wFrmMailMenu?ReadForm&amp;top_menuid=MENU0068&amp;" wlinkid="Mail" wpotid="" ptabid="" callback="" fullpath="전자메일-받은편지함" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">받은편지함</font></span></a><span class="ui-tabs-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li><li title="시스템관리-메뉴관리 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-50" rhref="/gw/sys/menumng.nsf/wFrmMenu?ReadForm&amp;menutype=TOP" class="ui-tabs-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="WORK0009" wlink="" wlinkid="WORK0010" wpotid="" ptabid="" callback="" fullpath="시스템관리-메뉴관리" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">메뉴관리</font></span></a><span class="ui-tabs-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li><li title="시스템관리-메뉴관리-업무메뉴 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-52" rhref="/gw/sys/menumng.nsf/wFrmMenu?ReadForm&amp;menutype=WORK" class="ui-tabs-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="WORK0009" wlink="" wlinkid="WORK0011" wpotid="" ptabid="" callback="" fullpath="시스템관리-메뉴관리-업무메뉴" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">업무메뉴</font></span></a><span class="ui-tabs-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li><li title="시스템관리-메뉴관리-업무컨텐츠 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-54" rhref="/gw/sys/menumng.nsf/wFrmContentView?ReadForm&amp;view=wViwContent&amp;xsl=wViwContent" class="ui-tabs-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="WORK0009" wlink="" wlinkid="WORK0012" wpotid="" ptabid="" callback="" fullpath="시스템관리-메뉴관리-업무컨텐츠" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">업무컨텐츠</font></span></a><span class="ui-tabs-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li><li title="커뮤니티-게시판 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-56" rhref="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwDefault&amp;xsl=wviw00" class="ui-tabs-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="WORK0472" wlink="" wlinkid="WORK0473" wpotid="" ptabid="" callback="" fullpath="커뮤니티-게시판" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">게시판</font></span></a><span class="ui-tabs-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li><li title="커뮤니티-게시판-그룹사게시판-EVENT4U " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;" class="ui-state-default ui-corner-top ui-tabs-rbg ui-tabs-selected-rbg ui-tabs-selected ui-state-active"><a href="#ui-tabs-58" rhref="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwNotice&amp;xsl=wviw00&amp;single=03" class="ui-tabs-lbg ui-tabs-selected-lbg" style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;" wid="WORK0472" wlink="" wlinkid="WORK0517" wpotid="" ptabid="" callback="" fullpath="커뮤니티-게시판-그룹사게시판-EVENT4U" fullpathid=""><span class="ellipsis" style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">EVENT4U</font></span></a><span class="ui-tabs-btn ui-tabs-selected-btn" style="float:right;display:block;width:13px;height:100%;cursor:pointer;" onclick="mframe.tabclose(this)"></span></li></ul><div id="ui-tabs-2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="height: 596px;">
+<title>받은편지함</title>
+<div style="display:none;">
+N : 사용안함, 0 : 탭생성, 1 : 우측미리보기, 2 : 하단미리보기
+true : 보기 리스트만 새로고침, false : 전체 새로고침
+</div>
+<form action="/mail/1/win_admin.nsf/($inbox)Search?searchview&amp;view=($inbox)Search&amp;start=1&amp;count=15&amp;page=1" method="post" name="SearchView" onsubmit="return false;" target="_self">
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+<!-- 타이틀 & 버튼 테이블 시작 -->
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td height="40" width="100%">
+	<!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+	<div id="viw-button">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td>
+			<span class="viw-button-left" style="width:220px;">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>17</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)" valign="middle" size="2" maxlength="2"> <span>줄보기</span>
+			</span>
+			<span class="viw-button-right">
+				<span id="PreViewBtn" height="60px" width="100%" style="display:;padding-right:5px;">
+					<img src="/gwlib/app/mail/images/viewer_tab_on.png" title="탭생성" style="cursor:pointer;" width="20px" height="20px" onclick="mailview.preview(0, 0);">
+					<img src="/gwlib/app/mail/images/viewer_east_tab.png" title="우측미리보기" style="cursor:pointer;" width="20px" height="20px" onclick="mailview.preview(1, 0);">
+					<img src="/gwlib/app/mail/images/viewer_south_tab.png" title="하단미리보기" style="cursor:pointer;" width="20px" height="20px" onclick="mailview.preview(2, 0);">
+				</span>
+			<span class="button"><a id="btn_refresh" onclick="mframe.refreshTab()">새로고침</a></span><!--페이지 Refresh-->
+			<!--메일작성-->
+			<!--규칙작성-->
+			<span class="button"><a id="btn_create" onclick="mailview.DeleteDocument()">삭제</a></span><!--메일삭제-->
+			<!--메일복원-->
+			<!--영구삭제-->
+			<!--휴지통비우기-->
+			<!--문서삭제-->
+			<!--<div class='buttonlist'><span class='button-right'id='btnMReply'><a>회신&전달</a><span  class='button-left'></span></span></div>추가기능 (회신,전체회신,전달)-->
+			<!-- 회신-->
+			<!--전체회신-->
+			<!--전달-->
+			<div class="buttonlist"><span class="button-right" id="btnMNRead"><a>표시</a><span class="button-left"></span></span></div><!--읽지않음표시-->
+			<!--읽음표시-->
+			<div class="buttonlist"><span class="button-right" id="btnMFolder"><a>폴더</a><span class="button-left"></span></span></div><!--보관함이동/관리-->
+			<!--<span class='button'><a id='btn_create' onclick='mailview.LocalDownload_V3();' sml='SML_MAIL_BTN_00009'>PC저장</a></span>--><!--PC저장(2.5/3.0)-->
+			<!--수신확인목록에서 제거 (보낸편지함과 받은 편지함 통합으로 목록제거)-->
+			</span>
+			</td>
+		</tr>
+		</tbody></table>
+	</div>
+	<!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+</td>
+</tr>
+</tbody></table>
+<!-- 타이틀 & 버튼 테이블 끝 -->
+<!-- 보기내용 시작 -->
+<span id="BodyTable" style="width:100%"><table class="viw-body-layout" cellpadding="0" cellspacing="0" style="table-layout:fixed;"><colgroup><col width="30"><col width="44"><col width="180"><col width="*"><col width="150"><col width="80"></colgroup><tbody><tr><td colspan="6"><table width="100%" cellpadding="0" cellspacing="0" class="viw-title"><colgroup><col width="30"><col width="44"><col width="180"><col width="*"><col width="150"><col width="80"></colgroup><tbody><tr><td class="viw-title-bar" align="center"><input type="checkbox" name="CheckAll" id="CheckAll" value="all" onclick="View.doSelectAll('Check')"></td><td class="viw-title-bar" align="center"><img src="/icons/vwicn150.gif"></td><td class="viw-title-bar" align="center" style="cursor:pointer;" onclick="View.resort(2,'resortac');"><span>보낸사람</span><img id="oSortIco" height="8" width="12" src="/gwlib/app/mail/images/transparent.gif" style="cursor:pointer;background-position: -208px -20px;background-image:url('/gwlib/app/mail/images/basicicons.gif')" align="absmiddle"></td><td class="viw-title-bar" align="center"><span>제목</span></td><td class="viw-title-bar" align="center" style="cursor:pointer;" onclick="View.resort(4,'resortdc');"><span>날짜</span><img id="oSortIco" height="8" width="12" src="/gwlib/app/mail/images/transparent.gif" style="cursor:pointer;background-position: -208px -20px;background-image:url('/gwlib/app/mail/images/basicicons.gif')" align="absmiddle"></td><td align="center" style="cursor:pointer;" onclick="View.resort(5,'resortdc');"><span>크기</span><img id="index_5" height="8" width="12" src="/gwlib/app/mail/images/transparent.gif" style="cursor:pointer;background-position: -208px -20px;background-image:url('/gwlib/app/mail/images/basicicons.gif')" align="absmiddle"></td></tr></tbody></table></td></tr><tr id="F70EFADCDA1C2CA5492582600001A7F1" class="viw-body " tabtitle="Fw:Re:Fw:i-one 메일작성 화면 오류의 건"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="F70EFADCDA1C2CA5492582600001A7F1"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('F70EFADCDA1C2CA5492582600001A7F1', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('F70EFADCDA1C2CA5492582600001A7F1', event, this)">이진국</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('F70EFADCDA1C2CA5492582600001A7F1', event, this)"><img src="/icons/vwicn005.gif" align="absmiddle">Fw:Re:Fw:i-one 메일작성 화면 오류의 건<span class="xxfnc" xvalue="&amp;FROM_KO=이진국&amp;FROM_EN=Jin-kook Lee&amp;ORG_UNIT=IMK020004&amp;GRA_KO=과장&amp;GRA_EN=Manager&amp;DEP_KO=정보전략팀&amp;DEP_EN=Information Strategy Planning Team&amp;SD=true&amp;SI=이진국/IMK020004/interpark&amp;SC=2018-03-30&amp;SM=2018-03-30&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=countF70EFADCDA1C2CA5492582600001A7F1&amp;ST=win_admin@interpark.com CN=방상혁/OU=maum02/O=interpark&amp;CC=CN=최용준/OU=IMKG00089/O=interpark CN=서윤원/OU=IMKK15013/O=interpark&amp;BCC=&amp;CT=commentF70EFADCDA1C2CA5492582600001A7F1&amp;FN=박인애TF장 메일작성.002.PNG 박인애TF장 메일작성.PNG&amp;FU=%EB%B0%95%EC%9D%B8%EC%95%A0TF%EC%9E%A5%20%EB%A9%94%EC%9D%BC%EC%9E%91%EC%84%B1.002.PNG&amp;FS=134413&amp;RD=Y&amp;CKST=win_admin@interpark.com^^CN=방상혁/OU=maum02/O=interpark&amp;CKCC=CN=최용준/OU=IMKG00089/O=interpark^^CN=서윤원/OU=IMKK15013/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-30 09:18</td><td align="right" class="vBody" style="padding-right:4px;">428K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="6302A40F6CF2E8864925825E0083CA38" class="viw-body " tabtitle="[인터파크톡 대화창관련_항공사업부 남현주입니다] "><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="6302A40F6CF2E8864925825E0083CA38"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('6302A40F6CF2E8864925825E0083CA38', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('6302A40F6CF2E8864925825E0083CA38', event, this)">남현주</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('6302A40F6CF2E8864925825E0083CA38', event, this)"><span style="width:100%"></span>[인터파크톡 대화창관련_항공사업부 남현주입니다] <span class="xxfnc" xvalue="&amp;FROM_KO=남현주&amp;FROM_EN=NAM HYUN JU&amp;ORG_UNIT=20140091&amp;GRA_KO=과장&amp;GRA_EN=과장&amp;DEP_KO=항공 동남아·대양주팀&amp;DEP_EN=항공 유럽·중국팀&amp;SD=true&amp;SI=남현주/20140091/interpark&amp;SC=2018-03-29&amp;SM=2018-03-29&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count6302A40F6CF2E8864925825E0083CA38&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment6302A40F6CF2E8864925825E0083CA38&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-29 08:59</td><td align="right" class="vBody" style="padding-right:4px;">6K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="6175F71F2DF1A8114925825D0019B8BE" class="viw-body " tabtitle="Re:Re:[창동씨어터] 총무품의(외부접대화환신청서)담당자 지정 요청드립니다."><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="6175F71F2DF1A8114925825D0019B8BE"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('6175F71F2DF1A8114925825D0019B8BE', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('6175F71F2DF1A8114925825D0019B8BE', event, this)">정소이</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('6175F71F2DF1A8114925825D0019B8BE', event, this)"><span style="width:100%"></span>Re:Re:[창동씨어터] 총무품의(외부접대화환신청서)담당자 지정 요청드립니다.<span class="xxfnc" xvalue="&amp;FROM_KO=정소이&amp;FROM_EN=Jeong Soie&amp;ORG_UNIT=20130252&amp;GRA_KO=담당&amp;GRA_EN=담당&amp;DEP_KO=지원파트&amp;DEP_EN=지원파트&amp;SD=true&amp;SI=정소이/20130252/interpark&amp;SC=2018-03-27&amp;SM=2018-03-27&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count6175F71F2DF1A8114925825D0019B8BE&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment6175F71F2DF1A8114925825D0019B8BE&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-27 13:40</td><td align="right" class="vBody" style="padding-right:4px;">22K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="E4C20EB18473AC2B4925825D00019EF6" class="viw-body " tabtitle="[안연케어/가디언] 그룹웨어 - 모바일오피스 게시판에 웹 로그인 초기화면 공지사항 표시 요청"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="E4C20EB18473AC2B4925825D00019EF6"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('E4C20EB18473AC2B4925825D00019EF6', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('E4C20EB18473AC2B4925825D00019EF6', event, this)">고상진</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('E4C20EB18473AC2B4925825D00019EF6', event, this)"><span style="width:100%"></span>[안연케어/가디언] 그룹웨어 - 모바일오피스 게시판에 웹 로그인 초기화면 공지사항 표시 요청<span class="xxfnc" xvalue="&amp;FROM_KO=고상진&amp;FROM_EN=고상진&amp;ORG_UNIT=IMK010029&amp;GRA_KO=부장&amp;GRA_EN=부장&amp;DEP_KO=정보전략팀&amp;DEP_EN=전략발전팀&amp;SD=true&amp;SI=고상진/IMK010029/interpark&amp;SC=2018-03-27&amp;SM=2018-03-27&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=countE4C20EB18473AC2B4925825D00019EF6&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=CN=김민주/OU=20070040/O=interpark CN=최선/OU=20140514/O=interpark CN=임원재/OU=HCA108001/O=interpark&amp;BCC=&amp;CT=commentE4C20EB18473AC2B4925825D00019EF6&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=CN=김민주/OU=20070040/O=interpark^^CN=최선/OU=20140514/O=interpark^^CN=임원재/OU=HCA108001/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-27 09:17</td><td align="right" class="vBody" style="padding-right:4px;">18K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="29CC3B4D88521E334925825C002D212B" class="viw-body " tabtitle="Fw:Re:Fw:Re:Fw:그룹웨어 동호회 게시판 관리자 권한 인계 관련 문의의 件"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="29CC3B4D88521E334925825C002D212B"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('29CC3B4D88521E334925825C002D212B', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('29CC3B4D88521E334925825C002D212B', event, this)">imk_helpdesk</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('29CC3B4D88521E334925825C002D212B', event, this)"><span style="width:100%"></span>Fw:Re:Fw:Re:Fw:그룹웨어 동호회 게시판 관리자 권한 인계 관련 문의의 件<span class="xxfnc" xvalue="&amp;FROM_KO=imk_helpdesk&amp;FROM_EN=imk_helpdesk&amp;ORG_UNIT=imk_helpdesk&amp;GRA_KO=&amp;GRA_EN=&amp;DEP_KO=기타사용자&amp;DEP_EN=imk_helpdesk&amp;SD=true&amp;SI=imk_helpdesk/imk_helpdesk/interpark&amp;SC=2018-03-26&amp;SM=2018-03-26&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count29CC3B4D88521E334925825C002D212B&amp;ST=win_admin@interpark.com&amp;CC=CN=최재근/OU=IMK170024/O=interpark&amp;BCC=&amp;CT=comment29CC3B4D88521E334925825C002D212B&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=win_admin@interpark.com&amp;CKCC=CN=최재근/OU=IMK170024/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-26 17:12</td><td align="right" class="vBody" style="padding-right:4px;">20K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="7D2C9B0FCEEA163349258257002F2179" class="viw-body " tabtitle="안녕하세요."><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="7D2C9B0FCEEA163349258257002F2179"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('7D2C9B0FCEEA163349258257002F2179', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('7D2C9B0FCEEA163349258257002F2179', event, this)">최현욱</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('7D2C9B0FCEEA163349258257002F2179', event, this)"><img src="/icons/vwicn005.gif" align="absmiddle">안녕하세요.<span class="xxfnc" xvalue="&amp;FROM_KO=최현욱&amp;FROM_EN=Choi HyeonWook&amp;ORG_UNIT=20150231&amp;GRA_KO=사원&amp;GRA_EN=사원&amp;DEP_KO=국내여행팀&amp;DEP_EN=국내여행팀&amp;SD=true&amp;SI=최현욱/20150231/interpark&amp;SC=2018-03-21&amp;SM=2018-03-21&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count7D2C9B0FCEEA163349258257002F2179&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment7D2C9B0FCEEA163349258257002F2179&amp;FN=화면-1.png 화면-2.png&amp;FU=%ED%99%94%EB%A9%B4-1.png&amp;FS=24890&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-21 17:34</td><td align="right" class="vBody" style="padding-right:4px;">57K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="47504290C2DE4C2549258256002773E6" class="viw-body " tabtitle="안녕하십니까 가디언 마케팅파트 임성우 입니다. 결재상신 후 편집기능 오류에 관해 문의드립니다."><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="47504290C2DE4C2549258256002773E6"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('47504290C2DE4C2549258256002773E6', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('47504290C2DE4C2549258256002773E6', event, this)">임성우</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('47504290C2DE4C2549258256002773E6', event, this)"><span style="width:100%"></span>안녕하십니까 가디언 마케팅파트 임성우 입니다. 결재상신 후 편집기능 오류에 관해 문의드립니다.<span class="xxfnc" xvalue="&amp;FROM_KO=임성우&amp;FROM_EN=임성우&amp;ORG_UNIT=HCG118002&amp;GRA_KO=주임&amp;GRA_EN=주임&amp;DEP_KO=마케팅1파트&amp;DEP_EN=마케팅1파트&amp;SD=true&amp;SI=임성우/HCG118002/interpark&amp;SC=2018-03-20&amp;SM=2018-03-20&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count47504290C2DE4C2549258256002773E6&amp;ST=win_admin@interpark.com&amp;CC=CN=임원재/OU=HCA108001/O=interpark&amp;BCC=&amp;CT=comment47504290C2DE4C2549258256002773E6&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=win_admin@interpark.com&amp;CKCC=CN=임원재/OU=HCA108001/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-03-20 16:10</td><td align="right" class="vBody" style="padding-right:4px;">157K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="5238A9FEE05A2912492582420021D612" class="viw-body " tabtitle="품의 상신 시 오류 문의드립니다."><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="5238A9FEE05A2912492582420021D612"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('5238A9FEE05A2912492582420021D612', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('5238A9FEE05A2912492582420021D612', event, this)">유형민</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('5238A9FEE05A2912492582420021D612', event, this)"><span style="width:100%"></span>품의 상신 시 오류 문의드립니다.<span class="xxfnc" xvalue="&amp;FROM_KO=유형민&amp;FROM_EN=Hyoung Min - Yoo&amp;ORG_UNIT=20060038&amp;GRA_KO=과장&amp;GRA_EN=과장&amp;DEP_KO=운영지원팀&amp;DEP_EN=현장지원팀&amp;SD=true&amp;SI=유형민/20060038/interpark&amp;SC=2018-02-28&amp;SM=2018-02-28&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count5238A9FEE05A2912492582420021D612&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=CN=윤석희/OU=20030010/O=interpark&amp;BCC=&amp;CT=comment5238A9FEE05A2912492582420021D612&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=CN=윤석희/OU=20030010/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-02-28 15:09</td><td align="right" class="vBody" style="padding-right:4px;">9K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="72B906FDC19FA67249258232004697B7" class="viw-body " tabtitle="시스템 지킴이 개선 요청"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="72B906FDC19FA67249258232004697B7"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('72B906FDC19FA67249258232004697B7', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('72B906FDC19FA67249258232004697B7', event, this)">임인선</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('72B906FDC19FA67249258232004697B7', event, this)"><span style="width:100%"></span>시스템 지킴이 개선 요청<span class="xxfnc" xvalue="&amp;FROM_KO=임인선&amp;FROM_EN=Lim in Seon&amp;ORG_UNIT=20080070&amp;GRA_KO=차장&amp;GRA_EN=차장&amp;DEP_KO=서비스기획팀&amp;DEP_EN=서비스기획팀&amp;SD=true&amp;SI=임인선/20080070/interpark&amp;SC=2018-02-12&amp;SM=2018-02-12&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count72B906FDC19FA67249258232004697B7&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=CN=이소정/OU=20060025/O=interpark&amp;BCC=&amp;CT=comment72B906FDC19FA67249258232004697B7&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=CN=이소정/OU=20060025/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-02-12 21:51</td><td align="right" class="vBody" style="padding-right:4px;">13K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="E4E60BC2393ADF504925823200011600" class="viw-body " tabtitle="메일 수신함 첨부 안보이는 증상"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="E4E60BC2393ADF504925823200011600"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('E4E60BC2393ADF504925823200011600', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('E4E60BC2393ADF504925823200011600', event, this)">이진국</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('E4E60BC2393ADF504925823200011600', event, this)"><span style="width:100%"></span>메일 수신함 첨부 안보이는 증상<span class="xxfnc" xvalue="&amp;FROM_KO=이진국&amp;FROM_EN=Jin-kook Lee&amp;ORG_UNIT=IMK020004&amp;GRA_KO=과장&amp;GRA_EN=Manager&amp;DEP_KO=정보전략팀&amp;DEP_EN=Information Strategy Planning Team&amp;SD=true&amp;SI=이진국/IMK020004/interpark&amp;SC=2018-02-12&amp;SM=2018-02-12&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=countE4E60BC2393ADF504925823200011600&amp;ST=win_admin@interpark.com&amp;CC=CN=이준희/OU=IMK150035/O=interpark&amp;BCC=&amp;CT=commentE4E60BC2393ADF504925823200011600&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=win_admin@interpark.com&amp;CKCC=CN=이준희/OU=IMK150035/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-02-12 09:11</td><td align="right" class="vBody" style="padding-right:4px;">241K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="01727AA823AB877649258220001E4FA3" class="viw-body " tabtitle="[메신저] 버그 수정 요청"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="01727AA823AB877649258220001E4FA3"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('01727AA823AB877649258220001E4FA3', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('01727AA823AB877649258220001E4FA3', event, this)">장세진</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('01727AA823AB877649258220001E4FA3', event, this)"><img src="/icons/vwicn005.gif" align="absmiddle">[메신저] 버그 수정 요청<span class="xxfnc" xvalue="&amp;FROM_KO=장세진&amp;FROM_EN=Jang Se-Jin&amp;ORG_UNIT=20160521&amp;GRA_KO=사원&amp;GRA_EN=사원&amp;DEP_KO=투어개발팀&amp;DEP_EN=모바일개발팀&amp;SD=true&amp;SI=장세진/20160521/interpark&amp;SC=2018-01-25&amp;SM=2018-01-25&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count01727AA823AB877649258220001E4FA3&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment01727AA823AB877649258220001E4FA3&amp;FN=스크린샷 2018-01-25 오후 2.27.19.png&amp;FU=%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202018-01-25%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%202.27.19.png&amp;FS=23001&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-01-25 14:31</td><td align="right" class="vBody" style="padding-right:4px;">28K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="8190227504E727654925820800830331" class="viw-body " tabtitle="Fw:메일 전체회신시 사용자 삭제 문제"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="8190227504E727654925820800830331"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('8190227504E727654925820800830331', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('8190227504E727654925820800830331', event, this)">imk_helpdesk</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('8190227504E727654925820800830331', event, this)"><span style="width:100%"></span>Fw:메일 전체회신시 사용자 삭제 문제<span class="xxfnc" xvalue="&amp;FROM_KO=imk_helpdesk&amp;FROM_EN=imk_helpdesk&amp;ORG_UNIT=imk_helpdesk&amp;GRA_KO=&amp;GRA_EN=&amp;DEP_KO=기타사용자&amp;DEP_EN=인터파크 그룹&amp;SD=true&amp;SI=imk_helpdesk/imk_helpdesk/interpark&amp;SC=2018-01-02&amp;SM=2018-01-02&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count8190227504E727654925820800830331&amp;ST=그룹웨어admin&amp;lt;win_admin@interpark.com&amp;gt;&amp;CC=CN=신우진/OU=IMK160006/O=interpark&amp;BCC=&amp;CT=comment8190227504E727654925820800830331&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=그룹웨어admin&amp;lt;win_admin@interpark.com&amp;gt;&amp;CKCC=CN=신우진/OU=IMK160006/O=interpark&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2018-01-02 08:51</td><td align="right" class="vBody" style="padding-right:4px;">63K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="3776A7F86774B6EF4925820400024877" class="viw-body " tabtitle="읽지않은편지함에서 우측/하단 미리보기 선택 후 이메일 이동시 에러 발생"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="3776A7F86774B6EF4925820400024877"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('3776A7F86774B6EF4925820400024877', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('3776A7F86774B6EF4925820400024877', event, this)">신필용</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('3776A7F86774B6EF4925820400024877', event, this)"><span style="width:100%"></span>읽지않은편지함에서 우측/하단 미리보기 선택 후 이메일 이동시 에러 발생<span class="xxfnc" xvalue="&amp;FROM_KO=신필용&amp;FROM_EN=Shin Phil Yong&amp;ORG_UNIT=20170045&amp;GRA_KO=과장&amp;GRA_EN=과장&amp;DEP_KO=페이개발팀&amp;DEP_EN=페이개발팀&amp;SD=true&amp;SI=신필용/20170045/interpark&amp;SC=2017-12-28&amp;SM=2017-12-28&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count3776A7F86774B6EF4925820400024877&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=페이개발팀&amp;lt;I3081&amp;gt;&amp;BCC=&amp;CT=comment3776A7F86774B6EF4925820400024877&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=페이개발팀&amp;lt;I3081&amp;gt;&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2017-12-28 09:24</td><td align="right" class="vBody" style="padding-right:4px;">158K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="7C42471A942AC30E492581C300193774" class="viw-body " tabtitle="Re:Re:본인 참조자 내역에서 누락되는 오류 수정 요청 건"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="7C42471A942AC30E492581C300193774"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('7C42471A942AC30E492581C300193774', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('7C42471A942AC30E492581C300193774', event, this)">김지언</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('7C42471A942AC30E492581C300193774', event, this)"><span style="width:100%"></span>Re:Re:본인 참조자 내역에서 누락되는 오류 수정 요청 건<span class="xxfnc" xvalue="&amp;FROM_KO=김지언&amp;FROM_EN=Kim, Jieon&amp;ORG_UNIT=20160395&amp;GRA_KO=사원&amp;GRA_EN=사원&amp;DEP_KO=서비스기획팀&amp;DEP_EN=서비스기획팀&amp;SD=true&amp;SI=김지언/20160395/interpark&amp;SC=2017-10-24&amp;SM=2017-10-24&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count7C42471A942AC30E492581C300193774&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment7C42471A942AC30E492581C300193774&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2017-10-24 13:35</td><td align="right" class="vBody" style="padding-right:4px;">141K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="27FFADD6A22BDFF0492581A3001640B9" class="viw-body " tabtitle="[창동씨어터] 자유게시판 게시 방법 문의 입니다."><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="27FFADD6A22BDFF0492581A3001640B9"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('27FFADD6A22BDFF0492581A3001640B9', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('27FFADD6A22BDFF0492581A3001640B9', event, this)">권혁찬</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('27FFADD6A22BDFF0492581A3001640B9', event, this)"><span style="width:100%"></span>[창동씨어터] 자유게시판 게시 방법 문의 입니다.<span class="xxfnc" xvalue="&amp;FROM_KO=권혁찬&amp;FROM_EN=Kwon Hyeok Chan&amp;ORG_UNIT=20170103&amp;GRA_KO=팀장&amp;GRA_EN=팀장&amp;DEP_KO=운영기술파트&amp;DEP_EN=공간운영파트&amp;SD=true&amp;SI=권혁찬/20170103/interpark&amp;SC=2017-09-22&amp;SM=2017-09-22&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count27FFADD6A22BDFF0492581A3001640B9&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment27FFADD6A22BDFF0492581A3001640B9&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2017-09-22 13:03</td><td align="right" class="vBody" style="padding-right:4px;">8K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="7AB4493B12A22B51492581980000F7FB" class="viw-body " tabtitle="문서관리함 조회 개선 요청의 건"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="7AB4493B12A22B51492581980000F7FB"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('7AB4493B12A22B51492581980000F7FB', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('7AB4493B12A22B51492581980000F7FB', event, this)">김형동</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('7AB4493B12A22B51492581980000F7FB', event, this)"><span style="width:100%"></span>문서관리함 조회 개선 요청의 건<span class="xxfnc" xvalue="&amp;FROM_KO=김형동&amp;FROM_EN=Kim Hyung Dong&amp;ORG_UNIT=20120303&amp;GRA_KO=과장&amp;GRA_EN=과장&amp;DEP_KO=인사팀&amp;DEP_EN=인사팀&amp;SD=true&amp;SI=김형동/20120303/interpark&amp;SC=2017-09-11&amp;SM=2017-09-11&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=count7AB4493B12A22B51492581980000F7FB&amp;ST=CN=관리자/OU=win_admin/O=interpark&amp;CC=&amp;BCC=&amp;CT=comment7AB4493B12A22B51492581980000F7FB&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=CN=관리자/OU=win_admin/O=interpark&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;<span class="status to">수신</span></span></td><td align="center" class="vBody">2017-09-11 09:10</td><td align="right" class="vBody" style="padding-right:4px;">10K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr><tr id="B3F7B29699BB6297731DE88C7B696739" class="viw-body " tabtitle="전자결제 진행중 문서 오류건 확인 요청"><td align="center" class="vBody"><input type="checkbox" name="Check" id="Check" value="B3F7B29699BB6297731DE88C7B696739"></td><td align="center" class="viw-body" onclick="mailview.PreViewOpen('B3F7B29699BB6297731DE88C7B696739', event, this)"><img src="/gwlib/app/mail/images/ico_rmail.gif" align="absmiddle"></td><td align="center" class="vBody" onclick="mailview.PreViewOpen('B3F7B29699BB6297731DE88C7B696739', event, this)">인영민</td><td align="left" class="ellipsis" style="" onclick="mailview.PreViewOpen('B3F7B29699BB6297731DE88C7B696739', event, this)"><span style="width:100%"></span>전자결제 진행중 문서 오류건 확인 요청<span class="xxfnc" xvalue="&amp;FROM_KO=인영민&amp;FROM_EN=인영민&amp;ORG_UNIT=&amp;GRA_KO=&amp;GRA_EN=&amp;DEP_KO=&amp;DEP_EN=&amp;SD=true&amp;SI=인영민 &amp;lt;ymin83@interpark.com&amp;gt;&amp;SC=2017-07-07&amp;SM=2017-07-07&amp;SO=&amp;SL=N&amp;SDB=&amp;SAPP=&amp;SU=&amp;SF=&amp;CI=countB3F7B29699BB6297731DE88C7B696739&amp;ST=&amp;apos;그룹웨어admin&amp;apos; &amp;lt;win_admin@interpark.com&amp;gt;&amp;CC=&amp;BCC=&amp;CT=commentB3F7B29699BB6297731DE88C7B696739&amp;FN=&amp;FU=&amp;FS=&amp;RD=Y&amp;CKST=&amp;apos;그룹웨어admin&amp;apos; &amp;lt;win_admin@interpark.com&amp;gt;&amp;CKCC=&amp;CKBCC=&amp;">&nbsp;&nbsp;</span></td><td align="center" class="vBody">2017-07-07 15:06</td><td align="right" class="vBody" style="padding-right:4px;">92K</td></tr><tr class="viw-rowline3"><td colspan="6"></td></tr></tbody></table></span>
+<!-- 보기내용 끝 -->
+<!-- 검색 테이블 시작 -->
+<table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0" border="0">
+	<tbody><tr height="10px"><td colspan="2"></td></tr>
+	<tr>
+		<td>
+		<span id="ViewNav" class="viw-nav"><table cellpadding="0" cellspacing="3"><tbody><tr><td id="nav1" class="cNav" style="cursor:pointer;">1</td></tr></tbody></table></span>
+		<span class="viw-search">
+
+
+<div class="FTSearch4Period" style="display:none">
+	<input class="datepicker hasDatepicker" id="dt_start_ui-tabs-2" style="width:75px;" type="text" readonly="true" value="2018-02-28"><button type="button" class="ui-datepicker-trigger"><img src="/gwlib/comm/images/calendar.gif" alt="..." title="..."></button>~
+	<input class="datepicker hasDatepicker" id="dt_end_ui-tabs-2" style="width:75px;" type="text" readonly="true" value="2018-03-30"><button type="button" class="ui-datepicker-trigger"><img src="/gwlib/comm/images/calendar.gif" alt="..." title="..."></button> &nbsp;
+	<label><input type="radio" name="type4Period" style="border:0;margin-left:3px;cursor:pointer;" value="1" onfocus="this.blur();" checked="checked" onclick="mailview.changeDate4Period(1);"><span>1개월</span></label>
+	<label><input type="radio" name="type4Period" style="border:0;margin-left:3px;cursor:pointer;" value="3" onfocus="this.blur();" onclick="mailview.changeDate4Period(3);"><span>3개월</span></label>
+	<label><input type="radio" name="type4Period" style="border:0;margin-left:3px;cursor:pointer;" value="6" onfocus="this.blur();" onclick="mailview.changeDate4Period(6);"><span>6개월</span></label>
+	<label><input type="radio" name="type4Period" style="border:0;margin-left:3px;cursor:pointer;" value="12" onfocus="this.blur();" onclick="mailview.changeDate4Period(12);"><span>12개월</span></label>
+	<label><input type="radio" name="type4Period" style="border:0;margin-left:3px;cursor:pointer;" value="0" onfocus="this.blur();" onclick="mailview.changeDate4Period(0);"><span>전체</span></label>
+</div>
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td class="FTSearch" valign="center" align="right">
+			<input type="checkbox" name="toggle4Period" id="toggle4Period" onclick="mailview.toggle4Period();" style="cursor:pointer;"><span style="padding-right:5px;">기간검색</span>
+		</td>
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch"><span>결과내 검색</span>
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체</option>
+				<option value="From:From_US">발신인</option>
+	   <option value="SendTo:CopyTo:BlindCopyTo:SendTo_US:CopyTo_US:BlindCopyTo_US">수신인</option>
+				<option value="Subject">제목</option>
+				<option value="Body">본문</option>
+				<option value="Subject:Body">제목+본문</option>
+			</select>
+		</td>
+		<td class="FTSearch" align="right"><input name="searchvalue" id="searchvalue" value="" class="FTSearch" onkeydown="mailview.doSearchKeyDown(event)"> 
+		<span class="btn20 btnSearch" onclick="mailview.doSearch();" style="cursor:pointer;">검색</span></td>
+		</tr>
+		</tbody></table>
+		<input type="hidden" name="searchname" id="searchname">
+		<input type="hidden" name="query" id="query" value="">
+		<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+		<input type="hidden" name="SearchOrder" id="SearchOrder" value="2"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+		</span>
+		</td>
+	</tr>
+</tbody></table>
+<!-- 검색 테이블 끝 -->
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+<!-- 메일스토어 -->
+
+
+
+<iframe id="mailstore_view_v3" src="about:blank" style="width:0px;height:0px;" frameborder="0" scrolling="no"></iframe>
+</form>
+<object id="MailStore" border="0" width="0" height="0" classid="CLSID:49A853F2-11E9-461D-8DCE-AB997929FC60" codebase="/gwlib/comm/ocx/MailStoreU.cab#version=2,50,15,1030" style="visibility:hidden;">    <param name="SetLicenseName" value="interpark">    <param name="SetLicenseKey" value="D834A89196D7C53025FBD2088BF33796D16BFB2416613C8CAE6C8C98D25E75FB"></object></div><div id="ui-tabs-50" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="height: 596px;">
+<!-- 전체 테이블 시작 -->
+<table width="100%" class="frm-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+	<!-- 타이틀 & 버튼 테이블 시작 -->
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td class="frm-button">
+		<!-- 수행 버튼 테이블 시작 -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td align="right">
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.addMenu(&quot;top&quot;, &quot;TOP&quot;)" style="cursor:hand">최상위메뉴추가</a></span> 
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.addMenu(&quot;sub&quot;, &quot;TOP&quot;)" style="cursor:hand">메뉴추가</a></span> 
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.moveMenu()" style="cursor:hand">메뉴이동</a></span> 
+				<span class="button medium icon"><span class="check"></span><a onclick="doc.Save(&quot;&quot;,menumng.saveCallback)" style="cursor:hand">저장</a></span> 
+				<span class="button medium icon"><span class="delete"></span><a onclick="menumng.delMenu()" style="cursor:hand">삭제</a></span> 
+			</td>
+		</tr>
+		</tbody></table>
+		<!-- 수행 버튼 테이블 끝 -->
+		</td>
+	</tr>
+	</tbody></table>
+</td></tr>
+<tr><td>
+<table width="100%" class="frm-body-layout">
+<colgroup><col width="35%"><col width="65%">
+</colgroup><tbody><tr>
+	<td id="_EnvLeftmenuTD" valign="top" style="padding:0px">
+		<div id="_EnvLeftmenu" style="width:100%; height : 475px ; overflow:auto;border:1px solid #bcbcbc;margin-top:5px"><ul class="dynatree-container dynatree-no-connector"><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span style="display: inline-block;" class="dynatree-title" key="root">상단메뉴</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0067">전자메일</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0001">전자결재</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0076">업무</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0002">커뮤니티</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c dynatree-active"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0081">게시판</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0030">동호회</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0032">설문조사</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0101">셔틀버스</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0102">식단관리</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0103">문서관리함</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="MENU0007">시스템관리</span></span></li></ul></li></ul></div>
+	</td>
+	<td valign="top" style="padding:0 0 0 5px">
+		<div id="_MenuForm" style="width:100%">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">              
+
+
+
+
+
+<form method="post" action="/gw/sys/menumng.nsf/0/08d13ac3618299184925794f00253d7f?EditDocument&amp;Seq=1&amp;menutype=TOP" name="_wFrmMenuC">
+<input type="hidden" name="__Click" value="0">
+<input type="hidden" name="%%ModDate" value="49258260001D2433"><div id="_CREATE_DATE" style="display:none;">2011-11-21</div><input type="hidden" name="MENU_ID" value="MENU0081">
+<input type="hidden" name="MENU_PARID" value="MENU0002">
+<input type="hidden" name="MENU_TYPE" value="TOP">
+<table width="100%" class="frm-body-layout">
+		<colgroup><col width="25%"><col width="75%">
+		</colgroup><tbody><tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[기본정보] <span id="_MenuPos" style="color:red;">커뮤니티&gt;&gt;게시판</span></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴ID</td>
+			<td class="frm-item-value">MENU0081</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴명</td>
+			<td class="frm-item-value">
+<input name="MENU_KNAME" value="게시판" style="width:100%" validator="'memo','[메뉴명[한]]'"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴명[영]</td>
+			<td class="frm-item-value">
+<input name="MENU_ENAME" value="Bulletin board" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴정렬</td>
+			<td class="frm-item-value">
+<input name="MENU_SORT" value="02" maxlength="3" validator="'num','[메뉴정렬]'"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[업무메뉴정보]</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">업무메뉴</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_NAME" value="그룹사게시판" style="width:40%">[
+<input name="MENU_WORK_ID" value="WORK0472" readonly="" style="width:20%">]&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="menumng.selWorkMenu(&quot;MENU_WORK&quot;)" style="cursor:pointer" align="absmiddle"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">업무메뉴외부링크</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_LINK" value="" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">페이지링크ID</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_LINKID" value="WORK0473" style="width:90%">&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="menumng.selWorkPage()" style="cursor:pointer" align="absmiddle"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">페이지링크URL</td>
+			<td class="frm-item-value">
+<input name="MENU_LINK" value="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwDefault&amp;xsl=wviw00" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">페이지링크유형</td>
+			<td class="frm-item-value">
+<input name="%%Surrogate_MENU_LINK_TYPE" type="hidden" value="1"><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="AJAX" checked="">AJAX</label><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="JS">JS</label><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="NEW">NEW</label></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[권한정보]</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">조직별권한</td>
+			<td class="frm-item-value">
+<input name="MENU_AUTH_ORG_disp" value="" readonly="" style="width:90%">&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="orgsel.orgMulti(&quot;MENU_AUTH_ORG&quot;,&quot;&quot;,&quot;0&quot;,&quot;0&quot;,&quot;50&quot;,&quot;0&quot;);" style="cursor:pointer" align="absmiddle">
+			
+<input name="MENU_AUTH_ORG_id" value="" type="hidden">
+<input name="MENU_AUTH_ORG_full" value="" type="hidden">
+			</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">업무별권한</td>
+			<td class="frm-item-value">
+<input name="MENU_AUTH_WORK_disp" value="" readonly="" style="width:90%">&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="fnc.JobTree(&quot;MENU_AUTH_WORK&quot;);" style="cursor:pointer" align="absmiddle">
+			
+<input name="MENU_AUTH_WORK_id" value="" type="hidden">
+			</td>
+		</tr>
+		<!--tr>
+			<td class="frm-item-title">문서함권한</td>
+			<td class="frm-item-value">
+				
+<input name="%%Surrogate_MENU_AUTH_EDMS1" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_EDMS1" value="Y">문서권한</label>
+<input name="%%Surrogate_MENU_AUTH_EDMS2" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_EDMS2" value="Y">총무권한</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">사용자유형별권한</td>
+			<td class="frm-item-value">
+				
+<input name="%%Surrogate_MENU_AUTH_UTYPE1" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_UTYPE1" value="Y">임원</label>&nbsp;[
+<input name="%%Surrogate_MENU_AUTH_UTYPE1_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_AUTH_UTYPE1_YN" hidefocus=true style="border:0" value="Y" checked>대상</label><label>
+<input type="radio" name="MENU_AUTH_UTYPE1_YN" hidefocus=true style="border:0" value="N">제외</label>]<br>
+				
+<input name="%%Surrogate_MENU_AUTH_UTYPE2" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_UTYPE2" value="Y">영업</label>&nbsp;[
+<input name="%%Surrogate_MENU_AUTH_UTYPE2_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_AUTH_UTYPE2_YN" hidefocus=true style="border:0" value="Y" checked>대상</label><label>
+<input type="radio" name="MENU_AUTH_UTYPE2_YN" hidefocus=true style="border:0" value="N">제외</label>]
+			</td>
+		</tr-->
+		
+		<tr>
+				<td class="frm-item-title">적용범위</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_MENU_AUTH_TYPE" type="hidden" value="1">
+<select name="MENU_AUTH_TYPE">
+<option value="1" selected="">현메뉴만
+</option><option value="2">권한 없는 하위메뉴만 수정
+</option><option value="3">전체수정</option></select>
+
+				</td>
+			</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[기타정보]</td>
+		</tr>
+			<tr>
+				<td class="frm-item-title">업무포틀릿</td>
+				<td class="frm-item-value">
+					
+<input name="MENU_ADD_WORK_NAME" value="" style="width:80%;"> &nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="menumng.selWorkPotMenu()" style="cursor:pointer" align="absmiddle">
+					
+<input name="MENU_ADD_WORK_ID" value="" type="hidden">
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">업무메뉴담당</td>
+				<td class="frm-item-value">
+					
+<input name="MENU_WORK_MNG_disp" value="" readonly="true" style="width:80%;"> &nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="orgsel.orgMulti(&quot;MENU_WORK_MNG&quot;,&quot;업무메뉴담당자 지정&quot;,&quot;0&quot;,&quot;0&quot;,&quot;10&quot;,&quot;0&quot;);" style="cursor:pointer" align="absmiddle">
+					
+<input name="MENU_WORK_MNG_id" value="" type="hidden">
+<input name="MENU_WORK_MNG_full" value="" type="hidden"> 
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">사이트맵</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_MENU_SITEMAP_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_SITEMAP_YN" style="width:20px; border:0" value="yes" checked="">포함</label><label>
+<input type="radio" name="MENU_SITEMAP_YN" style="width:20px; border:0" value="no">미포함</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">모바일사용유무</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_USE_MOBILE" type="hidden" value="1"><label>
+<input type="radio" name="USE_MOBILE" style="width:20px; border:0" value="0" checked="">미사용</label><label>
+<input type="radio" name="USE_MOBILE" style="width:20px; border:0" value="1">사용</label>
+				</td>
+			</tr>
+</tbody></table>
+
+</form>
+
+
+</div>
+	</td>
+</tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+
+</div><div id="ui-tabs-52" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="height: 596px;">
+<!-- 전체 테이블 시작 -->
+<table width="100%" class="frm-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+	<!-- 타이틀 & 버튼 테이블 시작 -->
+	<table width="100%" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td class="frm-button">
+		<!-- 수행 버튼 테이블 시작 -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tbody><tr>
+			<td align="right">
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.addMenu(&quot;top&quot;, &quot;WORK&quot;)" style="cursor:hand">최상위메뉴추가</a></span> 
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.addMenu(&quot;sub&quot;, &quot;WORK&quot;)" style="cursor:hand">메뉴추가</a></span> 
+				<span class="button medium icon"><span class="add"></span><a onclick="menumng.moveMenu()" style="cursor:hand">메뉴이동</a></span> 
+				<span class="button medium icon"><span class="check"></span><a onclick="doc.Save(&quot;&quot;,menumng.saveCallback)" style="cursor:hand">저장</a></span> 
+				<span class="button medium icon"><span class="delete"></span><a onclick="menumng.delMenu()" style="cursor:hand">삭제</a></span> 
+			</td>
+		</tr>
+		</tbody></table>
+		<!-- 수행 버튼 테이블 끝 -->
+		</td>
+	</tr>
+	</tbody></table>
+</td></tr>
+<tr><td>
+<table width="100%" class="frm-body-layout">
+<colgroup><col width="35%"><col width="65%">
+</colgroup><tbody><tr>
+	<td id="_EnvLeftmenuTD" valign="top" style="padding:0px">
+		<div id="_EnvLeftmenu" style="width:100%; height : 450px ; overflow:auto;border:1px solid #bcbcbc;margin-top:5px"><ul class="dynatree-container dynatree-no-connector"><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span style="display: inline-block;" class="dynatree-title" key="root">업무메뉴</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0456">작성함</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0740">메일보관함</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0748">문서관리함</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0468">진행함</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0008">완료함</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0115">문서수발대장</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0559">업무서식</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0561">지식-i</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0566">제안제도</span></span><ul style="display: none;"><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0567">나의제도</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0575">제안제도관리</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0569">HR문의사항</span></span><ul style="display: none;"><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0570">HR문의사항(FAQ)</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0571">HR문의사항(Q&amp;A)</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0573">관리자</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0578">법인콘도</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0582">근태관리</span></span><ul style="display: none;"><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0583">근태관리</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0472">게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0473">그룹사게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0499">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0761">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0762">아이누리</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c dynatree-active"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0517">EVENT4U</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0600">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0772">인터파크Holdings</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0763">인터파크</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0764">공지사항</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0765">업무공유</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0766">자유게시판</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0767">Neo iPPle</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0862">시스템지킴이</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0878">투어시스템지킴이</span></span></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0865">식품팀게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0768">승인대기</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0856">아이마켓코리아</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0787">인터파크씨어터</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0782">인터파크씨엔이</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0777">인터파크로지스틱스</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0879">인터파크창동씨어터</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0802">인터파크비즈마켓</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0884">헬스케어사업총괄</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0887">안연케어</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0892">가디언</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0897">큐브릿지</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0914">인터파크아이마켓</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0863">그룹웨어지킴이</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0464">업무</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0452">쪽지</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0013">규정/제도</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0743">메일관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0019">자원관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0707">공연일정관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0901">자원관리(큐브릿지)</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0020">일정관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0069">자유게시</span></span><ul style="display: none;"><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0071">자유게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0687">PC설치현황</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0076">설문조사</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0091">명함관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0362">사이트맵</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0009">메뉴관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0055">게시관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0168">조직관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0175">포탈관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0182">권한관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0588">셔틀버스/식단관리</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0724">HR</span></span></li><li class=""><span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0728">자유게시판</span></span><ul style=""><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0729">아이누리게시판</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0734">쇼핑시스템지킴이</span></span></li></ul></li><li class=""><span class="dynatree-node dynatree-exp-c dynatree-ico-c"><span class="dynatree-connector"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0843">내부 IP 관리</span></span></li><li class="dynatree-lastsib"><span class="dynatree-node dynatree-folder dynatree-has-children dynatree-lastsib dynatree-exp-cl dynatree-ico-cf"><span class="dynatree-expander"></span><span style="display: inline-block;" class="dynatree-title" key="WORK0249">환경설정</span></span></li></ul></li></ul></div>
+	</td>
+	<td valign="top" style="padding:0 0 0 5px">
+		<div id="_MenuForm" style="width:100%">
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">              
+
+
+
+
+
+<form method="post" action="/gw/sys/menumng.nsf/0/ae8edc9d3d0811a34925795000254534?EditDocument&amp;Seq=1&amp;menutype=WORK" name="_wFrmMenuC">
+<input type="hidden" name="__Click" value="0">
+<input type="hidden" name="%%ModDate" value="49258260001D282E"><div id="_CREATE_DATE" style="display:none;">2011-11-22</div><input type="hidden" name="MENU_ID" value="WORK0517">
+<input type="hidden" name="MENU_PARID" value="WORK0473">
+<input type="hidden" name="MENU_TYPE" value="WORK">
+<table width="100%" class="frm-body-layout">
+		<colgroup><col width="25%"><col width="75%">
+		</colgroup><tbody><tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[기본정보] <span id="_MenuPos" style="color:red;">게시판&gt;&gt;그룹사게시판&gt;&gt;EVENT4U</span></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴ID</td>
+			<td class="frm-item-value">WORK0517</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴명</td>
+			<td class="frm-item-value">
+<input name="MENU_KNAME" value="EVENT4U" style="width:100%" validator="'memo','[메뉴명[한]]'"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴명[영]</td>
+			<td class="frm-item-value">
+<input name="MENU_ENAME" value="EVENT4U" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">메뉴정렬</td>
+			<td class="frm-item-value">
+<input name="MENU_SORT" value="05" maxlength="3" validator="'num','[메뉴정렬]'"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[업무메뉴정보]</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">서브폴더링크</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_FLINK" value="" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">페이지링크URL</td>
+			<td class="frm-item-value">
+<input name="MENU_LINK" value="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwNotice&amp;xsl=wviw00&amp;single=03" style="width:100%"></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">페이지링크유형</td>
+			<td class="frm-item-value">
+<input name="%%Surrogate_MENU_LINK_TYPE" type="hidden" value="1"><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="AJAX" checked="">AJAX</label><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="JS">JS</label><label>
+<input type="radio" name="MENU_LINK_TYPE" style="border:0" value="NEW">NEW</label></td>
+		</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[권한정보]</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">조직별권한</td>
+			<td class="frm-item-value">
+<input name="MENU_AUTH_ORG_disp" value="" readonly="" style="width:90%">&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="orgsel.orgMulti(&quot;MENU_AUTH_ORG&quot;,&quot;&quot;,&quot;0&quot;,&quot;0&quot;,&quot;50&quot;,&quot;0&quot;);" style="cursor:pointer" align="absmiddle">
+			
+<input name="MENU_AUTH_ORG_id" value="" type="hidden">
+<input name="MENU_AUTH_ORG_full" value="" type="hidden">
+			</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">업무별권한</td>
+			<td class="frm-item-value">
+<input name="MENU_AUTH_WORK_disp" value="" readonly="" style="width:90%">&nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="fnc.JobTree(&quot;MENU_AUTH_WORK&quot;);" style="cursor:pointer" align="absmiddle">
+			
+<input name="MENU_AUTH_WORK_id" value="" type="hidden">
+			</td>
+		</tr>
+		<!--tr>
+			<td class="frm-item-title">문서함권한</td>
+			<td class="frm-item-value">
+				
+<input name="%%Surrogate_MENU_AUTH_EDMS1" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_EDMS1" value="Y">문서권한</label>
+<input name="%%Surrogate_MENU_AUTH_EDMS2" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_EDMS2" value="Y">총무권한</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="frm-item-title">사용자유형별권한</td>
+			<td class="frm-item-value">
+				
+<input name="%%Surrogate_MENU_AUTH_UTYPE1" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_UTYPE1" value="Y">임원</label>&nbsp;[
+<input name="%%Surrogate_MENU_AUTH_UTYPE1_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_AUTH_UTYPE1_YN" hidefocus=true style="border:0" value="Y" checked>대상</label><label>
+<input type="radio" name="MENU_AUTH_UTYPE1_YN" hidefocus=true style="border:0" value="N">제외</label>]<br>
+				
+<input name="%%Surrogate_MENU_AUTH_UTYPE2" type="hidden" value="1"><label>
+<input type="checkbox" name="MENU_AUTH_UTYPE2" value="Y">영업</label>&nbsp;[
+<input name="%%Surrogate_MENU_AUTH_UTYPE2_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_AUTH_UTYPE2_YN" hidefocus=true style="border:0" value="Y" checked>대상</label><label>
+<input type="radio" name="MENU_AUTH_UTYPE2_YN" hidefocus=true style="border:0" value="N">제외</label>]
+			</td>
+		</tr-->
+		
+		<tr>
+				<td class="frm-item-title">적용범위</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_MENU_AUTH_TYPE" type="hidden" value="1">
+<select name="MENU_AUTH_TYPE">
+<option value="1" selected="">현메뉴만
+</option><option value="2">권한 없는 하위메뉴만 수정
+</option><option value="3">전체수정</option></select>
+
+				</td>
+			</tr>
+		<tr>
+			<td class="frm-item-title" style="text-align:left;font-weight:bold;" colspan="2">[기타정보]</td>
+		</tr>
+			<tr>
+				<td class="frm-item-title">업무포틀릿</td>
+				<td class="frm-item-value">
+					
+<input name="MENU_ADD_WORK_NAME" value="" style="width:80%;"> &nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="menumng.selWorkPotMenu()" style="cursor:pointer" align="absmiddle">
+					
+<input name="MENU_ADD_WORK_ID" value="" type="hidden">
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">업무메뉴담당</td>
+				<td class="frm-item-value">
+					
+<input name="MENU_WORK_MNG_disp" value="" readonly="true" style="width:80%;"> &nbsp;<img src="/gwlib/comm/images/button/btn_name.gif" onclick="orgsel.orgMulti(&quot;MENU_WORK_MNG&quot;,&quot;업무메뉴담당자 지정&quot;,&quot;0&quot;,&quot;0&quot;,&quot;10&quot;,&quot;0&quot;);" style="cursor:pointer" align="absmiddle">
+					
+<input name="MENU_WORK_MNG_id" value="" type="hidden">
+<input name="MENU_WORK_MNG_full" value="" type="hidden"> 
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">사이트맵</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_MENU_SITEMAP_YN" type="hidden" value="1"><label>
+<input type="radio" name="MENU_SITEMAP_YN" style="width:20px; border:0" value="yes" checked="">포함</label><label>
+<input type="radio" name="MENU_SITEMAP_YN" style="width:20px; border:0" value="no">미포함</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="frm-item-title">모바일사용유무</td>
+				<td class="frm-item-value">
+					
+<input name="%%Surrogate_USE_MOBILE" type="hidden" value="1"><label>
+<input type="radio" name="USE_MOBILE" style="width:20px; border:0" value="0">미사용</label><label>
+<input type="radio" name="USE_MOBILE" style="width:20px; border:0" value="1" checked="">사용</label>
+				</td>
+			</tr>
+			<tr>
+			<td class="frm-item-title">모바일상위메뉴코드</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_MOBILE" value="AP_000070"></td>
+			</tr>
+			<tr>
+			<td class="frm-item-title">모바일메뉴URL</td>
+			<td class="frm-item-value">
+<input name="MENU_WORK_MOBILE_URL" value="/gw/app/bult/bbs00000.nsf/wFrmMobileList?ReadForm%26single=03" style="width:100%"></td>
+			</tr>
+			<tr style="display:none;">
+			<td class="frm-item-title">문서 Count URL</td>
+			<td class="frm-item-value">
+<input name="COUNT_URL" value="" style="width:100%"></td>
+			</tr>
+</tbody></table>
+
+</form>
+
+
+</div>
+	</td>
+</tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+
+</div><div id="ui-tabs-54" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="height: 596px;"><!-- 공용 뷰 -->
+
+<form action="/gw/sys/menumng.nsf/wviwcontentSearch?searchview&amp;view=wviwcontentSearch&amp;start=1&amp;count=15&amp;page=1" method="post" name="SearchView" onsubmit="return false;" target="_self">
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+<!-- 타이틀 & 버튼 테이블 시작 -->
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td height="40" width="100%">
+<!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+<div id="viw-button">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td>
+			<span class="viw-button-left">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>9</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)" valign="middle" size="2" maxlength="2"> 
+			</span>
+			<span align="right" class="viw-button-right">
+				<span class="button"><a onclick="mframe.refreshTab()">새로고침</a></span><!--페이지 Refresh-->
+				<span class="button"><a onclick="View.CreateDocument(&quot;작성&quot;)">작성</a></span><!--작성-->
+			</span>
+			</td>
+		</tr>
+		</tbody></table>
+</div>
+<!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+</td>
+</tr>
+</tbody></table>
+<!-- 타이틀 & 버튼 테이블 끝 -->
+<!-- 보기내용 시작 -->
+<span id="BodyTable" style="width:100%"><table class="viw-layout" id="ViewTable" cellpadding="0" cellspacing="0"><colgroup><col width="15%"><col width="*"></colgroup><tbody><tr><td colspan="2"><table width="100%" cellpadding="0" cellspacing="0" class="viw-title"><colgroup><col width="15%"><col width="*"></colgroup><tbody><tr><td class="viw-title-bar">컨텐츠ID</td><td>제목</td></tr></tbody></table></td></tr><tr class="viw-body" tabtitle="캘린더[근태관리]"><td align="center" class="viw-body" onclick="View.OpenDocument('24869666F55C65C34925797400210930', event)">S0008</td><td align="center" class="viw-body" onclick="View.OpenDocument('24869666F55C65C34925797400210930', event)">캘린더[근태관리]</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="캘린더(업무일지)"><td align="center" class="viw-body" onclick="View.OpenDocument('2BF87F4A2E079FE0492579490083BAC0', event)">S0007</td><td align="center" class="viw-body" onclick="View.OpenDocument('2BF87F4A2E079FE0492579490083BAC0', event)">캘린더(업무일지)</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="부서문서함"><td align="center" class="viw-body" onclick="View.OpenDocument('4932B098C8E7F90E492580E20005FF91', event)">S0011</td><td align="center" class="viw-body" onclick="View.OpenDocument('4932B098C8E7F90E492580E20005FF91', event)">부서문서함</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="캘린더 네비게이터"><td align="center" class="viw-body" onclick="View.OpenDocument('6E2B1C33653FDAD1492578620009E29B', event)">S0006</td><td align="center" class="viw-body" onclick="View.OpenDocument('6E2B1C33653FDAD1492578620009E29B', event)">캘린더 네비게이터</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="자원사용목록"><td align="center" class="viw-body" onclick="View.OpenDocument('9BD6854035D8A4C84925785D003CA8AE', event)">S0004</td><td align="center" class="viw-body" onclick="View.OpenDocument('9BD6854035D8A4C84925785D003CA8AE', event)">자원사용목록</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="분류 &amp; 검색어"><td align="center" class="viw-body" onclick="View.OpenDocument('BFB53EB0EF3730E2492580DB0081966A', event)">S0010</td><td align="center" class="viw-body" onclick="View.OpenDocument('BFB53EB0EF3730E2492580DB0081966A', event)">분류 &amp; 검색어</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="공연장목록"><td align="center" class="viw-body" onclick="View.OpenDocument('C8389BC176E2DA1349257A920000CEE1', event)">S0009</td><td align="center" class="viw-body" onclick="View.OpenDocument('C8389BC176E2DA1349257A920000CEE1', event)">공연장목록</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="COP 카페"><td align="center" class="viw-body" onclick="View.OpenDocument('E0D64C43EB0E6A044925785D003CA8AF', event)">S0005</td><td align="center" class="viw-body" onclick="View.OpenDocument('E0D64C43EB0E6A044925785D003CA8AF', event)">COP 카페</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr><tr class="viw-body" tabtitle="자원사용목록(큐브리지)"><td align="center" class="viw-body" onclick="View.OpenDocument('E95269751E1C8290492581DF00332FD7', event)">S0012</td><td align="center" class="viw-body" onclick="View.OpenDocument('E95269751E1C8290492581DF00332FD7', event)">자원사용목록(큐브리지)</td></tr><tr class="viw-rowline3"><td colspan="2"></td></tr></tbody></table></span>
+<!-- 보기내용 끝 -->
+<!-- 검색 테이블 시작 -->
+<table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0" border="0">
+	<tbody><tr height="10px"><td colspan="2"></td></tr>
+	<tr>
+		<td>
+		<span id="ViewNav" class="viw-nav"><table cellpadding="0" cellspacing="3"><tbody><tr><td id="nav1" class="cNav" style="cursor:pointer;">1</td></tr></tbody></table></span>
+		<span class="viw-search">
+
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch">결과내 검색
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체
+				</option><option value="AuthorName">작성자
+				</option><option value="CON_ID">컨텐츠ID
+				</option><option value="CON_TITLE">제목
+			</option></select>
+		</td>
+		<td class="FTSearch" align="right">
+			<input name="searchvalue" id="searchvalue" value="" class="FTSearch" onkeydown="search.doSearchKeyDown(event)"> 
+		<span class="btn20 btnSearch" onclick="search.doSearchSubmit();" style="cursor:pointer;">검색</span></td>
+	</tr>
+</tbody></table>
+			<input type="hidden" name="searchname" id="searchname">
+			<input type="hidden" name="query" id="query" value="">
+			<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+			<input type="hidden" name="SearchOrder" id="SearchOrder" value="4"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+			</span>
+			</td>
+	</tr>
+</tbody></table>
+<!-- 검색 테이블 끝 -->
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+</form>
+
+</div><div id="ui-tabs-56" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="height: 596px;"><div style="display:none;">
+<input type="hidden" id="AddReaders_id" name="AddReaders_id" value="">
+<input type="hidden" id="AddReaders_full" name="AddReaders_full" value="">
+<input type="hidden" id="AddReaders_id_E" name="AddReaders_id_E" value="">
+</div>
+<!--게시물 관리 정보 종료 //-->
+<form action="/gw/app/bult/bbs00000.nsf/wviwdefaultSearch?searchview&amp;view=wviwdefaultSearch&amp;start=1&amp;count=15&amp;page=1" method="post" name="SearchView" onsubmit="return false;" target="_self">
+<!--
+호랑이
+gw/sys/multilang.nsf
+KR
+-->
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+<!-- 타이틀 & 버튼 테이블 시작 -->
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td height="40" width="100%">
+	<!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+	<div id="viw-button">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td>
+			<span class="viw-button-left">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>3393</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)" valign="middle" size="2" maxlength="2"> <span>줄보기</span>
+			</span>
+		
+			<span class="viw-button-right">
+			<span id="Asort" style="display:none;">	<select name="Csort" onchange="Change_Sort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">긴급도</option>
+<option name="Bsort" id="Bsort" value="2">발생위치</option>
+</select>
+ </span><!--시스템지키미정렬-->
+			<span id="Asort" style="display:none;">	<select name="Tsort" onchange="Change_TSort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">분류</option>
+</select>
+ </span><!--전사기사정렬-->
+				<span class="button"><a onclick="mframe.refreshTab()">새로고침</a></span><!--새로고침-->
+				<!--작성-->
+				<!--삭제-->
+			</span>
+			</td>
+		</tr>
+		</tbody></table>
+	</div>
+	<!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+</td>
+</tr>
+</tbody></table>
+<!-- 타이틀 & 버튼 테이블 끝 -->
+<!-- 보기내용 시작 -->
+<span id="BodyTable" style="width:100%"><table id="ViewTable" class="viw-body-layout" width="100%" cellpadding="0" cellspacing="0" style="table-layout:fixed;"><colgroup><col width="5%"><col width="44%"><col width="14%"><col width="12%"><col width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td colspan="7"><table width="100%" cellpadding="0" cellspacing="0" class="viw-title"><colgroup><col width="5%"><col width="44%"><col width="14%"><col width="12%"><col width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td class="viw-title-bar">번호</td><td class="viw-title-bar">제목</td><td class="viw-title-bar">직급/직책</td><td class="viw-title-bar">게시자</td><td class="viw-title-bar">게시일</td><td class="viw-title-bar">조회수</td><td>첨부</td></tr></tbody></table></td></tr><tr class="viw-body noread" onclick="View.OpenDocument('8F07DC51760033EB4925825C002917E5', event)" style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3840</td><td align="left" class="ellipsis">[그룹웨어] i-one 오류 및 문의처 =&gt; 그룹웨어 상단 &amp; IE 설정!! 꼭 확인해주시기 바랍니다</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">관리자</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">465</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body noread" onclick="View.OpenDocument('AE32139623CF83E14925825C0007BDD3', event)" style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3839</td><td align="left" class="ellipsis">강태현사원 어머님의 폐이식 대기자 등록 청원 동의 부탁드립니다.[103]</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">김기범</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">1545</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body noread" onclick="View.OpenDocument('B7856175B644B06C4925812C00139410', event)" style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3151</td><td align="left" class="ellipsis">
+												[공지]
+											[공유] 인터파크 바이오융합연구소가 출발하였습니다</td><td align="center" class="ellipsis">담당임원</td><td align="center" class="ellipsis">윤성준</td><td align="center" class="ellipsis">2017-05-26</td><td align="center" class="ellipsis">2315</td><td align="center"><img src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('FE58DCC446086C064925825F0031A596', event)" tabtitle=""><td align="center" class="ellipsis">3849</td><td align="left" class="ellipsis">
+												[보안사항]
+											‘저작권 침해’ 항의 메일 위장 ‘갠드크랩’ 랜섬웨어 배포</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">박진석</td><td align="center" class="ellipsis">2018-03-29</td><td align="center" class="ellipsis">113</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('A85E474DF5C8ECAA4925825E00045A70', event)" tabtitle=""><td align="center" class="ellipsis">3848</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크] ENT 마케팅팀 김정윤 사원 조모상[42]</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">임재경</td><td align="center" class="ellipsis">2018-03-28</td><td align="center" class="ellipsis">344</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('2AD5B983DC5DF5274925825D002F47DE', event)" tabtitle=""><td align="center" class="ellipsis">3847</td><td align="left" class="ellipsis">[작업공지] 03월 시스템 정기점검(03/30 02:00~07:00)</td><td align="center" class="ellipsis">팀장</td><td align="center" class="ellipsis">이영록</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">45</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('9D0FD91344E2C2084925825D002CF997', event)" tabtitle=""><td align="center" class="ellipsis">3846</td><td align="left" class="ellipsis">
+												[득녀]
+											[인터파크] ♥축 득녀♥ 인터파크 도서부문 도서2팀 이상희 과장님의 득녀 소식을 알립니다♬[29]</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">민희경</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">210</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('E23D9392D4CD446E4925825D001E5415', event)" tabtitle=""><td align="center" class="ellipsis">3845</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이선희</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">538</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('39A925B468F8E1634925825D001AF245', event)" tabtitle=""><td align="center" class="ellipsis">3844</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											[자동차보험 가입시 S머니 5만원 증정행사 안내]</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">한희정</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">542</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('C1C5A6C109E4D70A4925825C003523E7', event)" tabtitle=""><td align="center" class="ellipsis">3843</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★ 폴햄/엠폴햄/팀스폴햄 전상품 1,000원 / 폴햄할인전 1탄! 단 3일간의 기회(3/26-28) ★</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">윤지현</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">1140</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('8F6B44FCF8BFFECC4925825C00315605', event)" tabtitle=""><td align="center" class="ellipsis">3842</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥♥[스테이지b 세븐데이즈 이벤트]♥♥ 씨어터 직영 스테이지B 레스토랑 임직원 프로모션 안내</td><td align="center" class="ellipsis">담당</td><td align="center" class="ellipsis">강기승</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">763</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('E793CF0CC4BD41C94925825C002D3C24', event)" tabtitle=""><td align="center" class="ellipsis">3841</td><td align="left" class="ellipsis">
+												[보안사항]
+											[보안] 이력서 파일로 유포되는 시그마 랜섬웨어 주의</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">박진석</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">210</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('942849F316DF8C444925825C0001F5A2', event)" tabtitle=""><td align="center" class="ellipsis">3838</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크큐브릿지] CS지원팀 박현선 사원 외조모상[22]</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">최다솜</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">182</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('AAC08E108441181B4925825B0083D30F', event)" tabtitle=""><td align="center" class="ellipsis">3837</td><td align="left" class="ellipsis">
+												[득남]
+											♥♥ 축 득남 ♥♥ 김주희 파트장님의 득남을 축하해 주세요!![65]</td><td align="center" class="ellipsis">차장</td><td align="center" class="ellipsis">박형훈</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">410</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('1081BA10899C69334925825A000D6909', event)" tabtitle=""><td align="center" class="ellipsis">3836</td><td align="left" class="ellipsis">
+												[부고]
+											[아이마켓코리아]전략영업2팀 김기성 주임 외조모상[3]</td><td align="center" class="ellipsis">차장</td><td align="center" class="ellipsis">조준오</td><td align="center" class="ellipsis">2018-03-24</td><td align="center" class="ellipsis">54</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('AA9ADDFEA1150B4D49258259003327E3', event)" tabtitle=""><td align="center" class="ellipsis">3835</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥노보텔 앰배서더 부산! 단, 3주간만 객실쿠폰 특별판매 진행~♥</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">나수진</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">1161</td><td align="center"><img src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('4919C7BE9BAF468C492582590014A0BF', event)" tabtitle=""><td align="center" class="ellipsis">3834</td><td align="left" class="ellipsis">
+												[득남]
+											☆축 득남☆ 경영관리팀 구애린 대리 ♥ 사무환경자재팀 이상원 대리 득남을 축하드립니다.[39]</td><td align="center" class="ellipsis">주임</td><td align="center" class="ellipsis">박정재</td><td align="center" class="ellipsis">2018-03-23</td><td align="center" class="ellipsis">517</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('BFA239081B1FA19D49258259000F7990', event)" tabtitle=""><td align="center" class="ellipsis">3833</td><td align="left" class="ellipsis">
+												[부고]
+											[도서] 마케팅서비스팀 안희진 사원 배우자 외조모상[12]</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">임애영</td><td align="center" class="ellipsis">2018-03-23</td><td align="center" class="ellipsis">167</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('2B1327766D87A6624925825800837799', event)" tabtitle=""><td align="center" class="ellipsis">3832</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크큐브릿지]관리팀 정아람 주임 조모상[8]</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">최다솜</td><td align="center" class="ellipsis">2018-03-23</td><td align="center" class="ellipsis">164</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('92AC5E3B9955698E49258258007FECA5', event)" tabtitle=""><td align="center" class="ellipsis">3831</td><td align="left" class="ellipsis">
+												[부고]
+											[아이마켓코리아]경영관리팀 노태영 주임 외조모상[12]</td><td align="center" class="ellipsis">주임</td><td align="center" class="ellipsis">박정재</td><td align="center" class="ellipsis">2018-03-23</td><td align="center" class="ellipsis">207</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('A6F48C3F4ECA3B9E492582580020F419', event)" tabtitle=""><td align="center" class="ellipsis">3830</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★30대한정/재입고★ 필립스 최신 로봇청소기 온라인최저가대비 37% 할인(331,170원→209,880원)</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td align="center" class="ellipsis">2018-03-22</td><td align="center" class="ellipsis">754</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('7AC77EEF344BA7E449258258000007A4', event)" tabtitle=""><td align="center" class="ellipsis">3829</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크]투어부분 항공영업팀 강신혜 사원 조모상[36]</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">김혜란</td><td align="center" class="ellipsis">2018-03-22</td><td align="center" class="ellipsis">288</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr></tbody></table></span>
+<!-- 보기내용 끝 -->
+<!-- 검색 테이블 시작 -->
+<table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0" border="0">
+	<tbody><tr height="10px"><td colspan="2"></td></tr>
+	<tr>
+		<td>
+		<span id="ViewNav" class="viw-nav"><table cellpadding="0" cellspacing="3"><tbody><tr><td id="nav1" class="cNav" style="cursor:pointer;">1</td><td></td><td id="nav2" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">2</td><td></td><td id="nav3" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">3</td><td></td><td id="nav4" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">4</td><td></td><td id="nav5" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">5</td><td></td><td id="nav6" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">6</td><td></td><td id="nav7" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">7</td><td></td><td id="nav8" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">8</td><td></td><td id="nav9" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">9</td><td></td><td id="nav10" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)" style="cursor:pointer;">10</td><td id="nav11" width="20" align="right" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)"><img src="/gwlib/comm/images/next_btu.png" border="0" align="absmiddle" style="cursor:pointer;"></td><td id="nav155" width="15" align="right" onclick="nav._nextOnClick(event,&quot;ui-tabs-56&quot;)"><img src="/gwlib/comm/images/nnext_btu.png" border="0" align="absmiddle" style="cursor:pointer;"></td></tr></tbody></table></span>
+		<span class="viw-search">
+
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch"><span>결과내 검색</span>
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체</option>
+				<option value="AuthorName">작성자</option>
+				<option value="Subject">제목</option>
+				<option value="Body">본문</option>
+				<option value="Subject:Body">제목+본문</option>
+			</select>
+		</td>
+		<td class="FTSearch" align="right"><input name="searchvalue" id="searchvalue" value="" class="FTSearch" onkeydown="search.doSearchKeyDown(event)"> 
+		<span class="btn20 btnSearch" onclick="search.doSearchSubmit();" style="cursor:pointer;">검색</span></td>
+		</tr>
+		</tbody></table>
+		<input type="hidden" name="searchname" id="searchname">
+		<input type="hidden" name="query" id="query" value="">
+		<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+		<input type="hidden" name="SearchOrder" id="SearchOrder" value="2"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+		</span>
+		</td>
+	</tr>
+</tbody></table>
+<!-- 검색 테이블 끝 -->
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+</form>
+
+</div><div id="ui-tabs-58" class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="height: 596px;"><div style="display:none;">
+<input type="hidden" id="AddReaders_id" name="AddReaders_id" value="">
+<input type="hidden" id="AddReaders_full" name="AddReaders_full" value="">
+<input type="hidden" id="AddReaders_id_E" name="AddReaders_id_E" value="">
+</div>
+<!--게시물 관리 정보 종료 //-->
+<form action="/gw/app/bult/bbs00000.nsf/wviwnoticeSearch?searchview&amp;restricttocategory=03&amp;view=wviwnoticeSearch&amp;start=1&amp;count=15&amp;page=1" method="post" name="SearchView" onsubmit="return false;" target="_self">
+<!--
+호랑이
+gw/sys/multilang.nsf
+KR
+-->
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+<tbody><tr><td valign="top">
+<!-- 타이틀 & 버튼 테이블 시작 -->
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td height="40" width="100%">
+	<!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+	<div id="viw-button">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td>
+			<span class="viw-button-left">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>756</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)" valign="middle" size="2" maxlength="2"> <span>줄보기</span>
+			</span>
+		
+			<span class="viw-button-right">
+			<span id="Asort" style="display:none;">	<select name="Csort" onchange="Change_Sort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">긴급도</option>
+<option name="Bsort" id="Bsort" value="2">발생위치</option>
+</select>
+ </span><!--시스템지키미정렬-->
+			<span id="Asort" style="display:none;">	<select name="Tsort" onchange="Change_TSort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">분류</option>
+</select>
+ </span><!--전사기사정렬-->
+				<span class="button"><a onclick="mframe.refreshTab()">새로고침</a></span><!--새로고침-->
+				<span class="button"><a onclick="View.CreateDocumentForm(&quot;wFrmNotice&quot;,&quot;작성&quot;,&quot;single=03&quot;)">작성</a></span><!--작성-->
+				<!--삭제-->
+			</span>
+			</td>
+		</tr>
+		</tbody></table>
+	</div>
+	<!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+</td>
+</tr>
+</tbody></table>
+<!-- 타이틀 & 버튼 테이블 끝 -->
+<!-- 보기내용 시작 -->
+<span id="BodyTable" style="width:100%"><table id="ViewTable" class="viw-body-layout" width="100%" cellpadding="0" cellspacing="0" style="table-layout:fixed;"><colgroup><col width="5%"><col width="44%"><col width="14%"><col width="12%"><col width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td colspan="7"><table width="100%" cellpadding="0" cellspacing="0" class="viw-title"><colgroup><col width="5%"><col width="44%"><col width="14%"><col width="12%"><col width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td class="viw-title-bar">번호</td><td class="viw-title-bar">제목</td><td class="viw-title-bar">직급/직책</td><td class="viw-title-bar">게시자</td><td class="viw-title-bar">게시일</td><td class="viw-title-bar">조회수</td><td>첨부</td></tr></tbody></table></td></tr><tr class="viw-body " onclick="View.OpenDocument('E23D9392D4CD446E4925825D001E5415', event)" tabtitle=""><td align="center" class="ellipsis">3845</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이선희</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">538</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('39A925B468F8E1634925825D001AF245', event)" tabtitle=""><td align="center" class="ellipsis">3844</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											[자동차보험 가입시 S머니 5만원 증정행사 안내]</td><td align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">한희정</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">542</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('C1C5A6C109E4D70A4925825C003523E7', event)" tabtitle=""><td align="center" class="ellipsis">3843</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★ 폴햄/엠폴햄/팀스폴햄 전상품 1,000원 / 폴햄할인전 1탄! 단 3일간의 기회(3/26-28) ★</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">윤지현</td><td align="center" class="ellipsis">2018-03-27</td><td align="center" class="ellipsis">1140</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('8F6B44FCF8BFFECC4925825C00315605', event)" tabtitle=""><td align="center" class="ellipsis">3842</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥♥[스테이지b 세븐데이즈 이벤트]♥♥ 씨어터 직영 스테이지B 레스토랑 임직원 프로모션 안내</td><td align="center" class="ellipsis">담당</td><td align="center" class="ellipsis">강기승</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">763</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('AA9ADDFEA1150B4D49258259003327E3', event)" tabtitle=""><td align="center" class="ellipsis">3835</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥노보텔 앰배서더 부산! 단, 3주간만 객실쿠폰 특별판매 진행~♥</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">나수진</td><td align="center" class="ellipsis">2018-03-26</td><td align="center" class="ellipsis">1161</td><td align="center"><img src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('A6F48C3F4ECA3B9E492582580020F419', event)" tabtitle=""><td align="center" class="ellipsis">3830</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★30대한정/재입고★ 필립스 최신 로봇청소기 온라인최저가대비 37% 할인(331,170원→209,880원)</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td align="center" class="ellipsis">2018-03-22</td><td align="center" class="ellipsis">754</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('EB589FEA7CD0FC7E4925825600028C91', event)" tabtitle=""><td align="center" class="ellipsis">3826</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											담당자 눈물의 땡처리 특가!!● 3/28일 출발 ● 서유럽 3국 9일 융프라우 직항 -209만원</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">임연화</td><td align="center" class="ellipsis">2018-03-20</td><td align="center" class="ellipsis">718</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('EBC2BE92AF89EDA74925824F001D04BE', event)" tabtitle=""><td align="center" class="ellipsis">3816</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3월한정★ 필립스 최신 인기 에어프라이어 최저가대비 17% 할인(314,850원→261,800원)</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td align="center" class="ellipsis">2018-03-13</td><td align="center" class="ellipsis">1060</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('6B814C0916F92E694925824A0032A69F', event)" tabtitle=""><td align="center" class="ellipsis">3806</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★파!격! 119만원★ 3/17 출발 남프랑스 이탈리아 일주 9일</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">원효정</td><td align="center" class="ellipsis">2018-03-09</td><td align="center" class="ellipsis">689</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('0E7687936DDC1D724925824A00279703', event)" tabtitle=""><td align="center" class="ellipsis">3804</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥동유럽4국8일♥ 3/17, 19 임직원 할인! 119만원</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">윤은영</td><td align="center" class="ellipsis">2018-03-08</td><td align="center" class="ellipsis">328</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('25C7E6ADD8BAEF434925824A000B1394', event)" tabtitle=""><td align="center" class="ellipsis">3803</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/14 출발★ [직항] 서유럽 4국 10일 235만원 특가_로마야경포함</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">최효선</td><td align="center" class="ellipsis">2018-03-08</td><td align="center" class="ellipsis">482</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('17606106A7E518E149258248001B5685', event)" tabtitle=""><td align="center" class="ellipsis">3800</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											할인기간연장★50% 파격 특가 ★이 시대 최고의 뮤지컬! 〈빌리 엘리어트&gt;★</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">조민지</td><td align="center" class="ellipsis">2018-03-06</td><td align="center" class="ellipsis">1428</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('5F4D404A946C8472492582470016D9FA', event)" tabtitle=""><td align="center" class="ellipsis">3793</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											3/13출발 발칸동유럽 20만원할인 특가</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">임성민</td><td align="center" class="ellipsis">2018-03-06</td><td align="center" class="ellipsis">564</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('1E1656E8D87452554925824400266D3A', event)" tabtitle=""><td align="center" class="ellipsis">3788</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											● 몰디브 땡처리 ● 2018년 3월~8월 여름 휴가 ＃ 몰디브 ＃149만원 부터~!!</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">최병모</td><td align="center" class="ellipsis">2018-03-05</td><td align="center" class="ellipsis">951</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('26ED67A670CFB94549258242000D89D2', event)" tabtitle=""><td align="center" class="ellipsis">3784</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★품절★ 필립스 최신 로봇청소기 온라인최저가대비 37% 할인(331,170원→209,880원)</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td align="center" class="ellipsis">2018-02-28</td><td align="center" class="ellipsis">1209</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('D87D6FCC003D64F849258241002FFE08', event)" tabtitle=""><td align="center" class="ellipsis">3781</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥3/9 금출발 극동 러시아 4일♥시베리아 횡단열차 1박포함! 759,000원[1]</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">현동근</td><td align="center" class="ellipsis">2018-02-28</td><td align="center" class="ellipsis">617</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('89A73FFABFE1144249258241002C0376', event)" tabtitle=""><td align="center" class="ellipsis">3779</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥여유롭게 즐기는 크로아티아/동유럽 패키지여행~♥ 3/9, 3/11, 3/18 출발 확정♥ 119만원부터~!</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">공수연</td><td align="center" class="ellipsis">2018-02-27</td><td align="center" class="ellipsis">277</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('6130934DCB16E8464925823B000BC8DA', event)" tabtitle=""><td align="center" class="ellipsis">3773</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											2/27 출발 싱가폴/바탐 5일 AD투어 399,000! 진짜 마지막![1]</td><td align="center" class="ellipsis">수석</td><td align="center" class="ellipsis">김은성</td><td align="center" class="ellipsis">2018-02-21</td><td align="center" class="ellipsis">807</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('0B1B9827541CB5934925823A0012C505', event)" tabtitle=""><td align="center" class="ellipsis">3767</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/2,9 금요일 밤출발&gt;&gt; [서유럽4국10일] 179만원~</td><td align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">천재엽</td><td align="center" class="ellipsis">2018-02-20</td><td align="center" class="ellipsis">346</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('5E5422DCC0FDF58949258239002FD41D', event)" tabtitle=""><td align="center" class="ellipsis">3765</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/6,13출발 &gt;&gt; 동유럽4국10일 ~하늘위의궁전 A380 탑승 ~124만원</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">오수연</td><td align="center" class="ellipsis">2018-02-19</td><td align="center" class="ellipsis">265</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('4BE32548AA131DEB49258239002718D8', event)" tabtitle=""><td align="center" class="ellipsis">3763</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/1출발★ [직항]동유럽+발칸 9일 139만원특가</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">박상민</td><td align="center" class="ellipsis">2018-02-19</td><td align="center" class="ellipsis">316</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body " onclick="View.OpenDocument('2B11756690CF84564925823900202610', event)" tabtitle=""><td align="center" class="ellipsis">3761</td><td align="left" class="ellipsis">[회원 모집] 인터루키 농구 동호회 직장인배 참가[4]</td><td align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">김정연</td><td align="center" class="ellipsis">2018-02-19</td><td align="center" class="ellipsis">751</td><td align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr></tbody></table></span>
+<!-- 보기내용 끝 -->
+<!-- 검색 테이블 시작 -->
+<table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0" border="0">
+	<tbody><tr height="10px"><td colspan="2"></td></tr>
+	<tr>
+		<td>
+		<span id="ViewNav" class="viw-nav"><table cellpadding="0" cellspacing="3"><tbody><tr><td id="nav1" class="cNav" style="cursor:pointer;">1</td><td></td><td id="nav2" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">2</td><td></td><td id="nav3" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">3</td><td></td><td id="nav4" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">4</td><td></td><td id="nav5" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">5</td><td></td><td id="nav6" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">6</td><td></td><td id="nav7" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">7</td><td></td><td id="nav8" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">8</td><td></td><td id="nav9" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">9</td><td></td><td id="nav10" class="Nav" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)" style="cursor:pointer;">10</td><td id="nav11" width="20" align="right" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)"><img src="/gwlib/comm/images/next_btu.png" border="0" align="absmiddle" style="cursor:pointer;"></td><td id="nav35" width="15" align="right" onclick="nav._nextOnClick(event,&quot;ui-tabs-58&quot;)"><img src="/gwlib/comm/images/nnext_btu.png" border="0" align="absmiddle" style="cursor:pointer;"></td></tr></tbody></table></span>
+		<span class="viw-search">
+
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch"><span>결과내 검색</span>
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체</option>
+				<option value="AuthorName">작성자</option>
+				<option value="Subject">제목</option>
+				<option value="Body">본문</option>
+				<option value="Subject:Body">제목+본문</option>
+			</select>
+		</td>
+		<td class="FTSearch" align="right"><input name="searchvalue" id="searchvalue" value="" class="FTSearch" onkeydown="search.doSearchKeyDown(event)"> 
+		<span class="btn20 btnSearch" onclick="search.doSearchSubmit();" style="cursor:pointer;">검색</span></td>
+		</tr>
+		</tbody></table>
+		<input type="hidden" name="searchname" id="searchname">
+		<input type="hidden" name="query" id="query" value="">
+		<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+		<input type="hidden" name="SearchOrder" id="SearchOrder" value="2"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+		</span>
+		</td>
+	</tr>
+</tbody></table>
+<!-- 검색 테이블 끝 -->
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+</form>
+
+</div><div id="ui-tabs-1" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-panel-bg"></div><div id="ui-tabs-49" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;" valign="middle"></div><div id="ui-tabs-51" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;" valign="middle"></div><div id="ui-tabs-53" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;" valign="middle"></div><div id="ui-tabs-55" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;" valign="middle"></div><div id="ui-tabs-57" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;" valign="middle"></div></div></div>
+		<div id="right" class="ui-layout-east ui-layout-pane ui-layout-pane-east" style="position: absolute; margin: 0px; left: auto; right: 0px; top: 0px; bottom: 0px; height: 97px; z-index: 0; width: 230px; display: none; visibility: visible;"><div id="right-portlet" class="column"><div id="BOOKMARK_MENU" shref="/gw/sys/bookmark.nsf/wFrmViewPortal?ReadForm" class="portlet ui-widget ui-helper-clearfix"><div class="portlet-header portlet-header-t0-rbg"><div class="portlet-header-lbg portlet-header-t0-lbg"><span id="head_title" class="portlet-header-title portlet-header-t0-cbg"><span id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img src="/gwlib/comm/images/context/addbookmark.gif" border="0" style="vertical-align:middle;"><font id="head_title_txt" style="line-height:22px;">&nbsp;Bookmark</font></span></div></div><div class="portlet-content portlet-content-t0-bg"><!-- 공용뷰 보조양식 -->
+
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" width="100%" border="0">
+<tbody><tr><td valign="top" align="right">
+		<img src="/icons/actn004.gif" border="0" onclick="bookmark.deldoc()" title="삭제" style="cursor:pointer;padding-right:5px;">
+</td></tr>
+<tr><td valign="top">
+	<div id="_BookTreeMenu"><ul class="dynatree-container dynatree-no-connector"></ul></div>
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+
+</div><div class="portlet-bottom portlet-bottom-t0-rbg"><div class="portlet-bottom-lbg portlet-bottom-t0-lbg"><span></span></div></div></div><div id="TODO_MENU" shref="/gw/sys/todolist.nsf/wFrmViewPortal?ReadForm" class="portlet ui-widget ui-helper-clearfix"><div class="portlet-header portlet-header-t0-rbg"><div class="portlet-header-lbg portlet-header-t0-lbg"><span id="head_title" class="portlet-header-title portlet-header-t0-cbg"><span id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img src="/gwlib/comm/images/context/addtodo.gif" border="0" style="vertical-align:middle;"><font id="head_title_txt" style="line-height:22px;">&nbsp;Todo</font></span></div></div><div class="portlet-content portlet-content-t0-bg"><!-- 공용뷰 보조양식 -->
+
+<!-- 전체 테이블 시작 -->
+<table class="viw-layout" cellpadding="0" cellspacing="0" width="100%" border="0">
+<tbody><tr><td valign="top" align="right">
+		<img src="/icons/actn004.gif" border="0" onclick="todolist.deldoc()" title="삭제" style="cursor:pointer;padding-right:5px;">
+</td></tr>
+<tr><td valign="top">
+	<div id="_ToDoTreeMenu"><ul class="dynatree-container dynatree-no-connector"></ul></div>
+</td></tr>
+</tbody></table>
+<!-- 전체 테이블 끝 -->
+
+</div><div class="portlet-bottom portlet-bottom-t0-rbg"><div class="portlet-bottom-lbg portlet-bottom-t0-lbg"><span></span></div></div></div></div></div>
+	<div id="" class="ui-layout-resizer ui-layout-resizer-west ui-layout-resizer-open ui-layout-resizer-west-open" title="Resize" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: w-resize; left: 246px; height: 77px; width: 7px; top: 0px;" aria-disabled="false"><div id="" class="ui-layout-toggler ui-layout-toggler-west ui-layout-toggler-open ui-layout-toggler-west-open" title="Close" style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible; height: 30px; width: 7px; top: 23px; left: 0px;"></div></div><div id="" class="ui-layout-resizer ui-layout-resizer-east ui-layout-resizer-closed ui-layout-resizer-east-closed ui-draggable-disabled" title="Slide Open" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: pointer; right: 0px; height: 97px; width: 7px; top: 0px;" aria-disabled="true"><div id="" class="ui-layout-toggler ui-layout-toggler-east ui-layout-toggler-closed ui-layout-toggler-east-closed" title="Open" style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible; height: 30px; width: 7px; top: 33px; left: 0px;"></div></div></div>
+</div>
+<!-- //Container -->
+<!-- Bottom Start (디버깅 용)-->
+<div id="bottom" class="ui-layout-south ui-layout-pane ui-layout-pane-south" style="display: none; position: absolute; margin: 0px; top: auto; bottom: 0px; left: 0px; right: 0px; width: auto; z-index: 0; height: 96px; visibility: visible;">
+<div style="width:100%;height:100%;border:0px solid black;">
+<table width="100%" height="100%" cellspacing="0" valign="top" cellpadding="3" border="0" style="table-layout:fixed;margin: 0px 0px 0px 0px;overflow:hidden;word-break:keep-all;">
+<tbody>
+<tr>
+	<td valign="top" style="height:18px;padding:0px 5px 0px 0px;">
+		○ 접속자 :관리자  <input type="button" onclick="clipboardData.setData('Text',$('#debug_console').text())" value="Copyt to Clipboard"> <span id="debug_path">/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwNotice&amp;xsl=wviw00&amp;single=03</span>
+	</td></tr>
+<tr height="*">
+<td height="*" valign="top" style="background-color:white;padding:0px 5px 0px 2px;border: 1px solid blue;">
+	<pre id="debug_console">
+</pre>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Bottom Stop (디버깅 용)-->
+<div id="RTNJS" width="1" height="1" style="display:none;"></div>
+<div>
+<ul id="tabs_context_menu" class="contextMenu" style="width: 140px;">
+	<li class="deltabs"><a href="#deltabs">Tab전체닫기</a></li>
+	<li class="refreshtab"><a href="#refreshtab">현재Tab새로고침</a></li>
+	<li class="refreshtab"><a href="#togglelayout">Tab영역확대/축소</a></li>
+	<li class="settingtab"><a href="#settingtab">Tab설정</a></li>
+	<li class="addtodo separator"><a href="#addtodo">ToDo 추가</a></li>
+	<li class="addbookmark"><a href="#addbookmark">Bookmark 추가</a></li>
+</ul>
+</div>
+<iframe id="iOpenFile" src="about:blank" style="display:hidden;width:0;height:0;"></iframe>
+
+  
+
+<div id="" class="ui-layout-resizer ui-layout-resizer-north ui-layout-resizer-open ui-layout-resizer-north-open" title="Resize" style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: n-resize; top: 100px; display: none;" aria-disabled="false"><div id="" class="ui-layout-toggler ui-layout-toggler-north ui-layout-toggler-open ui-layout-toggler-north-open" title="Close" style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible;"></div></div><div title="Slide Open" id="" class="ui-layout-resizer ui-layout-resizer-south ui-layout-resizer-closed ui-layout-resizer-south-closed ui-draggable-disabled" aria-disabled="true" style="cursor: pointer; position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; bottom: 0px; width: 1280px; height: 6px; left: 0px;"><div id="" class="ui-layout-toggler ui-layout-toggler-south ui-layout-toggler-closed ui-layout-toggler-south-closed" title="Open" style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible; width: 50px; height: 6px; left: 615px; top: 0px;"></div></div><div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="이전달"><span class="ui-icon ui-icon-circle-triangle-w">이전달</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="다음달"><span class="ui-icon ui-icon-circle-triangle-e">다음달</span></a><div class="ui-datepicker-title"><select class="ui-datepicker-month" data-handler="selectMonth" data-event="change"><option value="2" selected="selected">3월(MAR)</option><option value="3">4월(APR)</option><option value="4">5월(MAY)</option><option value="5">6월(JUN)</option><option value="6">7월(JUL)</option><option value="7">8월(AUG)</option><option value="8">9월(SEP)</option><option value="9">10월(OCT)</option><option value="10">11월(NOV)</option><option value="11">12월(DEC)</option></select><select class="ui-datepicker-year" data-handler="selectYear" data-event="change"><option value="2018" selected="selected">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option></select>년</div></div><table class="ui-datepicker-calendar"><thead><tr><th class="ui-datepicker-week-end"><span title="일">일</span></th><th><span title="월">월</span></th><th><span title="화">화</span></th><th><span title="수">수</span></th><th><span title="목">목</span></th><th><span title="금">금</span></th><th class="ui-datepicker-week-end"><span title="토">토</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">1</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">2</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">3</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">4</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">5</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">6</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">7</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">8</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">9</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">10</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">11</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">12</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">13</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">14</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">15</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">16</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">17</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">18</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">19</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">20</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">21</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">22</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">23</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">24</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">25</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">26</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">27</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">28</span></td><td class=" ui-datepicker-unselectable ui-state-disabled "><span class="ui-state-default">29</span></td><td class=" ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="2" data-year="2018"><a class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#">30</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2018"><a class="ui-state-default" href="#">31</a></td></tr></tbody></table></div><div id="__dic_menulayer__" style="z-index: 99999998; padding: 0px; position: absolute; overflow: hidden; white-space: nowrap; left: 1086px; top: 201px; width: 118px; display: none;"><a id="m_dic" href="javascript:void(0)" title="선택한 단어나 문장으로 사전 검색이나 번역을 합니다. (Google 번역)" style=""><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/dic.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_dic2_b" style="width: 2px;"><a id="m_dic2" href="javascript:void(0)" title="사전 검색 또는 번역 입력창을 엽니다. (Google 번역)" style=""><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/dic2.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_search_b" style="width: 2px;"><a id="m_search" href="javascript:void(0)" title="웹 검색을 합니다." style=""><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/search.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_search2_b" style="width: 2px; display: none;"><a id="m_search2" href="javascript:void(0)" title="웹 검색 입력창을 엽니다." style="display: none;"><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/search2.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_url_b" style="width: 2px; display: none;"><a id="m_url" href="javascript:void(0)" style="display: none;"><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/internet.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_conf_b" style="width: 2px; display: none;"><a id="m_conf" href="javascript:void(0)" title="옵션" style="display: none;"><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/configure.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_close_b" style="width: 2px; display: none;"><a id="m_close" href="javascript:void(0)" title="도구메뉴를 이 페이지에서 사용하지 않습니다." style="display: none;"><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/close.png" border="0"></a><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/blank.png" id="m_expand_b" style="width: 2px;"><a id="m_expand" href="javascript:void(0)" title="메뉴 확장하기" style=""><img src="chrome-extension://oiplkfaidhjklglajdpfehoagkmlcakh/images/forward.png" border="0"></a></div><canvas id="__gesture_canvas__" width="0" height="0" style="z-index: 100000000; position: fixed; background: transparent !important; top: 0px; left: 0px;"></canvas><span id="__gesture_preview__" style="z-index: 100000001; position: absolute; background: rgba(255, 255, 225, 0.85); margin: 0px; border: 1px solid black; white-space: nowrap; display: none;"></span></body>
+</html>
