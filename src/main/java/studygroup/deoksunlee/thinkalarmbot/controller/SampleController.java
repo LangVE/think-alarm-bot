@@ -10,4 +10,14 @@ public class SampleController {
     public String index(){
         return "index.html";
     }
+
+    @RequestMapping("/event")
+    public String event() {
+        return "event.html";
+    }
+
+    @RequestMapping("/wviwnotice")
+    public String wviwnotice() {
+        return "wviwnotice.xml";
+    }
 }
