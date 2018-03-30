@@ -10,4 +10,9 @@ public class SampleController {
     public String index(){
         return "index.html";
     }
+
+    @RequestMapping("/event")
+    public String event() {
+        return "event.html";
+    }
 }

@@ -19,4 +19,13 @@ public class CrawlerProcessor {
         System.out.println("driver : " + driver);
         return text;
     }
+
+    public static String getXpath(String url) {
+        driver.get(url);
+        String text = driver.findElement(By.xpath("//*[@id=\"ViewTable\"]/tbody/tr")).findElements(By.tagName("td")).get(0).getText();
+        System.out.println("text : " + text);
+        driver.close();
+        System.out.println("driver : " + driver);
+        return text;
+    }
 }
