@@ -1,0 +1,1675 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko" style="overflow-x: auto; overflow-y: hidden; height: 100%; border: none; padding: 0px; margin: 0px;">
+<head>
+    <script src="http://ione.interpark.com/gwlib/app/portal/js/todolist.js"></script>
+    <script src="http://ione.interpark.com/gwlib/app/portal/js/bookmark.js"></script>
+    <script src="http://ione.interpark.com/gwlib/comm/js/orgtree.js"></script>
+    <script src="http://ione.interpark.com/gwlib/comm/js/org.js"></script>
+    <script type="text/javascript"
+            src="http://ione.interpark.com/gwlib/app/schedule/widget/jquery.calendar.js"></script>
+    <script type="text/javascript" src="http://ione.interpark.com/gwlib/app/schedule/js/scheduler.js"></script>
+    <script src="http://ione.interpark.com/gwlib/comm/js/orgsel.js"></script>
+    <script src="http://ione.interpark.com/gwlib/core/jquery.base64.js"></script>
+    <script src="http://ione.interpark.com/gwlib/comm/js/crosseditor.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <title>이영호▒▒ WIN Groupware ▒▒[napp01]</title>
+    <!--다국어 관련 js-->
+    <script type="text/javascript" src="/gwlib/comm/js/common_browser_init.js"></script>
+    <script type="text/javascript" src="/gw/sys/multilang.nsf/multi_lan_comn.js"></script>
+    <script type="text/javascript" src="/js/comn_KR.js"></script>
+    <script type="text/javascript" src="/js/mail_KR.js"></script>
+    <script type="text/javascript" src="/js/aprv_KR.js"></script>
+    <script type="text/javascript" src="/js/work_KR.js"></script>
+    <script type="text/javascript" src="/js/comu_KR.js"></script>
+    <script type="text/javascript" src="/js/bbs_KR.js"></script>
+    <script type="text/javascript" src="/js/dataroom_KR.js"></script>
+    <script type="text/javascript" src="/js/know_KR.js"></script>
+    <script type="text/javascript" src="/js/hr_KR.js"></script>
+    <script type="text/javascript" src="/js/sysmng_KR.js"></script>
+    <script type="text/javascript" src="/js/portal_KR.js"></script>
+    <script type="text/javascript" src="/js/config_KR.js"></script>
+    <script>
+// IE console.log 오류 처리
+if(!window.console || typeof console === "undefined") {
+  var console = { log: function (logMsg) { } };
+}
+	var LANGUAGE = "KR";
+	var googleCalendarApiKey = "AIzaSyBKzH-3pfhzlxy1jdtXC4Z5EO_tKVtg-h4";
+	var googleCongifDbpath = "gw/sys/google_sync.nsf";
+	var _GW_OPEN_DATE = "2017-01-01";
+	var _ATTACH_CONFIG_INFO = '{"mail":{"size":30,"cnt":10},"aprv":{"size":50,"cnt":15},"bbs":{"size":50,"cnt":10},"edms":{"size":30,"cnt":10},"etc":{"size":50,"cnt":10}}';
+	var _APP_SRV_HOST = "ione.interpark.com";
+	var _MAIL_SRV_HOST = "ione.interpark.com";
+	var _isPermissionIP = "y";
+	var _isChkOTP = true;
+if("20100155" == "imk"){
+	location.replace( 'http://' + window.location.hostname + '/gw/sys/gwlib.nsf/wfrmPop?ReadForm&formtype=popup&link=/gw/app/bult/rscmng.nsf/CalendarShow?ReadForm&parm=@rcode%3DID000001_0051@rname%3DZenith%20Room@roption%3D0&fullpath=');
+}
+//if("1" != "1") {
+//	location.replace( 'http://' + window.location.hostname + '/gw/portal/portal.nsf/wFrmMHome?ReadForm');
+//}
+//if("Y" != "Y") {
+//location.replace( 'http://win.interpark.com/gw/sys/gwlib.nsf/wfrmPop?ReadForm&formtype=&link=/gw/app/know/eduSex.nsf/wFrmedusexPortal?ReadForm&parm=');
+//}
+function disLanguage(obj) {
+return;
+	if( $.inArray(_REMOTE_ADDR, _ADMIN_IPS) != -1){
+		$("#divLang").css("display", "block");
+		$(obj).css("color", "red");
+	}else{
+		if ($("#divLang").css("display") == "none") {
+			$("#divLang").css("display", "block");
+			$(obj).css("color", "red");
+		} else {
+			$("#divLang").css("display", "none");
+			$(obj).css("color", "white");
+		}
+	}
+}
+
+
+    </script>
+    <link type="text/css" href="/gwlib/core/themes/base/jquery.ui.all.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/core/layout-default-latest.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/core/themes/type1/custom.ui.theme.css" rel="stylesheet" class="ui-theme">
+    <!-- <link type="text/css" href="/gwlib/core/jfastmenu.css" rel="stylesheet" /> layout-default-latest.css 로 옮김 -->
+    <link type="text/css" href="/gwlib/core/dynatree/skin/ui.dynatree.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/core/jquery-contextMenu/jquery.contextMenu.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/core/jqGrid/ui.jqgrid.css" media="screen" rel="stylesheet">
+    <link type="text/css" href="/gwlib/core/qtip/jquery.qtip.min.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/comm/css/view_styles.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/comm/css/form_styles.css" rel="stylesheet">
+    <link type="text/css" href="/gwlib/comm/css/xui.form.css" rel="stylesheet">
+    <script type="text/javascript" src="/gwlib/core/LAB.min.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/jquery-1.6.2.min.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/jquery-1.8.3.min.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/jquery-ui-1.8.11.min.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/jquery-ui-1.8.23.min.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.ui.datepicker-ko.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/jquery.layout-1.3.0.rc29.15.min.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/jquery.layout-1.3.0.rc30.79.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/fnextend.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.transform.js"></script>
+    <script type="text/javascript" src="/gwlib/core/dynatree/jquery.dynatree.min.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.contextMenu.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.blockUI.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/jquery.form-2.67.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/jquery.form-3.90.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/jquery.include.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/jqGrid/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="/gwlib/core/placeholders.min.js"></script>
+    <!--script type="text/javascript" src="/gwlib/core/qtip/jquery.qtip.pack.js"></script-->
+    <script type="text/javascript" src="/gwlib/core/qtip/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="/gwlib/core/jquery.hoverIntent.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/fnc.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/mframe.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/portal.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/doc.js?ver=201706221942"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/view.js"></script>
+    <script type="text/javascript" src="/gwlib/comm/js/env.js"></script>
+    <script type="text/javascript" src="/gwlib/app/mail/js/mailview.js"></script>
+    <script type="text/javascript" src="/gwlib/app/approve/js/appline.js"></script>
+</head>
+<body style="overflow: hidden; width: auto; height: auto; margin: 0px; position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; display: block;"
+      class="ui-body ui-layout-container ui-body-img"
+      onload="setMultiLanWord();disLanguage($('#sp_renewal'));portal.chkOTP();">
+<!-- portal에서 우선 로드 대상이 아닌 js -->
+<script type="text/javascript" src="/gwlib/core/fullcalendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/fullcalendar/gcal.js"></script>
+<!--
+<script type="text/javascript" src="/gwlib/core/fullcalendar/lang-all.js"></script>
+<script type="text/javascript" src="/gwlib/core/fullcalendar/lib/moment.min.js"></script>
+-->
+<script type="text/javascript" src="/gwlib/app/namecard/js/FNnavaigation.js"></script>
+<script type="text/javascript" src="/gwlib/comm/js/multiattach.js"></script>
+<script type="text/javascript" src="/gwlib/comm/js/xbutton.js"></script>
+<link type="text/css" href="/gwlib/comm/css/attach_styles.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/comm/css/button.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/core/fullcalendar/fullcalendar.css" rel="stylesheet">
+<link type="text/css" href="/gwlib/app/approve/css/aprvform.css" rel="stylesheet">
+<!-- IMK 계열 기능 개선  추가  -->
+<script type="text/javascript" src="/gwlib/core/moment/moment.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/moment/moment-timezone-with-data.min.js"></script>
+<!-- 첨부, 에디터 object, js 선언-->
+<script type="text/javascript" src="/gwlib/core/multifile/jquery.MultiFile.pack.js"></script>
+<script type="text/javascript" src="/gwlib/core/editor/js/namo_scripteditor.js"></script>
+<link rel="stylesheet" type="text/css" href="/gwlib/core/attm/css/attm.css">
+<script type="text/javascript" src="/gwlib/core/attm/js/FileSaver.min.js"></script>
+<script type="text/javascript" src="/gwlib/core/attm/js/attm.js?ver=201706271448"></script>
+<script type="text/javascript" src="/gwlib/core/attm/js/attm_init.js"></script>
+<div id="divLang" style="position:absolute;left:20px; top: 2px;z-index:9999;display:block">
+    <!--<span role="button" class="btn20 btnFont" data-font="dotum">돋움 폰트</span>
+    <span role="button" class="btn20 btnFont" data-font="gulim">굴림 폰트</span>
+    <span role="button" class="btn20 btnFont" data-font="'Malgun Gothic', '맑은 고딕'">맑은고딕 폰트</span>
+    <span role="button" class="btn20 btnFont" data-font="'nbg'">나눔바른고딕 폰트</span>-->
+</div>
+<!--div class="addtion" style="position:absolute;left:400px;top:10px;z-index:999;">
+	<span class="btn20">기본</span>
+	<span class="btn20 btnSearch">검색</span>
+	<span class="btn20 btnUpdate">편집(*x20)</span>
+	<span class="btn20 btnDel">삭제</span>
+	<span class="btn36 btnInputCmt">덧글입력(*x36)</span>
+</div-->
+<!-- Header -->
+<div id="header" class="ui-layout-north ui-layout-pane ui-layout-pane-north"
+     style="position: absolute; margin: 0px; top: 0px; bottom: auto; left: 0px; right: 0px; width: auto; z-index: 3; height: 100px; display: block; visibility: visible; overflow: visible;">
+    <img class="logo" src="/gwlib/app/portal/images/gwlogo/logo.png"
+         onclick="mframe.showPortal(&quot;portal_content_G&quot;);">
+    <!-- Util Menu -->
+    <div class="utilMenu">
+        <ul>
+            <!--li><span class="btn" role="button" onclick="portal.themeMenu(this, event);">테마선택</span></li-->
+            <li><span class="btn" role="button"
+                      onclick="portal.SendMailForHelpDesk(&quot;TO^관리자^win_admin^관리자/win_admin/interpark^담당^Z9999^기타사용자^310^담당&quot;);"><b><font
+                    color="blue">그룹웨어문의</font></b></span></li>
+            <li><span class="btn" role="button"
+                      onclick="portal.SendMailForHelpDesk(&quot;TO^HR_DESK^HR_DESK^HR_DESK/hr_desk/interpark^담당^Z9999^기타사용자^310^담당&quot;);"><b><font
+                    color="blue">인사/총무문의</font></b></span></li>
+            <li><span class="btn" role="button" onclick="portal.doFindClick();">임직원 찾기</span></li>
+            <li><span class="btn" role="button" onclick="portal.goEnv();">환경설정</span></li>
+            <li><span class="btn" role="button" onclick="portal.goNameCard();">명함관리</span></li>
+            <li><span class="btn" role="button" onclick="portal.doHelpClick();">도움말</span></li>
+            <li><span class="btn" role="button" onclick="portal.goSiteMap();">사이트맵</span></li>
+            <li><span class="btn" role="button" onclick="portal.logOut();">로그아웃</span></li>
+        </ul>
+    </div>
+    <!-- //Util Menu -->
+    <!-- 삭제요함
+    <table cellpadding="0" id="tbl_top" cellspacing="0" border="0" style="width:100%;margin:0;table-layout:fixed;">
+    <tr height="42px">
+        <td valign="middle" align="left" width="309px" >
+            <img src="/gwlib/app/portal/images/gwlogo/logo_01.gif" border="0" onclick='mframe.showPortal("portal_content_G");' align="absmiddle" style="cursor:pointer">
+        </td>
+        <td valign="middle" width="*">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;table-layout:fixed;">
+            <tr>
+                <td width="100px;"></td>
+                <td align="right">
+                    <img src="/gwlib/app/portal/images/menu/s_menu1.png" border="0" onclick='portal.doFindClick();' align="absmiddle" style="cursor:pointer">
+                    <img src="/gwlib/app/portal/images/menu/s_menu3.png" border="0" onclick='portal.goEnv()' align="absmiddle" style="cursor:pointer">
+                    <img src="/gwlib/app/portal/images/menu/s_menu4.png" border="0" onclick='portal.doHelpClick();' align="absmiddle" style="cursor:pointer">
+                    <img src="/gwlib/app/portal/images/menu/s_menu5.png" border="0" onclick='portal.goSiteMap();' align="absmiddle" style="cursor:pointer">
+                    &nbsp;
+                    <img id="pimg_G" src="/gwlib/app/portal/images/menu/p.png" border="0" onclick='mframe.showPortal("portal_content_G");' align="absmiddle" style="cursor:pointer">
+                    <img id="pimg_P" src="/gwlib/app/portal/images/menu/my.png" border="0" onclick='mframe.showPortal("portal_content_P");' align="absmiddle" style="cursor:pointer">
+
+                    <img src="/gwlib/app/portal/images/menu/quick_btu.png" border="0" onclick='portal.quickMenu(this, event);' align="absmiddle" style="cursor:pointer">
+                    <img src="/gwlib/app/portal/images/menu/thema.png" border="0" onclick='portal.themeMenu(this, event);' align="absmiddle" style="cursor:pointer">
+                    <img src="/gwlib/app/portal/images/menu/logout.png" border="0" onclick='portal.logOut()' align="absmiddle" style="cursor:pointer">
+                </td>
+                <td width="34px"></td>
+            </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+    -->
+    <!-- Navigation Bar -->
+    <div class="navBar">
+        <div id="_topmenu" class="topmenu">
+            <ul id="multi-ddm">
+                <li class="ui-top-bar"><a id="link_MENU0067" pid="MENU0067" style="cursor:pointer;" xtitle="전자메일"
+                                          class="menu"><span>전자메일</span></a>
+                    <ul id="MENU0067" class="submenu">
+                        <li><a id="link_MENU0069" style="cursor:pointer;" xtitle="메일작성">메일작성</a></li>
+                        <li><a id="link_MENU0068" style="cursor:pointer;" xtitle="받은편지함">받은편지함</a></li>
+                        <li><a id="link_MENU0091" style="cursor:pointer;" xtitle="읽지않은편지함">읽지않은편지함</a></li>
+                        <li><a id="link_MENU0093" style="cursor:pointer;" xtitle="보낸편지함">보낸편지함</a></li>
+                        <li><a id="link_MENU0097" style="cursor:pointer;" xtitle="아카이브">아카이브</a></li>
+                        <li><a id="link_MENU0072" style="cursor:pointer;" xtitle="WIN메일">WIN메일</a></li>
+                    </ul>
+                </li>
+                <li class="ui-top-bar"><a id="link_MENU0001" pid="MENU0001" style="cursor:pointer;" xtitle="전자결재"
+                                          class="menu"><span>전자결재</span></a>
+                    <ul id="MENU0001" class="submenu">
+                        <li><a id="link_MENU0077" style="cursor:pointer;" xtitle="작성함">작성함</a></li>
+                        <li><a id="link_MENU0080" style="cursor:pointer;" xtitle="진행함">진행함</a></li>
+                        <li><a id="link_MENU0082" style="cursor:pointer;" xtitle="완료함">완료함</a></li>
+                        <li><a id="link_MENU0090" style="cursor:pointer;" xtitle="문서수발대장">문서수발대장</a></li>
+                    </ul>
+                </li>
+                <li class="ui-top-bar"><a id="link_MENU0076" pid="MENU0076" style="cursor:pointer;" xtitle="업무"
+                                          class="menu"><span>업무</span></a>
+                    <ul id="MENU0076" class="submenu">
+                        <li><a id="link_MENU0018" style="cursor:pointer;" xtitle="일정관리">일정관리</a></li>
+                        <li><a id="link_MENU0079" style="cursor:pointer;" xtitle="업무일지">업무일지</a></li>
+                        <li><a id="link_MENU0017" style="cursor:pointer;" xtitle="자원관리">자원관리</a></li>
+                    </ul>
+                </li>
+                <li class="ui-top-bar"><a id="link_MENU0002" pid="MENU0002" style="cursor:pointer;" xtitle="커뮤니티"
+                                          class="menu"><span>커뮤니티</span></a>
+                    <ul id="MENU0002" class="submenu">
+                        <li><a id="link_MENU0081" style="cursor:pointer;" xtitle="게시판">게시판</a></li>
+                        <li><a id="link_MENU0030" style="cursor:pointer;" xtitle="동호회">동호회</a></li>
+                        <li><a id="link_MENU0032" style="cursor:pointer;" xtitle="설문조사">설문조사</a></li>
+                    </ul>
+                </li>
+                <li class="ui-top-bar"><a id="link_MENU0103" pid="MENU0103" style="cursor:pointer;" xtitle="문서관리함"
+                                          class="menu"><span>문서관리함</span></a>
+                    <ul id="MENU0103" class="submenu">
+                        <li><a id="link_MENU0105" style="cursor:pointer;" xtitle="문서작성">문서작성</a></li>
+                        <li><a id="link_MENU0104" style="cursor:pointer;" xtitle="내문서함">내문서함</a></li>
+                        <li><a id="link_MENU0106" style="cursor:pointer;" xtitle="열람문서함">열람문서함</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="_submenu" class="submenu"></div>
+    </div>
+    <!-- Navigation Bar -->
+    <!-- Employee Search -->
+    <div class="empSearch" style="display:inline">
+        <div class="input"><input type="text" id="pSearch" name="pSearch" value="직원검색" placeholder="직원검색"
+                                  onkeydown="portal.doFindKeyDown(event);" onfocus="this.value=''"><label for="pSearch">직원검색</label>
+        </div>
+        <button type="button" class="btnSrch" onclick="portal.doFindClick();">검색하기</button>
+    </div>
+    <!-- //Employee Search -->
+    <!-- 삭제요함
+    <table cellpadding="0" cellspacing="0" border=0 style="width:100%;margin:0px;padding:0px;">
+    <tr>
+        <td rowspan=2 width="14px" class="ui-top-left"></td>
+        <td  class="ui-top-bg" valign="top">
+            <table width=100% cellpadding="0" cellspacing="0" border=0 style="margin:0;">
+                <tr>
+                    <td style="width:736px;">
+                        <div id="_topmenu" class="topmenu"><ul id='multi-ddm'></ul></div>
+                        <div id="_submenu" class="submenu"></div>
+                    </td>
+                    <td align="right">
+                        <table cellpadding="0" cellspacing="0" border=0 style="margin:0;padding-bottom:18px;">
+                        <tr>
+                            <td class="ui-top-search-middlen">
+                            <input name="pSearch" type="text" value="직원검색" placeholder="직원검색" onKeyDown="portal.doFindKeyDown(event);" onfocus="this.value=''">
+                            </td>
+                            <td class="ui-top-search-rightn" onclick="portal.doFindClick();"></td>
+                            <td width="5px"></td>
+                        </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    </table>
+-->
+</div>
+<!-- //Header -->
+<!-- Container -->
+<div class="ui-layout-center ui-layout-pane ui-layout-pane-center"
+     style="position: absolute; margin: 0px; left: 0px; right: 0px; top: 100px; bottom: 0px; height: 889px; width: 1920px; z-index: 0; display: block; visibility: visible;">
+    <div id="portal_content" class="ui-portal-content" style="display: none;"></div>
+    <div id="sportal_content" class="ui-portal-content" style="display: none;"></div>
+    <div id="main_content" style="height: 100%; display: block; overflow: hidden; position: relative;"
+         class="ui-layout-container">
+        <div id="nav" class="ui-layout-west ui-layout-pane ui-layout-pane-west"
+             style="position: absolute; margin: 0px; left: 7px; right: auto; top: 0px; bottom: 0px; height: 889px; z-index: 0; width: 239px; display: block; visibility: visible;">
+            <div id="left-portlet" class="column">
+                <div id="PORTLET_MEMU" shref="/gw/portal/portal.nsf/wFrmLeftMenuN?ReadForm&amp;top_menuid=WORK0472"
+                     class="portlet ui-widget ui-helper-clearfix">
+                    <div class="portlet-header portlet-header-w0-rbg">
+                        <div class="portlet-header-lbg portlet-header-w0-lbg"><span id="head_title"
+                                                                                    class="portlet-header-title portlet-header-w0-cbg"><span
+                                id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span
+                                id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img
+                                src="/gwlib/app/portal/images/icon/title_icon1.png" '="" border="0" style="vertical-align:middle;"><font
+                                id="head_title_txt" style="line-height:22px;">&nbsp;업무메뉴</font></span></div>
+                    </div>
+                    <div class="portlet-content portlet-content-w0-bg">
+
+                        <div style="position:relative;top:-8px;float:right;text-decoration:none;padding-right:5px;margin:0px;z-index:1000;">
+                            <!--a href="#" id="btnExpandAll">-</a> - <a href="#" id="btnCollapseAll">+</a-->
+                            <img id="btnExpandAll" src="/gwlib/comm/images/collapse.png" style="cursor:pointer">
+                            <img id="btnCollapseAll" src="/gwlib/comm/images/expand.png" style="cursor:pointer">
+                        </div>
+                        <div id="WORK0472_leftmenu" onselectstart="return false"
+                             style="position:relative;top:-26px;width:100%;overflow-y:hidden;overflow-x:auto;padding-bottom:15px;margin:0px">
+                            <ul class="dynatree-container">
+                                <li class="dynatree-lastsib"><span
+                                        class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-lastsib dynatree-exp-el dynatree-ico-ef"><span
+                                        class="dynatree-expander"></span><span class="dynatree-icon"></span><span
+                                        style="display: inline-block;" class="dynatree-title"
+                                        key="root">게시판</span></span>
+                                    <ul style="">
+                                        <li class=""><span
+                                                class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span
+                                                class="dynatree-expander"></span><span
+                                                class="dynatree-icon"></span><span style="display: inline-block;"
+                                                                                   class="dynatree-title"
+                                                                                   key="WORK0473">그룹사게시판</span></span>
+                                            <ul style="">
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0499">공지사항</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0761">업무공유</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0762">아이누리</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e dynatree-active"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0517">EVENT4U</span></span></li>
+                                                <li class="dynatree-lastsib"><span
+                                                        class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0600">승인대기</span></span></li>
+                                            </ul>
+                                        </li>
+                                        <li class=""><span
+                                                class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef"><span
+                                                class="dynatree-expander"></span><span
+                                                class="dynatree-icon"></span><span style="display: inline-block;"
+                                                                                   class="dynatree-title"
+                                                                                   key="WORK0763">인터파크</span></span>
+                                            <ul style="">
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0764">공지사항</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0765">업무공유</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0766">자유게시판</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0767">Neo iPPle</span></span></li>
+                                                <li class=""><span
+                                                        class="dynatree-node dynatree-expanded dynatree-exp-e dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0862">시스템지킴이</span></span></li>
+                                                <li class="dynatree-lastsib"><span
+                                                        class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span
+                                                        class="dynatree-connector"></span><span
+                                                        class="dynatree-icon"></span><span
+                                                        style="display: inline-block;" class="dynatree-title"
+                                                        key="WORK0768">승인대기</span></span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dynatree-lastsib"><span
+                                                class="dynatree-node dynatree-expanded dynatree-lastsib dynatree-exp-el dynatree-ico-e"><span
+                                                class="dynatree-connector"></span><span
+                                                class="dynatree-icon"></span><span style="display: inline-block;"
+                                                                                   class="dynatree-title"
+                                                                                   key="WORK0863">그룹웨어지킴이</span></span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="portlet-bottom portlet-bottom-w0-rbg">
+                        <div class="portlet-bottom-lbg portlet-bottom-w0-lbg"><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="ui-layout-center ui-layout-pane ui-layout-pane-center"
+             style="position: absolute; margin: 0px; left: 253px; right: 7px; top: 0px; bottom: 0px; height: 889px; width: 1660px; z-index: 0; overflow: hidden; display: block; visibility: visible;">
+            <div></div>
+            <div id="tabs" class="ui-layout-content ui-tabs ui-widget ui-widget-content ui-corner-all"
+                 style="position: relative; height: 869px; visibility: visible;"><span class="ui-tabs-env"><img
+                    id="tabs_popup" title="새창으로 열기" onclick="mframe.OpenPop()"
+                    src="/gwlib/comm/images/tab/window_icon.png" border="0" height="16px" width="22px"
+                    style="display:none;"><img id="tabs_context" title="환경설정"
+                                               src="/gwlib/comm/images/tab/setting_icon.png" border="0" height="18px"
+                                               width="22px" style=""></span>
+                <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+                    <li title="커뮤니티-게시판 " style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;"
+                        class="ui-state-default ui-corner-top ui-tabs-rbg"><a href="#ui-tabs-18"
+                                                                              rhref="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwDefault&amp;xsl=wviw00"
+                                                                              class="ui-tabs-lbg"
+                                                                              style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;"
+                                                                              wid="WORK0472" wlink="" wlinkid="WORK0473"
+                                                                              wpotid="" ptabid="" callback=""
+                                                                              fullpath="커뮤니티-게시판" fullpathid=""><span
+                            class="ellipsis"
+                            style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img
+                            src="/icons/doclink.gif" border="0" align="center"><font
+                            style="text-valign:center">게시판</font></span></a><span class="ui-tabs-btn"
+                                                                                  style="float:right;display:block;width:13px;height:100%;cursor:pointer;"
+                                                                                  onclick="mframe.tabclose(this)"></span>
+                    </li>
+                    <li title="커뮤니티-게시판-그룹사게시판-EVENT4U "
+                        style="padding:0px;height:32px;border:0px;break-word: break-all;width:130px;"
+                        class="ui-state-default ui-corner-top ui-tabs-rbg ui-tabs-selected-rbg ui-tabs-selected ui-state-active">
+                        <a href="#ui-tabs-20"
+                           rhref="/gw/app/bult/bbs00000.nsf/wFrmView?ReadForm&amp;view=wViwNotice&amp;xsl=wviw00&amp;single=03"
+                           class="ui-tabs-lbg ui-tabs-selected-lbg"
+                           style="height:32px;display:block;padding:0px;width:117px;margin:0px 0px 0px 0px;"
+                           wid="WORK0472" wlink="" wlinkid="WORK0517" wpotid="" ptabid="" callback=""
+                           fullpath="커뮤니티-게시판-그룹사게시판-EVENT4U" fullpathid=""><span class="ellipsis"
+                                                                                  style="display:block;width:108px;padding:2px 2px 0px 5px;height:100%;line-height:32px;text-align:left;"><img
+                                src="/icons/doclink.gif" border="0" align="center"><font style="text-valign:center">EVENT4U</font></span></a><span
+                            class="ui-tabs-btn ui-tabs-selected-btn"
+                            style="float:right;display:block;width:13px;height:100%;cursor:pointer;"
+                            onclick="mframe.tabclose(this)"></span></li>
+                </ul>
+                <div id="ui-tabs-18" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide"
+                     style="height: 807px;">
+                    <div style="display:none;">
+                        <input type="hidden" id="AddReaders_id" name="AddReaders_id" value="">
+                        <input type="hidden" id="AddReaders_full" name="AddReaders_full" value="">
+                        <input type="hidden" id="AddReaders_id_E" name="AddReaders_id_E" value="">
+                    </div>
+                    <!--게시물 관리 정보 종료 //-->
+                    <form action="/gw/app/bult/bbs00000.nsf/wviwdefaultSearch?searchview&amp;view=wviwdefaultSearch&amp;start=1&amp;count=15&amp;page=1"
+                          method="post" name="SearchView" onsubmit="return false;" target="_self">
+                        <!--
+                        호랑이
+                        gw/sys/multilang.nsf
+                        KR
+                        -->
+                        <!-- 전체 테이블 시작 -->
+                        <table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <!-- 타이틀 & 버튼 테이블 시작 -->
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td height="40" width="100%">
+                                                <!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+                                                <div id="viw-button">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>
+			<span class="viw-button-left">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>3402</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)"
+                       valign="middle" size="2" maxlength="2"> <span>줄보기</span>
+			</span>
+
+                                                                <span class="viw-button-right">
+			<span id="Asort" style="display:none;">	<select name="Csort" onchange="Change_Sort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">긴급도</option>
+<option name="Bsort" id="Bsort" value="2">발생위치</option>
+</select>
+ </span><!--시스템지키미정렬-->
+			<span id="Asort" style="display:none;">	<select name="Tsort" onchange="Change_TSort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">분류</option>
+</select>
+ </span><!--전사기사정렬-->
+				<span class="button"><a onclick="mframe.refreshTab()">새로고침</a></span><!--새로고침-->
+                                                                    <!--작성-->
+                                                                    <!--삭제-->
+			</span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 타이틀 & 버튼 테이블 끝 -->
+                                    <!-- 보기내용 시작 -->
+                                    <span id="BodyTable" style="width:100%"><table id="ViewTable"
+                                                                                   class="viw-body-layout" width="100%"
+                                                                                   cellpadding="0" cellspacing="0"
+                                                                                   style="table-layout:fixed;"><colgroup><col
+                                            width="5%"><col width="44%"><col width="14%"><col width="12%"><col
+                                            width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td
+                                            colspan="7"><table width="100%" cellpadding="0" cellspacing="0"
+                                                               class="viw-title"><colgroup><col width="5%"><col
+                                            width="44%"><col width="14%"><col width="12%"><col width="14%"><col
+                                            width="6%"><col width="5%"></colgroup><tbody><tr><td class="viw-title-bar">번호</td><td
+                                            class="viw-title-bar">제목</td><td class="viw-title-bar">직급/직책</td><td
+                                            class="viw-title-bar">게시자</td><td class="viw-title-bar">게시일</td><td
+                                            class="viw-title-bar">조회수</td><td>첨부</td></tr></tbody></table></td></tr><tr
+                                            class="viw-body noread"
+                                            onclick="View.OpenDocument('8F07DC51760033EB4925825C002917E5', event)"
+                                            style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3840</td><td
+                                            align="left" class="ellipsis">[그룹웨어] i-one 오류 및 문의처 =&gt; 그룹웨어 상단 &amp; IE 설정!! 꼭 확인해주시기 바랍니다</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">관리자</td><td
+                                            align="center" class="ellipsis">2018-03-26</td><td align="center"
+                                                                                               class="ellipsis">552</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body noread"
+                                            onclick="View.OpenDocument('AE32139623CF83E14925825C0007BDD3', event)"
+                                            style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3839</td><td
+                                            align="left" class="ellipsis">강태현사원 어머님의 폐이식 대기자 등록 청원 동의 부탁드립니다.[121]</td><td
+                                            align="center" class="ellipsis">과장</td><td align="center" class="ellipsis">김기범</td><td
+                                            align="center" class="ellipsis">2018-03-26</td><td align="center"
+                                                                                               class="ellipsis">1663</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body noread"
+                                            onclick="View.OpenDocument('B7856175B644B06C4925812C00139410', event)"
+                                            style="font-weight:bold" tabtitle=""><td align="center" class="ellipsis">3151</td><td
+                                            align="left" class="ellipsis">
+												[공지]
+											[공유] 인터파크 바이오융합연구소가 출발하였습니다</td><td align="center"
+                                                                                class="ellipsis">담당임원</td><td
+                                            align="center" class="ellipsis">윤성준</td><td align="center" class="ellipsis">2017-05-26</td><td
+                                            align="center" class="ellipsis">2321</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('16A43915072DF8BA492582640000EB69', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3859</td><td
+                                            align="left" class="ellipsis">
+												[인사발령]
+											㈜인터파크씨엔이 인사발령[인명18-02호]</td><td align="center" class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">김우리</td><td align="center" class="ellipsis">2018-04-03</td><td
+                                            align="center" class="ellipsis">132</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('44AE7DA61834C6FB49258263003E5E28', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3858</td><td
+                                            align="left" class="ellipsis">
+												[부고]
+											[아이마켓코리아] 구매본부 원부자재팀 이재홍 대리 조부상[1]</td><td align="center" class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">박창완</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">65</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('DE793BAD0CDD8817492582630037D574', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3857</td><td align="left" class="ellipsis">
+												[부고]
+											[아이마켓코리아]중부영업팀 배형목 과장 외조모상[1]</td><td align="center"
+                                                                                  class="ellipsis">주임</td><td
+                                            align="center" class="ellipsis">조계원</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">62</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('E655AFD555739F2049258263002BD167', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3856</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크]경영지원부문 영업지원실 영업지원1팀 이대은 사원 조부상[18]</td><td align="center"
+                                                                                             class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">박동진</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">93</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('8FCDDC45FCC3DC9549258263001546D4', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3855</td><td align="left" class="ellipsis">
+												[결혼]
+											[아이마켓코리아] ]♥♡축결혼♥♡ [전략유통사업부/IT기획파트 ] 김민선 과장님 결혼합니다!! ☞04/15(일) 오전 11시☜[18]</td><td
+                                            align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이선유</td><td
+                                            align="center" class="ellipsis">2018-04-02</td><td align="center"
+                                                                                               class="ellipsis">439</td><td
+                                            align="center"><img src="/icons/vwicn005.gif"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('B8240632F2A0E6C749258263000C15A4', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3854</td><td align="left" class="ellipsis">
+												[인사발령]
+											(주)인터파크씨어터 인사발령[인명18-004호]</td><td align="center" class="ellipsis">실장</td><td
+                                            align="center" class="ellipsis">조정연</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">216</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('E8A9469162E289C64925826300046B9B', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3853</td><td
+                                            align="left" class="ellipsis">
+												[인사발령]
+											㈜인터파크 로지스틱스 인사발령 [인명 제18-04호]</td><td align="center"
+                                                                                  class="ellipsis">파트장</td><td
+                                            align="center" class="ellipsis">우영종</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">251</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('1D7AE2657BC19B7C492582630003530E', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3852</td><td
+                                            align="left" class="ellipsis">
+												[인사발령]
+											㈜인터파크홀딩스 인사발령 [인명-18-03호]</td><td align="center" class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">김우리</td><td align="center" class="ellipsis">2018-04-02</td><td
+                                            align="center" class="ellipsis">360</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('E44BDFA0E3E6DC7049258260002043E4', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3850</td><td
+                                            align="left" class="ellipsis">
+												[결혼]
+											[아이마켓코리아] ♡♥축 결혼♥♡ 전략영업2팀 이승용 대리님의 결혼을 축하드립니다! ♥4월 15일(일) 오후 2시♥[9]</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">곽민정</td><td
+                                            align="center" class="ellipsis">2018-03-30</td><td align="center"
+                                                                                               class="ellipsis">526</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('FE58DCC446086C064925825F0031A596', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3849</td><td align="left"
+                                                                                                         class="ellipsis">
+												[보안사항]
+											‘저작권 침해’ 항의 메일 위장 ‘갠드크랩’ 랜섬웨어 배포</td><td align="center"
+                                                                                     class="ellipsis">과장</td><td
+                                            align="center" class="ellipsis">박진석</td><td align="center" class="ellipsis">2018-03-29</td><td
+                                            align="center" class="ellipsis">139</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('A85E474DF5C8ECAA4925825E00045A70', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3848</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크] ENT 마케팅팀 김정윤 사원 조모상[42]</td><td align="center"
+                                                                                   class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">임재경</td><td align="center" class="ellipsis">2018-03-28</td><td
+                                            align="center" class="ellipsis">366</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('2AD5B983DC5DF5274925825D002F47DE', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3847</td><td align="left" class="ellipsis">[작업공지] 03월 시스템 정기점검(03/30 02:00~07:00)</td><td
+                                            align="center" class="ellipsis">팀장</td><td align="center" class="ellipsis">이영록</td><td
+                                            align="center" class="ellipsis">2018-03-27</td><td align="center"
+                                                                                               class="ellipsis">50</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('9D0FD91344E2C2084925825D002CF997', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3846</td><td align="left"
+                                                                                                         class="ellipsis">
+												[득녀]
+											[인터파크] ♥축 득녀♥ 인터파크 도서부문 도서2팀 이상희 과장님의 득녀 소식을 알립니다♬[32]</td><td
+                                            align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">민희경</td><td
+                                            align="center" class="ellipsis">2018-03-27</td><td align="center"
+                                                                                               class="ellipsis">236</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('E23D9392D4CD446E4925825D001E5415', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3845</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!</td><td align="center"
+                                                                                          class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">이선희</td><td align="center" class="ellipsis">2018-03-27</td><td
+                                            align="center" class="ellipsis">604</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('39A925B468F8E1634925825D001AF245', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3844</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											[자동차보험 가입시 S머니 5만원 증정행사 안내]</td><td align="center" class="ellipsis">과장</td><td
+                                            align="center" class="ellipsis">한희정</td><td align="center" class="ellipsis">2018-03-27</td><td
+                                            align="center" class="ellipsis">577</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('C1C5A6C109E4D70A4925825C003523E7', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3843</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★ 폴햄/엠폴햄/팀스폴햄 전상품 1,000원 / 폴햄할인전 1탄! 단 3일간의 기회(3/26-28) ★</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">윤지현</td><td
+                                            align="center" class="ellipsis">2018-03-27</td><td align="center"
+                                                                                               class="ellipsis">1174</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('8F6B44FCF8BFFECC4925825C00315605', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3842</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											♥♥[스테이지b 세븐데이즈 이벤트]♥♥ 씨어터 직영 스테이지B 레스토랑 임직원 프로모션 안내</td><td align="center"
+                                                                                                        class="ellipsis">담당</td><td
+                                            align="center" class="ellipsis">강기승</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">802</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('E793CF0CC4BD41C94925825C002D3C24', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3841</td><td align="left" class="ellipsis">
+												[보안사항]
+											[보안] 이력서 파일로 유포되는 시그마 랜섬웨어 주의</td><td align="center"
+                                                                                  class="ellipsis">과장</td><td
+                                            align="center" class="ellipsis">박진석</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">214</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('942849F316DF8C444925825C0001F5A2', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3838</td><td align="left" class="ellipsis">
+												[부고]
+											[인터파크큐브릿지] CS지원팀 박현선 사원 외조모상[22]</td><td align="center"
+                                                                                     class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">최다솜</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">192</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('AAC08E108441181B4925825B0083D30F', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3837</td><td align="left" class="ellipsis">
+												[득남]
+											♥♥ 축 득남 ♥♥ 김주희 파트장님의 득남을 축하해 주세요!![65]</td><td align="center"
+                                                                                           class="ellipsis">차장</td><td
+                                            align="center" class="ellipsis">박형훈</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">417</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('1081BA10899C69334925825A000D6909', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3836</td><td align="left" class="ellipsis">
+												[부고]
+											[아이마켓코리아]전략영업2팀 김기성 주임 외조모상[3]</td><td align="center"
+                                                                                   class="ellipsis">차장</td><td
+                                            align="center" class="ellipsis">조준오</td><td align="center" class="ellipsis">2018-03-24</td><td
+                                            align="center" class="ellipsis">62</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('AA9ADDFEA1150B4D49258259003327E3', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3835</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥노보텔 앰배서더 부산! 단, 3주간만 객실쿠폰 특별판매 진행~♥</td><td align="center"
+                                                                                         class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">나수진</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">1181</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('4919C7BE9BAF468C492582590014A0BF', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3834</td><td
+                                            align="left" class="ellipsis">
+												[득남]
+											☆축 득남☆ 경영관리팀 구애린 대리 ♥ 사무환경자재팀 이상원 대리 득남을 축하드립니다.[39]</td><td align="center"
+                                                                                                         class="ellipsis">주임</td><td
+                                            align="center" class="ellipsis">박정재</td><td align="center" class="ellipsis">2018-03-23</td><td
+                                            align="center" class="ellipsis">528</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr></tbody></table></span>
+                                    <!-- 보기내용 끝 -->
+                                    <!-- 검색 테이블 시작 -->
+                                    <table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0"
+                                           border="0">
+                                        <tbody>
+                                        <tr height="10px">
+                                            <td colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span id="ViewNav" class="viw-nav"><table cellpadding="0"
+                                                                                          cellspacing="3"><tbody><tr><td
+                                                        id="nav1" class="cNav" style="cursor:pointer;">1</td><td></td><td
+                                                        id="nav2" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                        style="cursor:pointer;">2</td><td></td><td id="nav3" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                                                                   style="cursor:pointer;">3</td><td></td><td
+                                                        id="nav4" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                        style="cursor:pointer;">4</td><td></td><td id="nav5" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                                                                   style="cursor:pointer;">5</td><td></td><td
+                                                        id="nav6" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                        style="cursor:pointer;">6</td><td></td><td id="nav7" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                                                                   style="cursor:pointer;">7</td><td></td><td
+                                                        id="nav8" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                        style="cursor:pointer;">8</td><td></td><td id="nav9" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                                                                   style="cursor:pointer;">9</td><td></td><td
+                                                        id="nav10" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"
+                                                        style="cursor:pointer;">10</td><td id="nav11" width="20"
+                                                                                           align="right"
+                                                                                           onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"><img
+                                                        src="/gwlib/comm/images/next_btu.png" border="0"
+                                                        align="absmiddle" style="cursor:pointer;"></td><td id="nav131"
+                                                                                                           width="15"
+                                                                                                           align="right"
+                                                                                                           onclick="nav._nextOnClick(event,&quot;ui-tabs-18&quot;)"><img
+                                                        src="/gwlib/comm/images/nnext_btu.png" border="0"
+                                                        align="absmiddle"
+                                                        style="cursor:pointer;"></td></tr></tbody></table></span>
+                                                <span class="viw-search">
+
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch"><span>결과내 검색</span>
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체</option>
+				<option value="AuthorName">작성자</option>
+				<option value="Subject">제목</option>
+				<option value="Body">본문</option>
+				<option value="Subject:Body">제목+본문</option>
+			</select>
+		</td>
+		<td class="FTSearch" align="right"><input name="searchvalue" id="searchvalue" value="" class="FTSearch"
+                                                  onkeydown="search.doSearchKeyDown(event)">
+		<span class="btn20 btnSearch" onclick="search.doSearchSubmit();" style="cursor:pointer;">검색</span></td>
+		</tr>
+		</tbody></table>
+		<input type="hidden" name="searchname" id="searchname">
+		<input type="hidden" name="query" id="query" value="">
+		<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+		<input type="hidden" name="SearchOrder" id="SearchOrder" value="2"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+		</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 검색 테이블 끝 -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- 전체 테이블 끝 -->
+                    </form>
+
+                </div>
+                <div id="ui-tabs-20" class="ui-tabs-panel ui-widget-content ui-corner-bottom" style="height: 807px;">
+                    <div style="display:none;">
+                        <input type="hidden" id="AddReaders_id" name="AddReaders_id" value="">
+                        <input type="hidden" id="AddReaders_full" name="AddReaders_full" value="">
+                        <input type="hidden" id="AddReaders_id_E" name="AddReaders_id_E" value="">
+                    </div>
+                    <!--게시물 관리 정보 종료 //-->
+                    <form action="/gw/app/bult/bbs00000.nsf/wviwnoticeSearch?searchview&amp;restricttocategory=03&amp;view=wviwnoticeSearch&amp;start=1&amp;count=15&amp;page=1"
+                          method="post" name="SearchView" onsubmit="return false;" target="_self">
+                        <!--
+                        호랑이
+                        gw/sys/multilang.nsf
+                        KR
+                        -->
+                        <!-- 전체 테이블 시작 -->
+                        <table class="viw-layout" cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td valign="top">
+                                    <!-- 타이틀 & 버튼 테이블 시작 -->
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td height="40" width="100%">
+                                                <!-- 수행 버튼 & 줄수표기 테이블 시작 -->
+                                                <div id="viw-button">
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>
+			<span class="viw-button-left">
+				<span id="ViewTotal"><font color="#222222">전체 <strong>756</strong> 건</font></span>&nbsp;
+				<input type="text" name="ViewPageCnt" id="ViewPageCnt" value="15" onkeypress="View.redraw(this)"
+                       valign="middle" size="2" maxlength="2"> <span>줄보기</span>
+			</span>
+
+                                                                <span class="viw-button-right">
+			<span id="Asort" style="display:none;">	<select name="Csort" onchange="Change_Sort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">긴급도</option>
+<option name="Bsort" id="Bsort" value="2">발생위치</option>
+</select>
+ </span><!--시스템지키미정렬-->
+			<span id="Asort" style="display:none;">	<select name="Tsort" onchange="Change_TSort()">
+<option name="Asort" id="Asort" value="0" selected="">정렬선택</option>
+<option name="Ssort" id="Ssort" value="1">분류</option>
+</select>
+ </span><!--전사기사정렬-->
+				<span class="button"><a onclick="mframe.refreshTab()">새로고침</a></span><!--새로고침-->
+				<span class="button"><a
+                        onclick="View.CreateDocumentForm(&quot;wFrmNotice&quot;,&quot;작성&quot;,&quot;single=03&quot;)">작성</a></span>
+                                                                    <!--작성-->
+                                                                    <!--삭제-->
+			</span>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- 수행 버튼 & 줄수표기 테이블 끝 -->
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 타이틀 & 버튼 테이블 끝 -->
+                                    <!-- 보기내용 시작 -->
+                                    <span id="BodyTable" style="width:100%"><table id="ViewTable"
+                                                                                   class="viw-body-layout" width="100%"
+                                                                                   cellpadding="0" cellspacing="0"
+                                                                                   style="table-layout:fixed;"><colgroup><col
+                                            width="5%"><col width="44%"><col width="14%"><col width="12%"><col
+                                            width="14%"><col width="6%"><col width="5%"></colgroup><tbody><tr><td
+                                            colspan="7"><table width="100%" cellpadding="0" cellspacing="0"
+                                                               class="viw-title"><colgroup><col width="5%"><col
+                                            width="44%"><col width="14%"><col width="12%"><col width="14%"><col
+                                            width="6%"><col width="5%"></colgroup><tbody><tr><td class="viw-title-bar">번호</td><td
+                                            class="viw-title-bar">제목</td><td class="viw-title-bar">직급/직책</td><td
+                                            class="viw-title-bar">게시자</td><td class="viw-title-bar">게시일</td><td
+                                            class="viw-title-bar">조회수</td><td>첨부</td></tr></tbody></table></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('E23D9392D4CD446E4925825D001E5415', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3845</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!</td><td align="center"
+                                                                                          class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">이선희</td><td align="center" class="ellipsis">2018-03-27</td><td
+                                            align="center" class="ellipsis">604</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('39A925B468F8E1634925825D001AF245', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3844</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											[자동차보험 가입시 S머니 5만원 증정행사 안내]</td><td align="center" class="ellipsis">과장</td><td
+                                            align="center" class="ellipsis">한희정</td><td align="center" class="ellipsis">2018-03-27</td><td
+                                            align="center" class="ellipsis">577</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('C1C5A6C109E4D70A4925825C003523E7', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3843</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★ 폴햄/엠폴햄/팀스폴햄 전상품 1,000원 / 폴햄할인전 1탄! 단 3일간의 기회(3/26-28) ★</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">윤지현</td><td
+                                            align="center" class="ellipsis">2018-03-27</td><td align="center"
+                                                                                               class="ellipsis">1174</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('8F6B44FCF8BFFECC4925825C00315605', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3842</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											♥♥[스테이지b 세븐데이즈 이벤트]♥♥ 씨어터 직영 스테이지B 레스토랑 임직원 프로모션 안내</td><td align="center"
+                                                                                                        class="ellipsis">담당</td><td
+                                            align="center" class="ellipsis">강기승</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">802</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('AA9ADDFEA1150B4D49258259003327E3', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3835</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥노보텔 앰배서더 부산! 단, 3주간만 객실쿠폰 특별판매 진행~♥</td><td align="center"
+                                                                                         class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">나수진</td><td align="center" class="ellipsis">2018-03-26</td><td
+                                            align="center" class="ellipsis">1181</td><td align="center"><img
+                                            src="/icons/vwicn005.gif"></td></tr><tr class="viw-rowline3"><td
+                                            colspan="7"></td></tr><tr class="viw-body "
+                                                                      onclick="View.OpenDocument('A6F48C3F4ECA3B9E492582580020F419', event)"
+                                                                      tabtitle=""><td align="center" class="ellipsis">3830</td><td
+                                            align="left" class="ellipsis">
+												[임직원EVENT]
+											★30대한정/재입고★ 필립스 최신 로봇청소기 온라인최저가대비 37% 할인(331,170원→209,880원)</td><td
+                                            align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td
+                                            align="center" class="ellipsis">2018-03-22</td><td align="center"
+                                                                                               class="ellipsis">764</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('EB589FEA7CD0FC7E4925825600028C91', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3826</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											담당자 눈물의 땡처리 특가!!● 3/28일 출발 ● 서유럽 3국 9일 융프라우 직항 -209만원</td><td align="center"
+                                                                                                          class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">임연화</td><td align="center" class="ellipsis">2018-03-20</td><td
+                                            align="center" class="ellipsis">725</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('EBC2BE92AF89EDA74925824F001D04BE', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3816</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3월한정★ 필립스 최신 인기 에어프라이어 최저가대비 17% 할인(314,850원→261,800원)</td><td
+                                            align="center" class="ellipsis">대리</td><td align="center" class="ellipsis">이준영</td><td
+                                            align="center" class="ellipsis">2018-03-13</td><td align="center"
+                                                                                               class="ellipsis">1064</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('6B814C0916F92E694925824A0032A69F', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3806</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											★파!격! 119만원★ 3/17 출발 남프랑스 이탈리아 일주 9일</td><td align="center"
+                                                                                         class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">원효정</td><td align="center" class="ellipsis">2018-03-09</td><td
+                                            align="center" class="ellipsis">691</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('0E7687936DDC1D724925824A00279703', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3804</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥동유럽4국8일♥ 3/17, 19 임직원 할인! 119만원</td><td align="center"
+                                                                                     class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">윤은영</td><td align="center" class="ellipsis">2018-03-08</td><td
+                                            align="center" class="ellipsis">333</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('25C7E6ADD8BAEF434925824A000B1394', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3803</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/14 출발★ [직항] 서유럽 4국 10일 235만원 특가_로마야경포함</td><td align="center"
+                                                                                              class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">최효선</td><td align="center" class="ellipsis">2018-03-08</td><td
+                                            align="center" class="ellipsis">483</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('17606106A7E518E149258248001B5685', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3800</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											할인기간연장★50% 파격 특가 ★이 시대 최고의 뮤지컬! 〈빌리 엘리어트&gt;★</td><td align="center"
+                                                                                                  class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">조민지</td><td align="center" class="ellipsis">2018-03-06</td><td
+                                            align="center" class="ellipsis">1430</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('5F4D404A946C8472492582470016D9FA', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3793</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											3/13출발 발칸동유럽 20만원할인 특가</td><td align="center" class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">임성민</td><td align="center" class="ellipsis">2018-03-06</td><td
+                                            align="center" class="ellipsis">564</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('1E1656E8D87452554925824400266D3A', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3788</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											● 몰디브 땡처리 ● 2018년 3월~8월 여름 휴가 ＃ 몰디브 ＃149만원 부터~!!</td><td align="center"
+                                                                                                     class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">최병모</td><td align="center" class="ellipsis">2018-03-05</td><td
+                                            align="center" class="ellipsis">953</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('26ED67A670CFB94549258242000D89D2', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3784</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★품절★ 필립스 최신 로봇청소기 온라인최저가대비 37% 할인(331,170원→209,880원)</td><td align="center"
+                                                                                                         class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">이준영</td><td align="center" class="ellipsis">2018-02-28</td><td
+                                            align="center" class="ellipsis">1209</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('D87D6FCC003D64F849258241002FFE08', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3781</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥3/9 금출발 극동 러시아 4일♥시베리아 횡단열차 1박포함! 759,000원[1]</td><td align="center"
+                                                                                                   class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">현동근</td><td align="center" class="ellipsis">2018-02-28</td><td
+                                            align="center" class="ellipsis">618</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('89A73FFABFE1144249258241002C0376', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3779</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											♥여유롭게 즐기는 크로아티아/동유럽 패키지여행~♥ 3/9, 3/11, 3/18 출발 확정♥ 119만원부터~!</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">공수연</td><td
+                                            align="center" class="ellipsis">2018-02-27</td><td align="center"
+                                                                                               class="ellipsis">277</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('6130934DCB16E8464925823B000BC8DA', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3773</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											2/27 출발 싱가폴/바탐 5일 AD투어 399,000! 진짜 마지막![1]</td><td align="center"
+                                                                                               class="ellipsis">수석</td><td
+                                            align="center" class="ellipsis">김은성</td><td align="center" class="ellipsis">2018-02-21</td><td
+                                            align="center" class="ellipsis">808</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('0B1B9827541CB5934925823A0012C505', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3767</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/2,9 금요일 밤출발&gt;&gt; [서유럽4국10일] 179만원~</td><td align="center"
+                                                                                             class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">천재엽</td><td align="center" class="ellipsis">2018-02-20</td><td
+                                            align="center" class="ellipsis">346</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('5E5422DCC0FDF58949258239002FD41D', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3765</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/6,13출발 &gt;&gt; 동유럽4국10일 ~하늘위의궁전 A380 탑승 ~124만원</td><td align="center"
+                                                                                                       class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">오수연</td><td align="center" class="ellipsis">2018-02-19</td><td
+                                            align="center" class="ellipsis">265</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('4BE32548AA131DEB49258239002718D8', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3763</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★3/1출발★ [직항]동유럽+발칸 9일 139만원특가</td><td align="center"
+                                                                                  class="ellipsis">사원</td><td
+                                            align="center" class="ellipsis">박상민</td><td align="center" class="ellipsis">2018-02-19</td><td
+                                            align="center" class="ellipsis">316</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('2B11756690CF84564925823900202610', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3761</td><td align="left" class="ellipsis">[회원 모집] 인터루키 농구 동호회 직장인배 참가[4]</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">김정연</td><td
+                                            align="center" class="ellipsis">2018-02-19</td><td align="center"
+                                                                                               class="ellipsis">752</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('36C3C9E296AC9B3B492582390014B674', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3760</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											입학시즌 맞이 문구세트 특가판매</td><td align="center" class="ellipsis">파트장</td><td
+                                            align="center" class="ellipsis">하정숙</td><td align="center" class="ellipsis">2018-02-19</td><td
+                                            align="center" class="ellipsis">1438</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('063CC1D4922A0273492582340008DD94', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3758</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											2/15 OZ 이시가키 3박4일 ★★마지막 1석!!! 999,000원★★ 〈〈판매마감&gt;&gt;</td><td
+                                            align="center" class="ellipsis">사원</td><td align="center" class="ellipsis">이상미</td><td
+                                            align="center" class="ellipsis">2018-02-14</td><td align="center"
+                                                                                               class="ellipsis">597</td><td
+                                            align="center"></td></tr><tr class="viw-rowline3"><td colspan="7"></td></tr><tr
+                                            class="viw-body "
+                                            onclick="View.OpenDocument('DE1FE4D1F1F386F949258233002C8AA7', event)"
+                                            tabtitle=""><td align="center" class="ellipsis">3757</td><td align="left"
+                                                                                                         class="ellipsis">
+												[임직원EVENT]
+											★설날연휴!!! 일본 동경 티웨이항공★ 2/16 마지막 4석!! 299,000원★//판매마감//</td><td align="center"
+                                                                                                          class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">김진숙</td><td align="center" class="ellipsis">2018-02-13</td><td
+                                            align="center" class="ellipsis">428</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr><tr class="viw-body "
+                                                                                               onclick="View.OpenDocument('8E8666262744449849258233002AFC72', event)"
+                                                                                               tabtitle=""><td
+                                            align="center" class="ellipsis">3756</td><td align="left" class="ellipsis">
+												[임직원EVENT]
+											★2/15일 출발★ 일본 요나고 2박 3일 항공권 253,000원, 마지막 2석!!</td><td align="center"
+                                                                                                   class="ellipsis">대리</td><td
+                                            align="center" class="ellipsis">전은경</td><td align="center" class="ellipsis">2018-02-13</td><td
+                                            align="center" class="ellipsis">449</td><td align="center"></td></tr><tr
+                                            class="viw-rowline3"><td colspan="7"></td></tr></tbody></table></span>
+                                    <!-- 보기내용 끝 -->
+                                    <!-- 검색 테이블 시작 -->
+                                    <table width="100%" class="viw-nav-layout" cellpadding="0" cellspacing="0"
+                                           border="0">
+                                        <tbody>
+                                        <tr height="10px">
+                                            <td colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span id="ViewNav" class="viw-nav"><table cellpadding="0"
+                                                                                          cellspacing="3"><tbody><tr><td
+                                                        id="nav1" class="cNav" style="cursor:pointer;">1</td><td></td><td
+                                                        id="nav2" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                        style="cursor:pointer;">2</td><td></td><td id="nav3" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                                                                   style="cursor:pointer;">3</td><td></td><td
+                                                        id="nav4" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                        style="cursor:pointer;">4</td><td></td><td id="nav5" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                                                                   style="cursor:pointer;">5</td><td></td><td
+                                                        id="nav6" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                        style="cursor:pointer;">6</td><td></td><td id="nav7" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                                                                   style="cursor:pointer;">7</td><td></td><td
+                                                        id="nav8" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                        style="cursor:pointer;">8</td><td></td><td id="nav9" class="Nav"
+                                                                                                   onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                                                                   style="cursor:pointer;">9</td><td></td><td
+                                                        id="nav10" class="Nav"
+                                                        onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"
+                                                        style="cursor:pointer;">10</td><td id="nav11" width="20"
+                                                                                           align="right"
+                                                                                           onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"><img
+                                                        src="/gwlib/comm/images/next_btu.png" border="0"
+                                                        align="absmiddle" style="cursor:pointer;"></td><td id="nav30"
+                                                                                                           width="15"
+                                                                                                           align="right"
+                                                                                                           onclick="nav._nextOnClick(event,&quot;ui-tabs-20&quot;)"><img
+                                                        src="/gwlib/comm/images/nnext_btu.png" border="0"
+                                                        align="absmiddle"
+                                                        style="cursor:pointer;"></td></tr></tbody></table></span>
+                                                <span class="viw-search">
+
+<table class="FTSearch">
+	<tbody><tr class="FTSearch">
+		<td id="inSearchTR" class="FTSearch" valign="center" align="right" style="display:none">
+			<input type="checkbox" name="inSearch" id="inSearch"><span>결과내 검색</span>
+		</td>
+		<td class="FTSearch" align="right">
+			<select name="sOptions" id="sOptions" class="FTOptions">
+				<option value="All" selected="">전체</option>
+				<option value="AuthorName">작성자</option>
+				<option value="Subject">제목</option>
+				<option value="Body">본문</option>
+				<option value="Subject:Body">제목+본문</option>
+			</select>
+		</td>
+		<td class="FTSearch" align="right"><input name="searchvalue" id="searchvalue" value="" class="FTSearch"
+                                                  onkeydown="search.doSearchKeyDown(event)">
+		<span class="btn20 btnSearch" onclick="search.doSearchSubmit();" style="cursor:pointer;">검색</span></td>
+		</tr>
+		</tbody></table>
+		<input type="hidden" name="searchname" id="searchname">
+		<input type="hidden" name="query" id="query" value="">
+		<input type="hidden" name="SearchMax" id="SearchMax" value="0">  <!-- 최대검색결과 모두 검색:0 -->
+		<input type="hidden" name="SearchOrder" id="SearchOrder" value="2"> <!-- 빈도순:1 오래된문서순:3 새로운문서순:2 현재상태유지:4 -->
+		</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 검색 테이블 끝 -->
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- 전체 테이블 끝 -->
+                    </form>
+
+                </div>
+                <div id="ui-tabs-17" class="ui-tabs-panel ui-widget-content ui-corner-bottom">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img
+                        src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;"
+                        valign="middle"></div>
+                <div id="ui-tabs-19" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">정보를 가져오는 중.&nbsp;&nbsp;&nbsp;<img
+                        src="/gwlib/comm/images/loading.gif" style="position:relative;top:10px;left:10px;width:30px;"
+                        valign="middle"></div>
+            </div>
+        </div>
+        <div id="right" class="ui-layout-east ui-layout-pane ui-layout-pane-east"
+             style="position: absolute; margin: 0px; left: auto; right: 0px; top: 0px; bottom: 0px; height: 889px; z-index: 0; width: 230px; display: none; visibility: visible;">
+            <div id="right-portlet" class="column">
+                <div id="BOOKMARK_MENU" shref="/gw/sys/bookmark.nsf/wFrmViewPortal?ReadForm"
+                     class="portlet ui-widget ui-helper-clearfix">
+                    <div class="portlet-header portlet-header-t0-rbg">
+                        <div class="portlet-header-lbg portlet-header-t0-lbg"><span id="head_title"
+                                                                                    class="portlet-header-title portlet-header-t0-cbg"><span
+                                id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span
+                                id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img
+                                src="/gwlib/comm/images/context/addbookmark.gif" border="0"
+                                style="vertical-align:middle;"><font id="head_title_txt" style="line-height:22px;">&nbsp;Bookmark</font></span>
+                        </div>
+                    </div>
+                    <div class="portlet-content portlet-content-t0-bg"><!-- 공용뷰 보조양식 -->
+
+                        <!-- 전체 테이블 시작 -->
+                        <table class="viw-layout" cellpadding="0" cellspacing="0" width="100%" border="0">
+                            <tbody>
+                            <tr>
+                                <td valign="top" align="right">
+                                    <img src="/icons/actn004.gif" border="0" onclick="bookmark.deldoc()" title="삭제"
+                                         style="cursor:pointer;padding-right:5px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <div id="_BookTreeMenu">
+                                        <ul class="dynatree-container dynatree-no-connector"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- 전체 테이블 끝 -->
+
+                    </div>
+                    <div class="portlet-bottom portlet-bottom-t0-rbg">
+                        <div class="portlet-bottom-lbg portlet-bottom-t0-lbg"><span></span></div>
+                    </div>
+                </div>
+                <div id="TODO_MENU" shref="/gw/sys/todolist.nsf/wFrmViewPortal?ReadForm"
+                     class="portlet ui-widget ui-helper-clearfix">
+                    <div class="portlet-header portlet-header-t0-rbg">
+                        <div class="portlet-header-lbg portlet-header-t0-lbg"><span id="head_title"
+                                                                                    class="portlet-header-title portlet-header-t0-cbg"><span
+                                id="ui-min" class="portlet-icon portlet-minus-icon" style="cursor:pointer"></span><span
+                                id="ui-refresh" class="portlet-icon portlet-refresh-icon" style="cursor:pointer"></span><img
+                                src="/gwlib/comm/images/context/addtodo.gif" border="0"
+                                style="vertical-align:middle;"><font id="head_title_txt" style="line-height:22px;">&nbsp;Todo</font></span>
+                        </div>
+                    </div>
+                    <div class="portlet-content portlet-content-t0-bg"><!-- 공용뷰 보조양식 -->
+
+                        <!-- 전체 테이블 시작 -->
+                        <table class="viw-layout" cellpadding="0" cellspacing="0" width="100%" border="0">
+                            <tbody>
+                            <tr>
+                                <td valign="top" align="right">
+                                    <img src="/icons/actn004.gif" border="0" onclick="todolist.deldoc()" title="삭제"
+                                         style="cursor:pointer;padding-right:5px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <div id="_ToDoTreeMenu">
+                                        <ul class="dynatree-container dynatree-no-connector"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- 전체 테이블 끝 -->
+
+                    </div>
+                    <div class="portlet-bottom portlet-bottom-t0-rbg">
+                        <div class="portlet-bottom-lbg portlet-bottom-t0-lbg"><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="" class="ui-layout-resizer ui-layout-resizer-west ui-layout-resizer-open ui-layout-resizer-west-open"
+             title="Resize" aria-disabled="false"
+             style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: w-resize; left: 246px; height: 869px; width: 7px; top: 0px;">
+            <div id=""
+                 class="ui-layout-toggler ui-layout-toggler-west ui-layout-toggler-open ui-layout-toggler-west-open"
+                 title="Close"
+                 style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible; height: 30px; width: 7px; top: 419px; left: 0px;"></div>
+        </div>
+        <div id=""
+             class="ui-layout-resizer ui-layout-resizer-east ui-layout-resizer-closed ui-layout-resizer-east-closed ui-draggable-disabled"
+             title="Slide Open" aria-disabled="true"
+             style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: pointer; right: 0px; height: 889px; width: 7px; top: 0px;">
+            <div id=""
+                 class="ui-layout-toggler ui-layout-toggler-east ui-layout-toggler-closed ui-layout-toggler-east-closed"
+                 title="Open"
+                 style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible; height: 30px; width: 7px; top: 429px; left: 0px;"></div>
+        </div>
+    </div>
+</div>
+<!-- //Container -->
+<!-- Bottom Start (디버깅 용)-->
+<div id="bottom" class="" style="display:none;">
+    <div style="width:100%;height:100%;border:0px solid black;">
+        <table width="100%" height="100%" cellspacing="0" valign="top" cellpadding="3" border="0"
+               style="table-layout:fixed;margin: 0px 0px 0px 0px;overflow:hidden;word-break:keep-all;">
+            <tbody>
+            <tr>
+                <td valign="top" style="height:18px;padding:0px 5px 0px 0px;">
+                    ○ 접속자 :이영호 <input type="button" onclick="clipboardData.setData('Text',$('#debug_console').text())"
+                                      value="Copyt to Clipboard"> <span id="debug_path"></span>
+                </td>
+            </tr>
+            <tr height="*">
+                <td height="*" valign="top"
+                    style="background-color:white;padding:0px 5px 0px 2px;border: 1px solid blue;">
+                    <pre id="debug_console">CN=이영호/OU=20100155/O=interpark, 이영호, *, */OU=20100155/O=interpark, */O=interpark, I3073, BACKEND개발팀<i3073>, I2012, 쇼핑도서개발실<i2012>, I0000, IT부문<i0000>, N8888, 인터파크<n8888>, 11111, 인터파크 그룹&lt;11111&gt;, 00000, 그룹사&lt;00000&gt;</n8888></i0000></i2012></i3073></pre>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Bottom Stop (디버깅 용)-->
+<div id="RTNJS" width="1" height="1" style="display:none;"></div>
+<div>
+    <ul id="tabs_context_menu" class="contextMenu" style="width: 140px;">
+        <li class="deltabs"><a href="#deltabs">Tab전체닫기</a></li>
+        <li class="refreshtab"><a href="#refreshtab">현재Tab새로고침</a></li>
+        <li class="refreshtab"><a href="#togglelayout">Tab영역확대/축소</a></li>
+        <li class="settingtab"><a href="#settingtab">Tab설정</a></li>
+        <li class="addtodo separator"><a href="#addtodo">ToDo 추가</a></li>
+        <li class="addbookmark"><a href="#addbookmark">Bookmark 추가</a></li>
+    </ul>
+</div>
+<iframe id="iOpenFile" src="about:blank" style="display:hidden;width:0;height:0;"></iframe>
+<script>
+   var xx="CN=napp01/O=interpark";
+   var x2="192.168.4.4";
+
+</script>
+<script>
+	$LAB.setGlobalDefaults({AlwaysPreserveOrder:false, AllowDuplicates:false});
+	$( function() {
+		mframe.domain = "interpark.com";
+		mframe.libpath = "/gwlib";
+		mframe.orgpath = "/gw/sys/organization.nsf";
+		mframe.portalpath = "/gw/portal/portal.nsf";
+		mframe.conpath = "/gw/portal/contents.nsf";
+		mframe.mlangpath = "/gw/sys/multilang.nsf";
+		mframe.menupath = "/gw/sys/menumng.nsf";
+		mframe.portletpath = "/gw/portal/portlet.nsf";
+		mframe.isdebugging = "0";
+		mframe.dataroompath= "gw/app/dataroom/dataroom_1.nsf";
+		mframe.curdate= "2018-04-03";
+		mframe.userinfo = {
+				com:"00000",
+				comnm:"그룹사",
+				subcom:"N8888",
+				subcomnm:"인터파크",
+				empno:"20100155",
+				rempno:"N10294",
+				email:"real@interpark.com",
+				cnname:"이영호",
+				abrname:"이영호/20100155/interpark",
+				fullname:"CN=이영호/OU=20100155/O=interpark",
+				dispname:"이영호/BACKEND개발팀",
+				deptcode:"I3073",
+				rdeptcode:"",
+				hdeptcode:"N8888",
+				hdeptname:"인터파크",
+				bdeptcode:"I0000",
+				bdeptname:"IT부문",
+				mailpath:"mail/5/20100155.nsf",
+				mypage:"",
+				tabcount: "10",
+				tabrefresh:"Y",
+				myviewcnt:"",
+				mailpreview:"0",
+				passchk:"",
+				forgcode:"00000|11111|N8888|I0000|I2012|I3073",
+				encid:"546A45774D6A6B30",
+				paperpath:"paper/5/p20100155.nsf",
+				bizunit:"07",
+				bizunit_tmp:"07",
+				usertype:"",
+				isdual:"0",
+				inout:"",
+				isAdmin:"No",
+				parorgcode:"I2012",
+				comnm_E:"Interpark",
+				subcomnm_E:"인터파크",
+				dispname_E:"Lee Youngho/쇼핑CORE개발팀",
+				hdeptname_E:"인터파크",
+				bdeptname_E:"IT부문",
+				userlocation:"삼성동빌딩5F",
+				userwork:"",
+				ischkpledge:"n",
+				ischkpwd:"n",
+				userportaledit:"y",
+				usernlogin:"y"
+				,isimkpart : ""
+				,imktimezone : ""
+		};
+		mframe.userinfos = [];
+		mframe.init();
+
+		if( !$.browser.msie ) {
+			//$LAB.script('/gwlib/comm/js/htmleditor.js');
+			$LAB.script('/gwlib/comm/js/crosseditor.js');
+			$LAB.script('/gwlib/core/jquery.base64.js');
+		}
+
+		$LAB.script('/gwlib/comm/js/orgsel.js');
+		$(window).bind('hashchange', function() {
+			var hash = (window.location.hash).replace("hash_", "");
+			$("#tabs").tabs('select', hash);
+			$("#innertabs").tabs('select', hash);
+		});
+		//mframe.unload();
+	});
+portal.chkOTP = function(){
+//	if( _isPermissionIP == "y") return;
+	if( portal.getCookie("OTP_LIVE") == null |  portal.getCookie("OTP_LIVE") != "Y" ){
+		//alert(SML_PORTAL_MSG_00020);		//세션이 유효하지 않습니다.\n자동 로그아웃 됩니다.
+		//top.document.location = "/names.nsf?logout";
+	}
+}
+document.onkeydown = function(e) {
+	var evtK = (e) ? e.which : window.event.keyCode;
+//debugger;
+	//if (evtK == 8 || evtK == 116) {
+	if (evtK == 116) {
+		if (e) { evtK = 505; } else { event.keyCode = evtK = 505; }
+	}
+	if (evtK == 8) {
+
+		if(event.srcElement.type != "text" && event.srcElement.type != "textarea" ){
+			if (e) { evtK = 505; } else { event.keyCode = evtK = 505; }
+		}else{
+			if(event.keyCode == 8 ) return true;
+		}
+	}
+	 $("input").each(function(index){
+			if($(this).attr("readonly") == "readonly"){
+				$(this).bind("keydown",function(evnet){
+					if(event.keyCode == 8 ) return false;
+				});
+			}
+		} );
+	if (evtK == 505) {
+		if(e){   //표준
+			e.preventDefault();
+		} else {
+			event.keyCode = 0;
+			event.returnValue= false;
+		}
+	}
+}
+/* 테스트 폰트 FN */
+$(document).ready(function() {
+	$('.btnFont').click(function() {
+		var type = $(this).attr('data-font');
+		$('body,div, ul, li, tr, td, input, select, span, a, p').css({'font-family':type});
+	});
+});
+function changeFont(n) {
+	document.style.fontFamily = "dotum, gulim, Arial, tahoma, verdana, sans-serif;";
+}
+
+</script>
+
+
+<div id="" class="ui-layout-resizer ui-layout-resizer-north ui-layout-resizer-open ui-layout-resizer-north-open"
+     title="Resize" aria-disabled="false"
+     style="position: absolute; padding: 0px; margin: 0px; font-size: 1px; text-align: left; overflow: hidden; z-index: 2; cursor: n-resize; top: 100px; display: none;">
+    <div id="" class="ui-layout-toggler ui-layout-toggler-north ui-layout-toggler-open ui-layout-toggler-north-open"
+         title="Close"
+         style="position: absolute; display: block; padding: 0px; margin: 0px; overflow: hidden; text-align: center; font-size: 1px; cursor: pointer; z-index: 1; visibility: visible;"></div>
+</div>
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+    <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a
+            class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="이전달"><span
+            class="ui-icon ui-icon-circle-triangle-w">이전달</span></a><a class="ui-datepicker-next ui-corner-all"
+                                                                       data-handler="next" data-event="click"
+                                                                       title="다음달"><span
+            class="ui-icon ui-icon-circle-triangle-e">다음달</span></a>
+        <div class="ui-datepicker-title"><span class="ui-datepicker-month">4월(APR)</span>&nbsp;<span
+                class="ui-datepicker-year">2018</span>년
+        </div>
+    </div>
+    <table class="ui-datepicker-calendar">
+        <thead>
+        <tr>
+            <th class="ui-datepicker-week-end"><span title="일">일</span></th>
+            <th><span title="월">월</span></th>
+            <th><span title="화">화</span></th>
+            <th><span title="수">수</span></th>
+            <th><span title="목">목</span></th>
+            <th><span title="금">금</span></th>
+            <th class="ui-datepicker-week-end"><span title="토">토</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">1</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">2</a></td>
+            <td class=" ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today"
+                data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#">3</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">4</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">5</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">6</a></td>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">7</a></td>
+        </tr>
+        <tr>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">8</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">9</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">10</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">11</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">12</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">13</a></td>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">14</a></td>
+        </tr>
+        <tr>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">15</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">16</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">17</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">18</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">19</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">20</a></td>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">21</a></td>
+        </tr>
+        <tr>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">22</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">23</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">24</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">25</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">26</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">27</a></td>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">28</a></td>
+        </tr>
+        <tr>
+            <td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="3"
+                data-year="2018"><a class="ui-state-default" href="#">29</a></td>
+            <td class=" " data-handler="selectDay" data-event="click" data-month="3" data-year="2018"><a
+                    class="ui-state-default" href="#">30</a></td>
+            <td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+            <td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+            <td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+            <td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td>
+            <td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">
+                &nbsp;
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
