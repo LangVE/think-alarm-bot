@@ -11,13 +11,18 @@ public class SampleController {
         return "index.html";
     }
 
-    @RequestMapping("/event")
-    public String event() {
-        return "event.html";
+    @RequestMapping("/sample-html")
+    public String sampleHtml() {
+        return "sample.html";
     }
 
-    @RequestMapping("/wviwnotice")
-    public String wviwnotice() {
-        return "wviwnotice.xml";
+    @RequestMapping("/sample-xml")
+    public String samepleXml() {
+        return "sample.xml";
+    }
+
+    @RequestMapping("/httpclient-test")
+    public String httpclientTest() {
+        return "httpclient-test.html";
     }
 }
