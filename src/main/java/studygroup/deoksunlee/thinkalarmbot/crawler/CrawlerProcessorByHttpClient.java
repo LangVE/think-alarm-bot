@@ -31,7 +31,7 @@ public class CrawlerProcessorByHttpClient {
             logBuffer.append(", responseStatus : " + response.getStatusLine().getStatusCode());
 
             BufferedReader rd = new BufferedReader(
-                    new InputStreamReader(response.getEntity().getContent()));
+                    new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 
             StringBuffer result = new StringBuffer();
             String line = "";

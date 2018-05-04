@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import studygroup.deoksunlee.thinkalarmbot.crawler.CrawlerProcessorByHttpClient;
 
 public class Parser4XmlTest {
     private static final Logger logger = LoggerFactory.getLogger(Parser4XmlTest.class);
@@ -27,6 +28,23 @@ public class Parser4XmlTest {
     public void parse_sampleXML() throws Exception {
         // given
         String xml = getSampleXML();
+
+        // when
+        String xpathExpression = "//entrydata[@columnnumber=12]/text";
+        String actual = Parser4Xml.parse(xml, xpathExpression);
+        logger.debug("actual : " + actual);
+
+        // then
+        String expected = "3867";
+        Assert.assertEquals(expected, actual);
+    }
+
+
+    @Test
+    public void parse_sampleXML_byHttpClient() {
+        //given
+        String URL = "http://localhost:8080/sample.xml";
+        String xml = CrawlerProcessorByHttpClient.get(URL);
 
         // when
         String xpathExpression = "//entrydata[@columnnumber=12]/text";
