@@ -16,11 +16,6 @@ public class SampleController {
         return "sample.html";
     }
 
-    @RequestMapping("/sample-xml")
-    public String samepleXml() {
-        return "sample.xml";
-    }
-
     @RequestMapping("/httpclient-test")
     public String httpclientTest() {
         return "httpclient-test.html";
