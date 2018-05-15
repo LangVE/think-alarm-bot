@@ -14,9 +14,10 @@ public class Push4SlackTest {
         String message = "hello, ut";
 
         // when
-        String response = Push4Slack.push(message);
+        SlackChatPostMessageResponse response = Push4Slack.push(message);
         logger.info("reponse : " + response);
+
         // then
-        Assert.assertNotNull(response);
+        Assert.assertTrue(response.isOk());
     }
 }
