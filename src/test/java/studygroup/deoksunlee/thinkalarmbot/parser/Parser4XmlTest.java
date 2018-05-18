@@ -38,6 +38,21 @@ public class Parser4XmlTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void parse_sampleXML_title() throws Exception {
+        // given
+        String xml = getSampleXML();
+
+        // when
+        String xpathExpression = "//entrydata[@columnnumber=3]/text";
+        String actual = Parser4Xml.parse(xml, xpathExpression);
+        logger.debug("actual : " + actual);
+
+        // then
+        String expected = "[임직원EVENT]***인터파크VR 임직원 EVENT !!***";
+        Assert.assertEquals(expected, actual);
+    }
+
     private String getSimpleXML() {
         return "<root><row><col1 id='c1'>값1</col1><col2 id='c2' val='val2'>값2</col2></row>" +
                 "<row><col1 id='c3'>값3</col1><col2 id='c4'>값4</col2></row></root>";
