@@ -2,24 +2,33 @@ package studygroup.deoksunlee.thinkalarmbot.push;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import studygroup.deoksunlee.thinkalarmbot.util.HttpClientUtils;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 
+@Service
 public class Push4Slack {
 
     @Value("${property.slack.token}")
-    private static String token;
+    private String token;
 
     @Value("${property.slack.channel-id}")
-    private static String channelId;
+    private String channelId;
 
-    public static String getToken() {
+    @Value("${greeting}")
+    private String greeting;
+
+    public String getGreeting() {
+        return greeting;
+    }
+
+    public String getToken() {
         return token;
     }
 
-    public static String getChannelId() {
+    public String getChannelId() {
         return channelId;
     }
 
@@ -30,7 +39,7 @@ public class Push4Slack {
 
     private static ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
-    public static SlackChatPostMessageResponse push(String message) {
+    public SlackChatPostMessageResponse push(String message) {
 
 
         SlackChatPostMessageResponse response = null;
