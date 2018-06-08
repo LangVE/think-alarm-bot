@@ -2,11 +2,16 @@ package studygroup.deoksunlee.thinkalarmbot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import studygroup.deoksunlee.thinkalarmbot.crawler.CrawlerProcessorByHttpClient;
+import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
 import studygroup.deoksunlee.thinkalarmbot.parser.Parser4Xml;
 import studygroup.deoksunlee.thinkalarmbot.push.Push4Slack;
 import studygroup.deoksunlee.thinkalarmbot.push.SlackChatPostMessageResponse;
+import studygroup.deoksunlee.thinkalarmbot.repository.ApiAuthenticationRepository;
+
+import java.util.Date;
 
 @RestController
 public class TabController {
@@ -15,6 +20,9 @@ public class TabController {
 
     @Autowired
     private Push4Slack push4Slack;
+
+    @Autowired
+    private ApiAuthenticationRepository apiAuthenticationRepository;
 
     @PostMapping(value = "/api/check-and-push")
     public String checkAndPush() {
@@ -35,5 +43,23 @@ public class TabController {
             result = String.format("{\"code\":500, \"message\":\"%s\"}", response.getError());
 
         return result;
+    }
+
+    @RequestMapping(value = "/api/jpa-test")
+    public String jpaTest() {
+
+        ApiAuthentication apiAuthentication = new ApiAuthentication();
+
+        apiAuthentication.setWorkspace("workspace");
+        apiAuthentication.setModDate(new Date());
+        apiAuthentication.setModNo(1);
+        apiAuthentication.setRegDate(new Date());
+        apiAuthentication.setRegNo(1);
+        apiAuthentication.setServiceId("serviceid");
+        apiAuthentication.setToken("token");
+
+        apiAuthenticationRepository.save(apiAuthentication);
+
+        return "";
     }
 }
