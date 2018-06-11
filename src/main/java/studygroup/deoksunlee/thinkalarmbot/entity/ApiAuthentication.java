@@ -1,16 +1,14 @@
 package studygroup.deoksunlee.thinkalarmbot.entity;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
 public class ApiAuthentication {
 
-    @Id
-    private String serviceId;
-
-    private String token;
+    @EmbeddedId
+    private ApiAuthenticationId apiAuthenticationid;
 
     private String workspace;
 
@@ -22,21 +20,12 @@ public class ApiAuthentication {
 
     private Date regDate;
 
-    public String getServiceId() {
-
-        return serviceId;
+    public ApiAuthenticationId getApiAuthenticationid() {
+        return apiAuthenticationid;
     }
 
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setApiAuthenticationid(ApiAuthenticationId apiAuthenticationid) {
+        this.apiAuthenticationid = apiAuthenticationid;
     }
 
     public String getWorkspace() {

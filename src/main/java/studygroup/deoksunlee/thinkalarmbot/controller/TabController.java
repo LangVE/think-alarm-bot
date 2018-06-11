@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import studygroup.deoksunlee.thinkalarmbot.crawler.CrawlerProcessorByHttpClient;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
+import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthenticationId;
 import studygroup.deoksunlee.thinkalarmbot.parser.Parser4Xml;
 import studygroup.deoksunlee.thinkalarmbot.push.Push4Slack;
 import studygroup.deoksunlee.thinkalarmbot.push.SlackChatPostMessageResponse;
@@ -48,15 +49,18 @@ public class TabController {
     @RequestMapping(value = "/api/jpa-test")
     public String jpaTest() {
 
+        ApiAuthenticationId apiAuthenticationId = new ApiAuthenticationId();
+        apiAuthenticationId.setServiceId("serviceId");
+        apiAuthenticationId.setToken("token");
+
         ApiAuthentication apiAuthentication = new ApiAuthentication();
 
+        apiAuthentication.setApiAuthenticationid(apiAuthenticationId);
         apiAuthentication.setWorkspace("workspace");
         apiAuthentication.setModDate(new Date());
         apiAuthentication.setModNo(1);
         apiAuthentication.setRegDate(new Date());
         apiAuthentication.setRegNo(1);
-        apiAuthentication.setServiceId("serviceid");
-        apiAuthentication.setToken("token");
 
         apiAuthenticationRepository.save(apiAuthentication);
 
