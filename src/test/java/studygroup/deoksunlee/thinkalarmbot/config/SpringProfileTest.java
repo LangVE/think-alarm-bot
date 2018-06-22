@@ -15,8 +15,8 @@ public class SpringProfileTest {
     private SpringProfile springProfile;
 
     @BeforeClass
-    public void setSystemProperties() {
-        System.setProperty("spring.profiles.active", "product");
+    public static void setSystemProperties() {
+        //System.setProperty("spring.profiles.active", "product");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class SpringProfileTest {
         String actual = springProfile.getGreeting();
 
         // then
-        String expected = "hello-product";
+        String expected = "hello-local";
         Assert.assertEquals(expected, actual);
     }
 }
