@@ -13,6 +13,7 @@ import studygroup.deoksunlee.thinkalarmbot.push.SlackChatPostMessageResponse;
 import studygroup.deoksunlee.thinkalarmbot.repository.ApiAuthenticationRepository;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TabController {
@@ -32,12 +33,15 @@ public class TabController {
 
         String xml = CrawlerProcessorByHttpClient.get(URL);
         String xpath4EventNo = "//entrydata[@columnnumber=12]/text";
-        String eventNo = Parser4Xml.parse(xml, xpath4EventNo);
+        List<String> eventNoList = Parser4Xml.parseList(xml, xpath4EventNo);
         String xpath4EventTitle = "//entrydata[@columnnumber=3]/text";
-        String eventTitle = Parser4Xml.parse(xml, xpath4EventTitle);
+        List<String> eventTitleList = Parser4Xml.parseList(xml, xpath4EventTitle);
+
+        //checker
+
 
         // slack push
-        String message = String.format("새로운 %s번 이벤트[%s]가 등록되었습니다.", eventNo, eventTitle);
+        String message = String.format("새로운 %s번 이벤트[%s]가 등록되었습니다.", eventNoList, eventTitleList);
         SlackChatPostMessageResponse response = push4Slack.push(message);
 
         if (!response.isOk())

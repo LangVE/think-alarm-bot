@@ -5,6 +5,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Parser4XmlTest {
     private static final Logger logger = LoggerFactory.getLogger(Parser4XmlTest.class);
 
@@ -20,6 +23,21 @@ public class Parser4XmlTest {
 
         // then
         String expected = "값1";
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void parseList() {
+        // given
+        String xml = getSampleXML();
+
+        // when
+        String xpathExpression = "//entrydata[@columnnumber=12]/text";
+        List<String> actual = Parser4Xml.parseList(xml, xpathExpression);
+        logger.debug("actual : " + actual);
+
+        // then
+        List<String> expected = Arrays.asList("3867", "3864", "3862", "3861", "3845");
         Assert.assertEquals(expected, actual);
     }
 
