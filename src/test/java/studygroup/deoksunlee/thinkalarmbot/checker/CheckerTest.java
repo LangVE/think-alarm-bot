@@ -36,15 +36,16 @@ public class CheckerTest {
         List<String> eventIdList = Arrays.asList("1", "2", "3");
 
         // when
-        List<PushLog> actualList = checker.check(eventIdList);
+        List<String> actualList = checker.check(eventIdList);
 
         // then
-        List<PushLog> expectedList = getExpectedList();
+        //List<PushLog> expectedList = getExpectedList();
+        List<String> expectedList = Arrays.asList("2", "3");
         Assert.assertNotNull(actualList);
-        logger.error("actualList" + actualList);
+        logger.error("actualList : " + actualList);
         logger.error("actualList.size() : " + actualList.size());
-        Assert.assertEquals(1, actualList.size());
-        Assert.assertEquals(expectedList.get(0).getEventId(), actualList.get(0).getEventId());
+        Assert.assertEquals(2, actualList.size());
+        Assert.assertEquals(expectedList, actualList);
     }
 
     private void savePushLog() {
@@ -66,7 +67,8 @@ public class CheckerTest {
 
     private List<PushLog> getExpectedList() {
         List<PushLog> expectedList = new ArrayList<>();
-        expectedList.add(createPushLog("1"));
+        expectedList.add(createPushLog("2"));
+        expectedList.add(createPushLog("3"));
         return expectedList;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import studygroup.deoksunlee.thinkalarmbot.entity.PushLog;
 import studygroup.deoksunlee.thinkalarmbot.repository.PushLogRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,7 +14,20 @@ public class Checker {
     @Autowired
     PushLogRepository pushLogRepository;
 
-    public List<PushLog> check(List<String> eventIdList) {
-        return pushLogRepository.findByEventIdIn(eventIdList);
+    public List<String> check(List<String> eventIdList) {
+        List<PushLog> pushLogList = pushLogRepository.findByEventIdIn(eventIdList);
+
+        List<String> resultList = new ArrayList<>();
+
+        for (String eventId : eventIdList) {
+            for (PushLog pushLog : pushLogList) {
+                if (!pushLog.getEventId().equals(eventId)) {
+                    resultList.add(eventId);
+                }
+
+            }
+        }
+
+        return resultList;
     }
 }

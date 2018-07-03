@@ -5,6 +5,7 @@ import studygroup.deoksunlee.thinkalarmbot.entity.PushLog;
 
 import java.util.List;
 
+
 public interface PushLogRepository extends CrudRepository<PushLog, String> {
-    List<PushLog> findByEventIdIn(List<String> listEventId);
+    List<PushLog> findByEventIdIn(List<String> eventIdList);
 }
