@@ -41,6 +41,15 @@ public class Parser4XmlTest {
         Assert.assertEquals(expected, actual);
     }
 
+    static List<Event> getEventList() {
+        return Arrays.asList(
+                new Event("3867", "[임직원EVENT]***인터파크VR 임직원 EVENT !!***"),
+                new Event("3864", "★땡처리★ 남프랑스+크로아티아 5국10일 [A380탑승]"),
+                new Event("3862", "[미세먼지대란] 톡딜 한정수량 특가 샤오미 공기청정기 79,900원 (4/6)"),
+                new Event("3861", "●썬키스트 블랙라벨 오렌지 20과 한정판매●"),
+                new Event("3845", "♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!"));
+    }
+
     @Test
     public void parseToEvnetList() {
         // given
@@ -52,12 +61,7 @@ public class Parser4XmlTest {
         logger.debug("actual : " + actual);
 
         // then
-        List<Event> expected = Arrays.asList(
-                new Event("3867", "[임직원EVENT]***인터파크VR 임직원 EVENT !!***"),
-                new Event("3864", "★땡처리★ 남프랑스+크로아티아 5국10일 [A380탑승]"),
-                new Event("3862", "[미세먼지대란] 톡딜 한정수량 특가 샤오미 공기청정기 79,900원 (4/6)"),
-                new Event("3861", "●썬키스트 블랙라벨 오렌지 20과 한정판매●"),
-                new Event("3845", "♥4월 동유럽 특가♥봄맞이♥ 동유럽 패키지 1,240,000원!!!"));
+        List<Event> expected = getEventList();
         Assert.assertEquals(expected.get(0).getEventId(), actual.get(0).getEventId());
         Assert.assertEquals(expected.get(1).getEventId(), actual.get(1).getEventId());
         Assert.assertEquals(expected.get(2).getEventId(), actual.get(2).getEventId());
