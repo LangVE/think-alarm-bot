@@ -17,6 +17,7 @@ public class Parser4Xml {
 
     public static final String EVENT_ID = "$17";
     public static final String EVENT_TITLE = "$13";
+    private static final String xpathExpression = "//viewentry";
 
     public static String parse(String xml, String xpathExpression) {
         try {
@@ -68,7 +69,7 @@ public class Parser4Xml {
         return list;
     }
 
-    public static List<Event> parseToEventList(String xml, String xpathExpression) {
+    public static Events parseToEvents(String xml) {
         try {
 
             // XML Document 객체 생성
@@ -81,11 +82,15 @@ public class Parser4Xml {
             // NodeList 가져오기 : row 아래에 있는 모든 col1 을 선택
             NodeList cols = (NodeList) xpath.evaluate(xpathExpression, document, XPathConstants.NODESET);
 
-            return getEventList(cols);
+            return createEvents(getEventList(cols));
         } catch (Exception e) {
             String message = String.format("XML 파싱중 오류 발생(%s)", xml);
             throw new RuntimeException(message, e);
         }
+    }
+
+    private static Events createEvents(List<Event> eventList) {
+        return new Events(eventList);
     }
 
     private static List<Event> getEventList(NodeList cols) {

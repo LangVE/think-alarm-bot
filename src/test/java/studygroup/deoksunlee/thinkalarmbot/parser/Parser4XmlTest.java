@@ -47,8 +47,8 @@ public class Parser4XmlTest {
         String xml = getSampleXMLAfterTrim();
 
         // when
-        String xpathExpression = "//viewentry";
-        List<Event> actual = Parser4Xml.parseToEventList(xml, xpathExpression);
+        Events events = Parser4Xml.parseToEvents(xml);
+        List<Event> actual = events.getEventList();
         logger.debug("actual : " + actual);
 
         // then
