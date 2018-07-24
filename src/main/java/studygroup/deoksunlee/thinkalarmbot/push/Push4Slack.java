@@ -53,13 +53,13 @@ public class Push4Slack {
     }
 
     private String getMessage(List<Event> eventList) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuffer stringBuffer = new StringBuffer();
 
         for (Event e : eventList) {
             String message = String.format("[%s] %s", e.getEventId(), e.getEventTitle());
-            stringBuilder.append(message);
+            stringBuffer.append(message);
         }
 
-        return stringBuilder.toString();
+        return stringBuffer.toString();
     }
 }
