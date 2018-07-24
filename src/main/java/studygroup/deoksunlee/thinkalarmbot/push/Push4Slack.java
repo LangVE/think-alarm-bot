@@ -3,10 +3,12 @@ package studygroup.deoksunlee.thinkalarmbot.push;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import studygroup.deoksunlee.thinkalarmbot.parser.Event;
 import studygroup.deoksunlee.thinkalarmbot.util.HttpClientUtils;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Service
 public class Push4Slack {
@@ -33,8 +35,6 @@ public class Push4Slack {
     private static ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
     public SlackChatPostMessageResponse push(String message) {
-
-
         SlackChatPostMessageResponse response = null;
         try {
             String encodeMsg = URLEncoder.encode(message, "utf-8");
@@ -45,5 +45,21 @@ public class Push4Slack {
             throw new IllegalStateException("응답값 parsing 중 에러발생", e);
         }
         return response;
+    }
+
+    public SlackChatPostMessageResponse push(List<Event> eventList) {
+        String message = getMessage(eventList);
+        return push(message);
+    }
+
+    private String getMessage(List<Event> eventList) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Event e : eventList) {
+            String message = String.format("[%s] %s", e.getEventId(), e.getEventTitle());
+            stringBuilder.append(message);
+        }
+
+        return stringBuilder.toString();
     }
 }
