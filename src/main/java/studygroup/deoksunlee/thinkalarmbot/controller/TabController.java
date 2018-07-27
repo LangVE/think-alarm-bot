@@ -8,7 +8,6 @@ import studygroup.deoksunlee.thinkalarmbot.checker.Checker;
 import studygroup.deoksunlee.thinkalarmbot.crawler.CrawlerProcessorByHttpClient;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthenticationId;
-import studygroup.deoksunlee.thinkalarmbot.parser.Event;
 import studygroup.deoksunlee.thinkalarmbot.parser.Events;
 import studygroup.deoksunlee.thinkalarmbot.parser.Parser4Xml;
 import studygroup.deoksunlee.thinkalarmbot.push.Push4Slack;
@@ -45,12 +44,8 @@ public class TabController {
         //checker
         List<String> pushedList = checker.check(events.getEventIdList());
 
-        List<Event> newEventList = events.filter(pushedList);
-
         // slack push
-        //String message = String.format("새로운 %s번 이벤트[%s]가 등록되었습니다.", eventNoList, eventTitleList);
-        String message = ""; // TODO message 만들지 말고 pusher에게 newEventList 넘겨서 처리해봅시다.
-        SlackChatPostMessageResponse response = push4Slack.push(message);
+        SlackChatPostMessageResponse response = push4Slack.push(events.filter(pushedList));
 
         if (!response.isOk())
             result = String.format("{\"code\":500, \"message\":\"%s\"}", response.getError());
