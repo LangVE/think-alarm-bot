@@ -69,14 +69,14 @@ public class TabController {
         ApiAuthenticationId apiAuthenticationId = new ApiAuthenticationId();
 
 
-        apiAuthentication.setWorkspace("workspace");
+        apiAuthentication.setToken("test2-token");
         apiAuthentication.setModDate(new Date());
         apiAuthentication.setModNo(1);
         apiAuthentication.setRegDate(new Date());
         apiAuthentication.setRegNo(1);
 
         apiAuthenticationId.setServiceId("serviceId");
-        apiAuthenticationId.setToken("token");
+        apiAuthenticationId.setWorkspace("test-workspace");
 
         apiAuthentication.setId(apiAuthenticationId);
 

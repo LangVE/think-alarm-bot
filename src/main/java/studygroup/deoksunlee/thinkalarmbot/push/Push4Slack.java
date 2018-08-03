@@ -1,9 +1,13 @@
 package studygroup.deoksunlee.thinkalarmbot.push;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
+import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthenticationId;
 import studygroup.deoksunlee.thinkalarmbot.parser.Event;
+import studygroup.deoksunlee.thinkalarmbot.repository.ApiAuthenticationRepository;
 import studygroup.deoksunlee.thinkalarmbot.util.HttpClientUtils;
 
 import java.io.IOException;
@@ -13,31 +17,25 @@ import java.util.List;
 @Service
 public class Push4Slack {
 
-    @Value("${property.slack.token}")
-    private String token;
-
     @Value("${property.slack.channel-id}")
     private String channelId;
 
-    public String getToken() {
-        return token;
-    }
+    @Autowired
+    private ApiAuthenticationRepository apiAuthenticationRepository;
 
     public String getChannelId() {
         return channelId;
     }
 
     private static final String url = "https://slack.com/api/chat.postMessage?token=%s&channel=%s&text=%s&pretty=1";
-//    private static final String token = "xoxp-340813866723-341964544615-340373455409-027937cfd9839e0e9254fd57b449f58e";
-//    private static final String channelId = "CAP8PSQMP";
-
 
     private static ObjectMapper mapper = new ObjectMapper(); // create once, reuse
 
     public SlackChatPostMessageResponse push(String message) {
-        SlackChatPostMessageResponse response = null;
+        SlackChatPostMessageResponse response;
         try {
             String encodeMsg = URLEncoder.encode(message, "utf-8");
+            String token = getApiAuthentication().getToken();
             String responseString = HttpClientUtils.request(String.format(url, token, channelId, encodeMsg));
 
             response = mapper.readValue(responseString, SlackChatPostMessageResponse.class);
@@ -61,5 +59,21 @@ public class Push4Slack {
         }
 
         return stringBuffer.toString();
+    }
+
+    private ApiAuthentication getApiAuthentication() {
+        ApiAuthenticationId id = getApiAuthenticationId();
+        return getApiAuthentication(id);
+    }
+
+    private ApiAuthenticationId getApiAuthenticationId() {
+        ApiAuthenticationId id = new ApiAuthenticationId();
+        id.setWorkspace("think-alarm-bot");
+        id.setServiceId("slack");
+        return id;
+    }
+
+    ApiAuthentication getApiAuthentication(ApiAuthenticationId id) {
+        return apiAuthenticationRepository.findById(id);
     }
 }

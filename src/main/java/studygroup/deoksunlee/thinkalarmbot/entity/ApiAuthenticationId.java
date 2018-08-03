@@ -9,7 +9,7 @@ public class ApiAuthenticationId implements Serializable {
 
     private String serviceId;
 
-    private String token;
+    private String workspace;
 
     public String getServiceId() {
         return serviceId;
@@ -19,12 +19,11 @@ public class ApiAuthenticationId implements Serializable {
         this.serviceId = serviceId;
     }
 
-    public String getToken() {
-        return token;
+    public String getWorkspace() {
+        return workspace;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setWorkspace(String workspace) {
+        this.workspace = workspace;
     }
-
 }

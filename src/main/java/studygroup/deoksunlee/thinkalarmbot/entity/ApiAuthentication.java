@@ -10,7 +10,7 @@ public class ApiAuthentication {
     @EmbeddedId
     private ApiAuthenticationId id;
 
-    private String workspace;
+    private String token;
 
     private Integer modNo;
 
@@ -20,12 +20,12 @@ public class ApiAuthentication {
 
     private Date regDate;
 
-    public String getWorkspace() {
-        return workspace;
+    public String getToken() {
+        return token;
     }
 
-    public void setWorkspace(String workspace) {
-        this.workspace = workspace;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Integer getModNo() {
