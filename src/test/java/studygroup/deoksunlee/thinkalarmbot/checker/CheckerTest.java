@@ -34,7 +34,7 @@ public class CheckerTest {
     public void check() {
 
         // given
-        savePushLog();
+        savePushLog(getPushLogs());
         List<String> eventIdList = Arrays.asList("1", "2", "3");
 
         // when
@@ -67,8 +67,28 @@ public class CheckerTest {
         Assert.assertEquals(expectedList, actualList);
     }
 
-    private void savePushLog() {
-        pushLogs = getPushLogs();
+    @Test
+    public void check_실패이력제외() {
+
+        // given
+        savePushLog(getFaildPushLogs());
+        List<String> eventIdList = Arrays.asList("1");
+
+        // when
+        List<String> actualList = checker.check(eventIdList);
+        deletePushLog();
+
+        // then
+        List<String> expectedList = eventIdList;
+        Assert.assertNotNull(actualList);
+        logger.info("actualList : " + actualList);
+        logger.info("actualList.size() : " + actualList.size());
+        Assert.assertEquals(expectedList.size(), actualList.size());
+        Assert.assertEquals(expectedList, actualList);
+    }
+
+    private void savePushLog(List<PushLog> logs) {
+        pushLogs = logs;
 
         pushLogRepository.saveAll(pushLogs);
     }
@@ -80,11 +100,22 @@ public class CheckerTest {
         return pushLogs;
     }
 
+    private List<PushLog> getFaildPushLogs() {
+        final boolean sendFaild = false;
+        List<PushLog> pushLogs = new ArrayList<>();
+        pushLogs.add(createPushLog("1", sendFaild));
+        return pushLogs;
+    }
+
     private void deletePushLog() {
         pushLogRepository.deleteAll(pushLogs);
     }
 
     private PushLog createPushLog(String eventId) {
+        return createPushLog(eventId, true);
+    }
+
+    private PushLog createPushLog(String eventId, boolean sendYn) {
         PushLog pushLog = new PushLog();
         pushLog.setEventId(eventId);
         pushLog.setEventTitle("test");
@@ -92,7 +123,7 @@ public class CheckerTest {
         pushLog.setModNo(0);
         pushLog.setRegDate(new Date());
         pushLog.setRegNo(0);
-        pushLog.setSendYn(true);
+        pushLog.setSendYn(sendYn);
         return pushLog;
     }
 }

@@ -15,7 +15,7 @@ public class Checker {
     PushLogRepository pushLogRepository;
 
     public List<String> check(List<String> eventIdList) {
-        List<PushLog> pushLogList = pushLogRepository.findByEventIdIn(eventIdList);
+        List<PushLog> pushLogList = pushLogRepository.findByEventIdInAndSendYn(eventIdList, true);
 
         List<String> resultList = new ArrayList<>();
 

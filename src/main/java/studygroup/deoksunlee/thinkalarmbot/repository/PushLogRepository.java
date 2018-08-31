@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface PushLogRepository extends CrudRepository<PushLog, String> {
     List<PushLog> findByEventIdIn(List<String> eventIdList);
+
+    List<PushLog> findByEventIdInAndSendYn(List<String> eventIdList, boolean sendYn);
 }
