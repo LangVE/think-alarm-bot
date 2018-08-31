@@ -19,12 +19,14 @@ public class Checker {
 
         List<String> resultList = new ArrayList<>();
 
+        if (pushLogList.size() == 0)
+            return eventIdList;
+
         for (String eventId : eventIdList) {
             for (PushLog pushLog : pushLogList) {
                 if (!pushLog.getEventId().equals(eventId)) {
                     resultList.add(eventId);
                 }
-
             }
         }
 

@@ -22,6 +22,8 @@ public class CheckerTest {
 
     Logger logger = LoggerFactory.getLogger(CheckerTest.class);
 
+    List<PushLog> pushLogs;
+
     @Autowired
     Checker checker;
 
@@ -37,20 +39,49 @@ public class CheckerTest {
 
         // when
         List<String> actualList = checker.check(eventIdList);
+        deletePushLog();
 
         // then
-        //List<PushLog> expectedList = getExpectedList();
         List<String> expectedList = Arrays.asList("2", "3");
         Assert.assertNotNull(actualList);
-        logger.error("actualList : " + actualList);
-        logger.error("actualList.size() : " + actualList.size());
+        logger.info("actualList : " + actualList);
+        logger.info("actualList.size() : " + actualList.size());
         Assert.assertEquals(2, actualList.size());
         Assert.assertEquals(expectedList, actualList);
     }
 
+    @Test
+    public void check_push된이력조회되지않은경우() {
+        // given
+        List<String> eventIdList = Arrays.asList("1", "2", "3");
+
+        // when
+        List<String> actualList = checker.check(eventIdList);
+
+        // then
+        List<String> expectedList = eventIdList;
+        Assert.assertNotNull(actualList);
+        logger.info("actualList : " + actualList);
+        logger.info("actualList.size() : " + actualList.size());
+        Assert.assertEquals(eventIdList.size(), actualList.size());
+        Assert.assertEquals(expectedList, actualList);
+    }
+
     private void savePushLog() {
-        pushLogRepository.save(createPushLog("1"));
-        pushLogRepository.save(createPushLog("4"));
+        pushLogs = getPushLogs();
+
+        pushLogRepository.saveAll(pushLogs);
+    }
+
+    private List<PushLog> getPushLogs() {
+        List<PushLog> pushLogs = new ArrayList<>();
+        pushLogs.add(createPushLog("1"));
+        pushLogs.add(createPushLog("4"));
+        return pushLogs;
+    }
+
+    private void deletePushLog() {
+        pushLogRepository.deleteAll(pushLogs);
     }
 
     private PushLog createPushLog(String eventId) {
@@ -63,12 +94,5 @@ public class CheckerTest {
         pushLog.setRegNo(0);
         pushLog.setSendYn(true);
         return pushLog;
-    }
-
-    private List<PushLog> getExpectedList() {
-        List<PushLog> expectedList = new ArrayList<>();
-        expectedList.add(createPushLog("2"));
-        expectedList.add(createPushLog("3"));
-        return expectedList;
     }
 }
