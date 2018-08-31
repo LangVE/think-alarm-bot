@@ -30,10 +30,10 @@ public class EventsTest {
     public void filter() {
         // given
         Events events = new Events(Parser4XmlTest.getEventList());
-        List<String> pushedEventIdList = Arrays.asList("3864", "3862", "3861", "3845");
+        List<String> pushingEventIdList = Arrays.asList("3867");
 
         // when
-        List<Event> actualList = events.filter(pushedEventIdList);
+        List<Event> actualList = events.filter(pushingEventIdList);
 
         // then
         List<Event> expectedList = new ArrayList<>();

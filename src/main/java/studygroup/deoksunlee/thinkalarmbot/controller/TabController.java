@@ -52,13 +52,13 @@ public class TabController {
             Events events = Parser4Xml.parseToEvents(xml);
 
             //checker
-            List<String> pushedList = checker.check(events.getEventIdList());
-            List<Event> newEventList = events.filter(pushedList);
+            List<String> pushingEventIdList = checker.check(events.getEventIdList());
+            List<Event> pushingEventList = events.filter(pushingEventIdList);
 
             // slack push
-            SlackChatPostMessageResponse response = push4Slack.push(newEventList);
+            SlackChatPostMessageResponse response = push4Slack.push(pushingEventList);
 
-            savePushLog(newEventList, response);
+            savePushLog(pushingEventList, response);
 
             if (!response.isOk())
                 result = String.format("{\"code\":500, \"message\":\"slackAPI 호출 실패(%s)\"}", response.getError());

@@ -24,11 +24,11 @@ public class Events {
         return result;
     }
 
-    public List<Event> filter(List<String> pushedEventIdList) {
+    public List<Event> filter(List<String> pushingEventIdList) {
         List<Event> result = new ArrayList<>();
 
         for (Event event : eventList) {
-            if (!pushedEventIdList.contains(event.getEventId())) {
+            if (pushingEventIdList.contains(event.getEventId())) {
                 result.add(event);
             }
         }
