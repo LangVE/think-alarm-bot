@@ -10,8 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthenticationId;
+import studygroup.deoksunlee.thinkalarmbot.entity.PushLog;
 import studygroup.deoksunlee.thinkalarmbot.parser.Event;
 import studygroup.deoksunlee.thinkalarmbot.repository.ApiAuthenticationRepository;
+import studygroup.deoksunlee.thinkalarmbot.repository.PushLogRepository;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -25,6 +27,9 @@ public class Push4SlackTest {
 
     @Autowired
     ApiAuthenticationRepository apiAuthenticationRepository;
+
+    @Autowired
+    PushLogRepository pushLogRepository;
 
     @Autowired
     Push4Slack push4Slack;
@@ -81,6 +86,32 @@ public class Push4SlackTest {
 
         // then
         Assert.assertEquals(testToken, actual.getToken());
+    }
+
+    @Test
+    public void save() {
+        // given
+        PushLog pushLog = new PushLog();
+        String eventId = "test1";
+        pushLog.setEventId(eventId);
+        pushLog.setEventTitle("test");
+        pushLog.setModDate(new Date());
+        pushLog.setModNo(0);
+        pushLog.setRegDate(new Date());
+        pushLog.setRegNo(0);
+        pushLog.setSendYn(true);
+
+        // when
+        pushLogRepository.save(pushLog);
+
+        List<String> listEventId = Arrays.asList(eventId);
+        List<PushLog> expected = pushLogRepository.findByEventIdIn(listEventId);
+
+        // then
+        Assert.assertEquals(1, expected.size());
+        Assert.assertEquals(eventId, expected.get(0).getEventId());
+
+        pushLogRepository.delete(pushLog);
     }
 
     private ApiAuthenticationId getApiAuthenticationId() {

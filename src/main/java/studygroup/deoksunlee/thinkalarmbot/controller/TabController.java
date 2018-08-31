@@ -10,11 +10,14 @@ import studygroup.deoksunlee.thinkalarmbot.checker.Checker;
 import studygroup.deoksunlee.thinkalarmbot.crawler.CrawlerProcessorByHttpClient;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthentication;
 import studygroup.deoksunlee.thinkalarmbot.entity.ApiAuthenticationId;
+import studygroup.deoksunlee.thinkalarmbot.entity.PushLog;
+import studygroup.deoksunlee.thinkalarmbot.parser.Event;
 import studygroup.deoksunlee.thinkalarmbot.parser.Events;
 import studygroup.deoksunlee.thinkalarmbot.parser.Parser4Xml;
 import studygroup.deoksunlee.thinkalarmbot.push.Push4Slack;
 import studygroup.deoksunlee.thinkalarmbot.push.SlackChatPostMessageResponse;
 import studygroup.deoksunlee.thinkalarmbot.repository.ApiAuthenticationRepository;
+import studygroup.deoksunlee.thinkalarmbot.repository.PushLogRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -34,6 +37,9 @@ public class TabController {
     @Autowired
     private ApiAuthenticationRepository apiAuthenticationRepository;
 
+    @Autowired
+    PushLogRepository pushLogRepository;
+
     @PostMapping(value = "/api/check-and-push")
     public String checkAndPush() {
         String result = "{\"code\":200, \"message\":\"success\"}";
@@ -47,9 +53,12 @@ public class TabController {
 
             //checker
             List<String> pushedList = checker.check(events.getEventIdList());
+            List<Event> newEventList = events.filter(pushedList);
 
             // slack push
-            SlackChatPostMessageResponse response = push4Slack.push(events.filter(pushedList));
+            SlackChatPostMessageResponse response = push4Slack.push(newEventList);
+
+            savePushLog(newEventList, response);
 
             if (!response.isOk())
                 result = String.format("{\"code\":500, \"message\":\"slackAPI 호출 실패(%s)\"}", response.getError());
@@ -60,6 +69,20 @@ public class TabController {
         }
 
         return result;
+    }
+
+    private void savePushLog(List<Event> newEventList, SlackChatPostMessageResponse response) {
+        for (Event event : newEventList) {
+            PushLog pushLog = new PushLog();
+            pushLog.setEventId(event.getEventId());
+            pushLog.setEventTitle(event.getEventTitle());
+            pushLog.setModDate(new Date());
+            pushLog.setModNo(0);
+            pushLog.setRegDate(new Date());
+            pushLog.setRegNo(0);
+            pushLog.setSendYn(response.isOk());
+            pushLogRepository.save(pushLog);
+        }
     }
 
     @RequestMapping(value = "/api/jpa-test")
