@@ -56,12 +56,16 @@ public class TabController {
             List<Event> pushingEventList = events.filter(pushingEventIdList);
 
             // slack push
-            SlackChatPostMessageResponse response = push4Slack.push(pushingEventList);
+            if (pushingEventIdList.size() > 0) {
+                SlackChatPostMessageResponse response = push4Slack.push(pushingEventList);
 
-            savePushLog(pushingEventList, response);
+                savePushLog(pushingEventList, response);
 
-            if (!response.isOk())
-                result = String.format("{\"code\":500, \"message\":\"slackAPI 호출 실패(%s)\"}", response.getError());
+                if (!response.isOk())
+                    result = String.format("{\"code\":500, \"message\":\"slackAPI 호출 실패(%s)\"}", response.getError());
+            } else {
+                result = "{\"code\":200, \"message\":\"새로운 Event가 없습니다\"}";
+            }
         } catch (Exception e) {
             String message = "정의되지 않은 오류 발생";
             result = String.format("{\"code\":500, \"message\":\"%s\"}", message);
